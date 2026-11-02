@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remove PDF Pages & Add Images – Combine into One PDF | Work BD</title>
+<meta name="description" content="Upload a PDF, delete unwanted pages, add images and download everything as one PDF. Free, private, runs in your browser.">
+<link rel="canonical" href="https://work-bd.github.io/repair-pdf.html">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#2f4fd8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Work BD">
+<meta property="og:title" content="Remove PDF Pages & Add Images | Work BD">
+<meta property="og:description" content="Upload a PDF, delete unwanted pages, add images and download everything as one PDF.">
+<meta property="og:url" content="https://work-bd.github.io/repair-pdf.html">
+<meta property="og:image" content="https://work-bd.github.io/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--ink:#0f172a;--mut:#5b6478;--line:#e2e8f0;--brand:#2f4fd8;--brand2:#4f46e5;--r:16px;--shadow:0 1px 2px rgba(15,23,42,.06),0 8px 24px rgba(15,23,42,.06)}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#d3e3f4 0,#C2D7EC 360px);background-attachment:fixed;color:var(--ink);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+header.hero{text-align:center;padding:36px 16px 10px}
+.hlogo img{height:60px;width:auto}
+h1{margin:10px 0 0;font-size:clamp(26px,5vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.hero p{max-width:640px;margin:12px auto 0;color:var(--mut);font-size:16px}
+main{max-width:1000px;margin:0 auto;padding:22px 16px 56px}
+.box{background:#fff;border:1px solid var(--line);border-top:4px solid #f59e0b;border-radius:var(--r);box-shadow:var(--shadow);padding:24px 20px}
+.adds{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:560px){.adds{grid-template-columns:1fr}}
+.drop{border:2px dashed #b6c4dd;border-radius:14px;padding:26px 12px;text-align:center;cursor:pointer;transition:background .15s,border-color .15s}
+.drop:hover,.drop.over{background:#f1f5ff;border-color:var(--brand)}
+.drop .big{font-size:34px;line-height:1}
+.drop b{display:block;margin-top:6px;font-size:16px}
+.drop span{color:var(--mut);font-size:13px}
+button.pri,a.pri{display:inline-block;border:0;background:linear-gradient(90deg,var(--brand),var(--brand2));color:#fff;font:inherit;font-weight:700;padding:12px 28px;border-radius:99px;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s}
+button.pri:hover,a.pri:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(47,79,216,.35)}
+button.pri:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+button.sec{border:1px solid var(--line);background:#fff;font:inherit;font-weight:600;font-size:14px;padding:8px 16px;border-radius:99px;cursor:pointer;color:var(--ink)}
+button.sec:hover{background:#f8fafc}
+.tools{display:none;margin-top:20px;gap:10px 14px;flex-wrap:wrap;align-items:center;padding:12px 14px;background:#f8fafc;border:1px solid var(--line);border-radius:12px}
+.tools.show{display:flex}
+.tools label{font-size:13.5px;color:var(--mut);font-weight:600}
+.tools input[type=text],.tools select{font:inherit;font-size:14px;padding:7px 10px;border:1px solid #cbd5e1;border-radius:8px;background:#fff}
+.tools input[type=text]{width:150px}
+.sum{display:none;margin:14px 2px 6px;font-size:14px;color:var(--mut)}
+.sum.show{display:block}
+.sum b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px;margin-top:10px}
+.pg{position:relative;background:#f8fafc;border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center;cursor:grab;transition:box-shadow .15s,opacity .15s}
+.pg:hover{box-shadow:0 6px 18px rgba(15,23,42,.12)}
+.pg.dragging{opacity:.4}
+.pg.removed{opacity:.45}
+.pg.removed .th{filter:grayscale(1)}
+.pg.removed::after{content:"Removed";position:absolute;top:44%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);background:#dc2626;color:#fff;font-weight:700;font-size:13px;padding:3px 10px;border-radius:6px;pointer-events:none}
+.th{height:150px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.th img{max-width:100%;max-height:100%;display:block}
+.th .ph{color:#94a3b8;font-size:12px}
+.lb{font-size:12px;margin-top:6px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb b{color:var(--ink)}
+.tag{position:absolute;top:12px;left:12px;background:#0f172a;color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px}
+.tag.im{background:#059669}
+.act{display:flex;justify-content:center;gap:4px;margin-top:6px}
+.act button{border:1px solid var(--line);background:#fff;border-radius:8px;width:30px;height:28px;cursor:pointer;font-size:13px;line-height:1}
+.act button:hover{background:#eef2ff}
+.act button.x:hover{background:#fee2e2}
+.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.msg{display:none;margin-top:16px;padding:12px 14px;border-radius:12px;font-size:14.5px}
+.msg.show{display:block}
+.msg.info{background:#eff6ff;color:#1e3a8a}
+.msg.ok{background:#ecfdf5;color:#065f46}
+.msg.err{background:#fef2f2;color:#991b1b}
+.bar{height:8px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin-top:12px;display:none}
+.bar.show{display:block}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width .2s}
+.hint{margin-top:14px;color:var(--mut);font-size:13.5px}
+.back{text-align:center;margin-top:20px}
+.back a{color:var(--brand);font-weight:600;text-decoration:none}
+footer{text-align:center;color:var(--mut);font-size:13px;padding:0 16px 30px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <a class="hlogo" href="./" aria-label="Home"><img src="logo.png" alt="Work BD logo"></a>
+  <h1>Remove Pages &amp; Add Images</h1>
+  <p>Upload a PDF, delete the pages you don’t need, add photos, arrange the order and download one PDF. Your files never leave your device.</p>
+</header>
+
+<main>
+  <div class="box">
+    <div class="adds">
+      <div class="drop" id="dropPdf" tabindex="0" role="button" aria-label="Add PDF files">
+        <div class="big">📄</div><b>Add PDF</b><span>Select or drop one or more PDF files</span>
+      </div>
+      <div class="drop" id="dropImg" tabindex="0" role="button" aria-label="Add images">
+        <div class="big">🖼️</div><b>Add Images</b><span>JPG, PNG, WEBP… (many at once)</span>
+      </div>
+    </div>
+    <input type="file" id="inPdf" accept="application/pdf,.pdf" multiple hidden>
+    <input type="file" id="inImg" accept="image/*" multiple hidden>
+
+    <div class="tools" id="tools">
+      <label for="rng">Remove by number:</label>
+      <input type="text" id="rng" placeholder="e.g. 2, 5-7">
+      <button class="sec" id="rngGo" type="button">Remove</button>
+      <button class="sec" id="restore" type="button">Restore all</button>
+      <label for="psz" style="margin-left:auto">Image page size:</label>
+      <select id="psz">
+        <option value="a4">A4 (fit image)</option>
+        <option value="img">Same as image</option>
+      </select>
+    </div>
+
+    <div class="sum" id="sum"></div>
+    <div class="grid" id="grid"></div>
+
+    <div class="row"><button class="pri" id="go" type="button" disabled>Create PDF</button></div>
+    <div class="bar" id="bar"><i id="bi"></i></div>
+    <div class="msg" id="msg"></div>
+    <div class="hint" id="hint">Tip: drag a page to reorder it, or use the ◀ ▶ buttons. Click ✕ to remove a page (click ↩ to bring it back). Numbers in “Remove by number” follow the order shown below.</div>
+  </div>
+  <div class="back"><a href="./">← All PDF tools</a></div>
+</main>
+<footer>&copy; 2026 All Rights Reserved.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  const grid = $('#grid'), msg = $('#msg'), bar = $('#bar'), bi = $('#bi'), go = $('#go'), sum = $('#sum'), tools = $('#tools');
+  const srcs = [];          // {name, bytes}
+  let items = [];           // {id,type,label,thumb,removed,src,pageIdx,file}
+  let uid = 0, outUrl = null, dragId = null, busy = 0;
+
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const fmt = n => n < 1048576 ? (n/1024).toFixed(0) + ' KB' : (n/1048576).toFixed(2) + ' MB';
+  function show(type, html){ msg.className = 'msg show ' + type; msg.innerHTML = html; }
+  function prog(p){ bar.classList.add('show'); bi.style.width = Math.round(p*100) + '%'; }
+  function clearOut(){ if(outUrl){ URL.revokeObjectURL(outUrl); outUrl = null; } msg.className = 'msg'; bar.classList.remove('show'); }
+
+  function summary(){
+    const keep = items.filter(i => !i.removed).length, rem = items.length - keep;
+    const pdfN = items.filter(i => i.type === 'pdf' && !i.removed).length, imgN = items.filter(i => i.type === 'img' && !i.removed).length;
+    tools.classList.toggle('show', items.length > 0);
+    sum.classList.toggle('show', items.length > 0);
+    sum.innerHTML = '<b>' + keep + '</b> page' + (keep === 1 ? '' : 's') + ' will be in the new PDF (' + pdfN + ' from PDF, ' + imgN + ' from images)' + (rem ? ' · <b>' + rem + '</b> removed' : '');
+    go.disabled = keep === 0 || busy > 0;
+  }
+
+  function render(){
+    grid.innerHTML = items.map((it, i) => {
+      const th = it.thumb ? '<img src="' + it.thumb + '" alt="">' : '<span class="ph">Loading…</span>';
+      const tag = it.type === 'pdf' ? '<span class="tag">PDF</span>' : '<span class="tag im">IMG</span>';
+      return '<div class="pg' + (it.removed ? ' removed' : '') + '" draggable="true" data-id="' + it.id + '">' + tag +
+        '<div class="th">' + th + '</div>' +
+        '<div class="lb"><b>' + (i + 1) + '.</b> ' + esc(it.label) + '</div>' +
+        '<div class="act"><button type="button" data-a="l" title="Move left">◀</button>' +
+        '<button type="button" class="x" data-a="x" title="' + (it.removed ? 'Restore' : 'Remove') + '">' + (it.removed ? '↩' : '✕') + '</button>' +
+        '<button type="button" data-a="r" title="Move right">▶</button></div></div>';
+    }).join('');
+    summary();
+  }
+  function setThumb(id, url){
+    const it = items.find(x => x.id === id); if(!it) return;
+    it.thumb = url;
+    const img = grid.querySelector('[data-id="' + id + '"] .th');
+    if(img) img.innerHTML = '<img src="' + url + '" alt="">';
+  }
+
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b) return;
+    const el = b.closest('.pg'); const id = +el.dataset.id;
+    const i = items.findIndex(x => x.id === id); if(i < 0) return;
+    clearOut();
+    if(b.dataset.a === 'x'){ items[i].removed = !items[i].removed; }
+    else if(b.dataset.a === 'l' && i > 0){ [items[i-1], items[i]] = [items[i], items[i-1]]; }
+    else if(b.dataset.a === 'r' && i < items.length - 1){ [items[i+1], items[i]] = [items[i], items[i+1]]; }
+    render();
+  });
+  grid.addEventListener('dragstart', e => { const el = e.target.closest('.pg'); if(!el) return; dragId = +el.dataset.id; el.classList.add('dragging'); e.dataTransfer.effectAllowed = 'move'; try{ e.dataTransfer.setData('text/plain', 'x'); }catch(_){} });
+  grid.addEventListener('dragend', () => { dragId = null; render(); });
+  grid.addEventListener('dragover', e => { if(dragId !== null) e.preventDefault(); });
+  grid.addEventListener('drop', e => {
+    if(dragId === null) return; e.preventDefault();
+    const el = e.target.closest('.pg'); if(!el) return;
+    const to = items.findIndex(x => x.id === +el.dataset.id), from = items.findIndex(x => x.id === dragId);
+    if(from < 0 || to < 0 || from === to) return;
+    const [m] = items.splice(from, 1); items.splice(to, 0, m);
+    clearOut(); dragId = null; render();
+  });
+
+  // Remove by number
+  $('#rngGo').onclick = () => {
+    const t = $('#rng').value.trim(); if(!t) return;
+    const n = items.length, set = new Set(); let bad = false;
+    t.split(/[,\s]+/).filter(Boolean).forEach(p => {
+      const m = p.match(/^(\d+)(?:-(\d+))?$/);
+      if(!m){ bad = true; return; }
+      let a = +m[1], b = m[2] ? +m[2] : a; if(a > b) [a, b] = [b, a];
+      if(a < 1 || b > n){ bad = true; return; }
+      for(let k = a; k <= b; k++) set.add(k);
+    });
+    if(bad || !set.size){ show('err', 'Invalid page numbers. Use numbers between 1 and ' + n + ', like “2, 5-7”.'); return; }
+    clearOut(); set.forEach(k => items[k-1].removed = true); $('#rng').value = ''; render();
+  };
+  $('#restore').onclick = () => { clearOut(); items.forEach(i => i.removed = false); render(); };
+
+  // Adding PDFs
+  async function addPdf(file){
+    let bytes;
+    try{ bytes = new Uint8Array(await file.arrayBuffer()); }catch(e){ show('err', 'Could not read ' + esc(file.name)); return; }
+    let pdf;
+    try{ pdf = await pdfjsLib.getDocument({ data: bytes.slice() }).promise; }
+    catch(e){
+      show('err', (e && e.name === 'PasswordException')
+        ? '“' + esc(file.name) + '” is password protected. Please unlock it first (Unlock PDF tool).'
+        : '“' + esc(file.name) + '” could not be opened. Try the Repair PDF tool first.');
+      return;
+    }
+    const si = srcs.push({ name: file.name, bytes }) - 1;
+    const base = file.name.replace(/\.pdf$/i, '');
+    const mine = [];
+    for(let p = 0; p < pdf.numPages; p++){
+      const it = { id: ++uid, type: 'pdf', label: base + ' · p' + (p + 1), thumb: null, removed: false, src: si, pageIdx: p };
+      items.push(it); mine.push(it);
+    }
+    render();
+    busy++;
+    for(let p = 0; p < mine.length; p++){
+      try{
+        const page = await pdf.getPage(p + 1);
+        const vp0 = page.getViewport({ scale: 1 });
+        const vp = page.getViewport({ scale: 220 / Math.max(vp0.width, vp0.height) });
+        const c = document.createElement('canvas'); c.width = Math.ceil(vp.width); c.height = Math.ceil(vp.height);
+        const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+        await page.render({ canvasContext: ctx, viewport: vp }).promise;
+        setThumb(mine[p].id, c.toDataURL('image/jpeg', 0.7));
+        page.cleanup();
+      }catch(e){ setThumb(mine[p].id, 'data:image/svg+xml;utf8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="80" height="100"><rect width="80" height="100" fill="#f1f5f9"/><text x="40" y="55" font-size="12" text-anchor="middle" fill="#94a3b8">Page ' + (p+1) + '</text></svg>')); }
+    }
+    busy--; summary();
+  }
+
+  function addImages(files){
+    files.forEach(f => {
+      if(!/^image\//.test(f.type)) return;
+      items.push({ id: ++uid, type: 'img', label: f.name, thumb: URL.createObjectURL(f), removed: false, file: f });
+    });
+    render();
+  }
+
+  async function onPdfs(list){
+    clearOut();
+    const arr = Array.from(list).filter(f => /\.pdf$/i.test(f.name) || f.type === 'application/pdf');
+    if(!arr.length){ show('err', 'Please choose PDF files.'); return; }
+    for(const f of arr) await addPdf(f);
+  }
+  function onImgs(list){
+    clearOut();
+    const arr = Array.from(list).filter(f => /^image\//.test(f.type));
+    if(!arr.length){ show('err', 'Please choose image files.'); return; }
+    addImages(arr);
+  }
+
+  function wire(dropSel, inpSel, handler){
+    const d = $(dropSel), i = $(inpSel);
+    d.onclick = () => i.click();
+    d.onkeydown = e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); i.click(); } };
+    i.onchange = () => { handler(i.files); i.value = ''; };
+    ['dragenter','dragover'].forEach(ev => d.addEventListener(ev, e => { e.preventDefault(); d.classList.add('over'); }));
+    ['dragleave','drop'].forEach(ev => d.addEventListener(ev, e => { e.preventDefault(); d.classList.remove('over'); }));
+    d.addEventListener('drop', e => handler(e.dataTransfer.files));
+  }
+  wire('#dropPdf', '#inPdf', onPdfs);
+  wire('#dropImg', '#inImg', onImgs);
+
+  // Image -> embeddable bytes (canvas applies phone EXIF rotation)
+  function loadImg(file){
+    return new Promise((res, rej) => {
+      const u = URL.createObjectURL(file), im = new Image();
+      im.onload = () => { res({ im, u }); };
+      im.onerror = () => { URL.revokeObjectURL(u); rej(new Error('bad image')); };
+      im.src = u;
+    });
+  }
+  async function embedImage(out, file){
+    if(file.type === 'image/png'){
+      try{ return await out.embedPng(new Uint8Array(await file.arrayBuffer())); }catch(e){ /* fall through to canvas */ }
+    }
+    const { im, u } = await loadImg(file);
+    const c = document.createElement('canvas'); c.width = im.naturalWidth; c.height = im.naturalHeight;
+    const ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height); ctx.drawImage(im, 0, 0);
+    URL.revokeObjectURL(u);
+    const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.92));
+    return await out.embedJpg(new Uint8Array(await blob.arrayBuffer()));
+  }
+
+  go.onclick = async () => {
+    const keep = items.filter(i => !i.removed);
+    if(!keep.length) return;
+    clearOut(); go.disabled = true; show('info', 'Creating your PDF…'); prog(0);
+    try{
+      const { PDFDocument } = PDFLib;
+      const out = await PDFDocument.create();
+      const docs = {};
+      const mode = $('#psz').value;
+      for(let k = 0; k < keep.length; k++){
+        const it = keep[k];
+        if(it.type === 'pdf'){
+          if(!docs[it.src]) docs[it.src] = await PDFDocument.load(srcs[it.src].bytes, { ignoreEncryption: true, throwOnInvalidObject: false, updateMetadata: false });
+          const [p] = await out.copyPages(docs[it.src], [it.pageIdx]);
+          out.addPage(p);
+        }else{
+          const img = await embedImage(out, it.file);
+          if(mode === 'img'){
+            const pg = out.addPage([img.width, img.height]);
+            pg.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+          }else{
+            const W = 595.28, H = 841.89, M = 24;
+            const portrait = img.height >= img.width;
+            const pw = portrait ? W : H, ph = portrait ? H : W;
+            const s = Math.min((pw - 2*M) / img.width, (ph - 2*M) / img.height);
+            const w = img.width * s, h = img.height * s;
+            const pg = out.addPage([pw, ph]);
+            pg.drawImage(img, { x: (pw - w) / 2, y: (ph - h) / 2, width: w, height: h });
+          }
+        }
+        prog((k + 1) / keep.length);
+      }
+      const data = await out.save();
+      outUrl = URL.createObjectURL(new Blob([data], { type: 'application/pdf' }));
+      const first = srcs.length ? srcs[0].name.replace(/\.pdf$/i, '') : 'images';
+      const name = (first + '-edited.pdf').replace(/"/g, '');
+      show('ok', '✅ Done! ' + keep.length + ' page' + (keep.length === 1 ? '' : 's') + ' · ' + fmt(data.length) +
+        '<div class="row"><a class="pri" href="' + outUrl + '" download="' + name + '">⬇ Download PDF</a></div>');
+    }catch(err){
+      show('err', 'Sorry, something went wrong while creating the PDF. If a file is damaged, try the Repair PDF tool first.');
+    }
+    bar.classList.remove('show');
+    summary();
+  };
+
+  render();
+})();
+</script>
+</body>
+</html>
