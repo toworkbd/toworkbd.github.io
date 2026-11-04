@@ -73,6 +73,11 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
 #ec{display:block;margin:10px auto;touch-action:none;border-radius:6px;background:#eee}
 .row{display:flex;gap:8px;flex-wrap:wrap}
 [hidden]{display:none!important}
+.srcrow.three{grid-template-columns:repeat(2,1fr)!important}
+#pk .srcrow{grid-template-columns:repeat(3,1fr);gap:8px}
+#pk .srcrow .big{padding:22px 4px}
+.big[data-s=pdf]{background:linear-gradient(180deg,#fff5f5,#ffe3e3)!important;border-color:#fbb6b6!important;color:#a31d1d!important;box-shadow:0 6px 16px rgba(200,40,40,.13)}
+.big[data-s=pdf]:hover{border-color:#ef4444!important}
 </style>
 </head>
 <body>
@@ -84,15 +89,16 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
 <div style="max-width:760px;margin:12px auto 0;padding:0 14px"><a href="palli-bidyut-newconnection-rebpbs.html" style="color:#2f4fd8;font-weight:700;font-size:14px;text-decoration:none">← পল্লী বিদ্যুৎ নতুন সংযোগের সব টুলস</a></div>
 <main>
   <h1 id="ttl">📷 Image to PDF</h1>
-  <p class="sub" id="sub">ছবি তুলুন বা গ্যালারি থেকে নিন, সোজা ও উজ্জ্বল করে PDF বানান। ছবি কোথাও আপলোড হয় না।</p>
+  <p class="sub" id="sub">ছবি তুলুন, গ্যালারি থেকে নিন বা PDF ফাইল দিন; সোজা ও উজ্জ্বল করে নতুন PDF বানান। ছবি কোথাও আপলোড হয় না।</p>
   <div class="srcrow" id="start">
     <button class="big" id="cert-b" hidden>📝<b>প্রত্যয়ন</b></button>
     <button class="big" data-s="gal">🖼️<b>গ্যালারি থেকে</b></button>
     <button class="big" data-s="cam">📷<b>ক্যামেরা</b></button>
+    <button class="big" data-s="pdf">📑<b>PDF ফাইল</b></button>
   </div>
   <div id="pages"></div>
   <div id="bar" hidden>
-    <button class="btn" id="add">➕ Add image</button>
+    <button class="btn" id="add">➕ Add image / PDF</button>
     <button class="btn" id="cert-b2" hidden>📝 প্রত্যয়ন</button>
     <select id="qs" class="btn" aria-label="PDF সাইজ" style="padding:10px 8px"><option value="100">📉 ১০০ KB</option><option value="200">⚖️ ২০০ KB</option><option value="250" selected>📄 ২৫০ KB</option><option value="300">🗂️ ৩০০ KB</option><option value="500">🖼️ ৫০০ KB</option><option value="999">💎 ৯৯৯ KB</option></select>
     <button class="btn pri" id="mk">📄 PDF করুন</button>
@@ -101,10 +107,11 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
 </main>
 
 <dialog id="pk">
-  <b>ছবি কোথা থেকে নেবেন?</b>
+  <b>ছবি / PDF কোথা থেকে নেবেন?</b>
   <div class="srcrow">
     <button class="big" data-s="gal">🖼️<b>গ্যালারি</b></button>
     <button class="big" data-s="cam">📷<b>ক্যামেরা</b></button>
+    <button class="big" data-s="pdf">📑<b>PDF ফাইল</b></button>
   </div>
   <button class="btn" onclick="this.closest('dialog').close()" style="width:100%">বন্ধ করুন</button>
 </dialog>
@@ -154,6 +161,7 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
 
 <input type="file" id="gal" accept="image/*" multiple hidden>
 <input type="file" id="cam" accept="image/*" capture="environment" hidden>
+<input type="file" id="pdf" accept="application/pdf,.pdf" multiple hidden>
 
 <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 <script>
@@ -251,8 +259,8 @@ function renum(){
   $('#start').hidden = pages.length > 0; $('#bar').hidden = !pages.length;
   $('#mk').textContent = '📄 PDF করুন' + (pages.length ? ' ('+pages.length+')' : '');
 }
-function addPage(base, file){
-  const pg = {base, file, light:false, gray:false}, el = document.createElement('div'); el.className = 'pg';
+function addPage(base, file, reload){
+  const pg = {base, file, reload, light:false, gray:false}, el = document.createElement('div'); el.className = 'pg';
   el.innerHTML = '<div class="ph"><b></b><span><button data-a="reset" title="আগের অবস্থা">↺</button><button data-a="del" title="মুছুন">✕</button></span></div><canvas></canvas><div class="acts"><button class="btn" data-a="fix">✂️ Crop</button><button class="btn" data-a="light">💡 Light দিন</button><button class="btn" data-a="gray">⚫ সাদাকালো</button></div>';
   pg.el = el; pg.pv = el.querySelector('canvas'); pg.lb = el.querySelector('[data-a=light]'); pg.gb = el.querySelector('[data-a=gray]');
   el.onclick = async e => {
@@ -263,20 +271,63 @@ function addPage(base, file){
     else if(k == 'cert') openCert();
     else if(k == 'fix') sgOpen(pg.base, c => { pg.base = c; draw(pg); }, '✂️ Crop / এডিট');
     else if(k == 'gray'){ pg.gray = !pg.gray; draw(pg); }
-    else if(k == 'reset'){ try { pg.base = await load(pg.file); pg.light = false; pg.gray = false; draw(pg); } catch(err){ msg(err.message, 'err'); } }
+    else if(k == 'reset'){ try { pg.base = pg.reload ? await pg.reload() : await load(pg.file); pg.light = false; pg.gray = false; draw(pg); } catch(err){ msg(err.message, 'err'); } }
   };
   $('#pages').appendChild(el); pages.push(pg); draw(pg); renum();
 }
+// ===== PDF ফাইল থেকে পেজ নেওয়া (pdf.js, ব্রাউজারেই; কোথাও আপলোড হয় না) =====
+const PDFJS_VER = '3.11.174', PDF_MAX_PAGES = 30;
+let pdfjsP = null;
+function ensurePdfJs(){
+  if(window.pdfjsLib) return Promise.resolve(window.pdfjsLib);
+  if(pdfjsP) return pdfjsP;
+  pdfjsP = new Promise((res, rej) => {
+    const sc = document.createElement('script');
+    sc.src = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@'+PDFJS_VER+'/build/pdf.min.js';
+    sc.onload = () => { pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@'+PDFJS_VER+'/build/pdf.worker.min.js'; res(pdfjsLib); };
+    sc.onerror = () => { pdfjsP = null; rej(Error('PDF পড়ার টুল লোড হয়নি; ইন্টারনেট চেক করে আবার চেষ্টা করুন')); };
+    document.head.appendChild(sc);
+  });
+  return pdfjsP;
+}
+async function renderPdfPage(pdf, n){
+  const p = await pdf.getPage(n), v1 = p.getViewport({scale:1});
+  const k = Math.min(3, MAX / Math.max(v1.width, v1.height)), vp = p.getViewport({scale:k});
+  const c = document.createElement('canvas'); c.width = Math.round(vp.width); c.height = Math.round(vp.height);
+  const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+  await p.render({canvasContext:x, viewport:vp}).promise; p.cleanup();
+  return c;
+}
+async function addPdf(file){
+  const lib = await ensurePdfJs();
+  let pdf;
+  try { pdf = await lib.getDocument({data: new Uint8Array(await file.arrayBuffer())}).promise; }
+  catch(e){
+    if(e && e.name == 'PasswordException') throw Error('"'+file.name+'" পাসওয়ার্ড দেওয়া PDF; আগে পাসওয়ার্ড সরিয়ে নিন');
+    throw Error('"'+file.name+'" PDF-টি পড়া যায়নি');
+  }
+  const total = Math.min(pdf.numPages, PDF_MAX_PAGES);
+  for(let n = 1; n <= total; n++){
+    msg('📑 '+file.name+' — পেজ '+n+'/'+total+' নেওয়া হচ্ছে…');
+    addPage(await renderPdfPage(pdf, n), file, () => renderPdfPage(pdf, n));
+  }
+  if(pdf.numPages > total) msg('⚠️ "'+file.name+'" এর প্রথম '+total+'টি পেজ নেওয়া হয়েছে (মোট '+pdf.numPages+')।', 'err'); else msg('');
+}
 async function addFiles(list){
   msg('');
-  for(const f of list){ try { addPage(await load(f), f); } catch(e){ msg(e.message, 'err'); } }
+  for(const f of list){
+    try {
+      if(f.type == 'application/pdf' || /\.pdf$/i.test(f.name)) await addPdf(f);
+      else addPage(await load(f), f);
+    } catch(e){ msg(e.message, 'err'); }
+  }
   if(pages.length) pages[pages.length-1].el.scrollIntoView({behavior:'smooth', block:'start'});
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-s]'); if(!b) return;
   if($('#pk').open) $('#pk').close(); $('#'+b.dataset.s).click();
 });
-['gal','cam'].forEach(id => $('#'+id).onchange = e => { addFiles([...e.target.files]); e.target.value = ''; });
+['gal','cam','pdf'].forEach(id => $('#'+id).onchange = e => { addFiles([...e.target.files]); e.target.value = ''; });
 $('#add').onclick = () => $('#pk').showModal();
 
 // ---- সোজা করুন (৪ কোণ টেনে কাটা ও সোজা) ----
