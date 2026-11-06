@@ -25,13 +25,10 @@ header.hero{text-align:center;padding:36px 16px 10px}
 .hlogo{display:inline-block;margin-bottom:10px}.hlogo img{height:60px;width:auto;display:block}
 h1{margin:0;font-size:clamp(26px,4.6vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
 .hero p{max-width:640px;margin:10px auto 0;color:var(--mut);font-size:15.5px}
-.crumb{max-width:1280px;margin:0 auto;padding:6px 16px 0;font-size:13px}
-.crumb a{color:var(--brand);text-decoration:none;font-weight:600}
 main{max-width:1280px;margin:0 auto;padding:14px 16px 56px}
 
-/* extension banner */
-.ext{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:center;background:linear-gradient(90deg,#1d4ed8,#4338ca);color:#fff;border-radius:14px;padding:12px 18px;margin:0 0 16px;box-shadow:var(--shadow)}
-.ext b{font-size:15px}.ext span{font-size:13.5px;color:#dbeafe}
+/* extension button */
+.extbar{display:flex;justify-content:flex-end;margin:0 0 14px}
 .btn-ext{background:#fbbf24;color:#1c1917;padding:8px 18px;border-radius:99px;text-decoration:none;font-weight:700;font-size:13.5px;transition:transform .15s,box-shadow .15s;white-space:nowrap}
 .btn-ext:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
 
@@ -46,10 +43,15 @@ main{max-width:1280px;margin:0 auto;padding:14px 16px 56px}
 .note{font-size:12px;color:var(--mut)}
 details.sec{border-bottom:1px solid var(--line)}
 details.sec:last-of-type{border-bottom:0}
-details.sec>summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:center}
+details.sec>summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:700;font-size:15px;display:flex;justify-content:flex-start;align-items:center}
 details.sec>summary::-webkit-details-marker{display:none}
-details.sec>summary::after{content:"+";font-size:20px;color:var(--brand);font-weight:700}
+details.sec>summary::after{content:"+";font-size:20px;color:var(--brand);font-weight:700;margin-left:auto;padding-left:10px}
 details.sec[open]>summary::after{content:"–"}
+.grip{flex:none;display:inline-flex;align-items:center;justify-content:center;width:52px;height:32px;margin:-4px 12px -4px -10px;border-radius:9px;background:#e8edfb;border:1.5px solid #c3cff2;color:var(--brand);font-size:22px;line-height:1;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:0 1px 2px rgba(47,79,216,.15)}
+.grip:hover,.grip:focus-visible{color:#fff;background:var(--brand);border-color:var(--brand);outline:none}
+details.sec.dragging{background:#eef2ff;box-shadow:0 6px 18px rgba(47,79,216,.25);position:relative;z-index:2}
+.dragging .grip{cursor:grabbing;color:#fff;background:var(--brand);border-color:var(--brand)}
+body.sorting,body.sorting *{cursor:grabbing!important;user-select:none!important;-webkit-user-select:none!important}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;padding:2px 16px 16px}
 .fgrid .full{grid-column:1/-1}
 .field label{display:block;font-size:12px;font-weight:600;color:var(--mut);margin-bottom:3px}
@@ -90,6 +92,7 @@ details.sec[open]>summary::after{content:"–"}
 .kv.tight{grid-template-columns:32mm 1fr}
 .kv.roomy>div{padding:2px 0;line-height:1.35}
 .kv .v{white-space:pre-wrap;word-break:break-word}
+.kv .res{display:inline-block;margin-right:1.2mm}
 .kv .v::before{content:": "}
 ul.arrows{list-style:none;margin:0;padding:0 0 0 4mm}
 ul.arrows li{padding-left:6mm;text-indent:-6mm;margin:1px 0}
@@ -97,19 +100,25 @@ ul.arrows li::before{content:"\27A2\00a0\00a0"}
 .pre{white-space:pre-wrap}
 table.lang{width:100%;border-collapse:collapse;font-family:Calibri,Carlito,Arial,sans-serif;font-size:14px}
 table.lang th,table.lang td{border:1px solid #000;padding:9px 8px;text-align:left;font-family:Calibri,Carlito,Arial,sans-serif}
+table.exp{width:100%;border-collapse:collapse;font-size:15px}
+table.exp th,table.exp td{border:1px solid #000;padding:6px 6px;text-align:center;vertical-align:middle;font-weight:normal;line-height:1.2}
 .addr .kv{grid-template-columns:40mm 1fr}
 .sign{margin:14mm 0 0 6mm}
 .sign .s1{font-style:italic;font-weight:bold}
 .sign img{display:block;height:18mm;max-width:60mm;object-fit:contain;margin:2px 0}
 .sign .s3{font-weight:bold;margin-top:4px}
-.strip{position:absolute;left:18mm;right:18mm;bottom:8mm;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #cdd5df;padding-top:2mm;font-family:Inter,Arial,sans-serif;font-size:9px;color:#6b7280}
-.strip img{height:7mm;width:auto;display:block}
+.strip{position:absolute;left:18mm;right:18mm;bottom:8mm;display:flex;justify-content:flex-end;align-items:center;border-top:1px solid #cdd5df;padding-top:2mm;font-family:Inter,Arial,sans-serif;font-size:12px}
+.strip a{color:#0000ee;text-decoration:none}
+.strip a:hover{color:#0000ee;text-decoration:underline}
 
 .how{max-width:1280px;margin:22px auto 0}
 .how .box{padding:20px 22px}
 .how h2{margin:0 0 8px;font-size:20px;letter-spacing:-.02em}
 .how p,.how li{font-size:14.5px;color:#334155}
 .how ul{margin:8px 0 0;padding-left:20px}
+.how .intro{max-width:760px;margin:16px auto 0;text-align:center;color:var(--mut);font-size:15px}
+.how .box.comments{margin-top:22px}
+.comments .cnote{margin:0 0 12px;font-size:12.5px;color:var(--mut)}
 
 footer{text-align:center;color:var(--mut);font-size:13px;padding:26px;border-top:1px solid var(--line);background:rgba(255,255,255,.9)}
 .flogo{display:inline-block;margin-bottom:6px}.flogo img{height:36px;width:auto;display:block}
@@ -129,7 +138,7 @@ footer a{color:var(--brand);text-decoration:none;font-weight:600}
   #pv-scale{transform:none!important;width:210mm!important}
   .sheet{box-shadow:none;margin:0;page-break-after:always;break-after:page}
   .sheet:last-child{page-break-after:auto;break-after:auto}
-  .row,table.lang{break-inside:avoid}
+  .row,table.lang,table.exp{break-inside:avoid}
   @page{size:A4;margin:0}
 }
 </style>
@@ -147,14 +156,10 @@ footer a{color:var(--brand);text-decoration:none;font-weight:600}
 <header class="hero noprint">
   <a class="hlogo" href="./" aria-label="Home"><img src="logo.png" width="131" height="60" alt="Work BD logo"></a>
   <h1>Free CV / Bio-Data / Resume Maker</h1>
-  <p>Fill in your details, add your photo and signature, then download a ready-to-send A4 CV as PDF. Everything runs in your browser – nothing is uploaded.</p>
 </header>
-<div class="crumb noprint"><a href="./">&larr; All tools</a></div>
 
 <main>
-  <div class="ext noprint">
-    <b>Applying for jobs?</b>
-    <span>Fill any online job application form in one click with our free Chrome extension.</span>
+  <div class="extbar noprint">
     <a class="btn-ext" href="https://chromewebstore.google.com/detail/all-job-form-auto-filler/mimopbkpobmlnfilfhlclpeiediabpeg" target="_blank" rel="noopener">Get the extension</a>
   </div>
 
@@ -164,32 +169,37 @@ footer a{color:var(--brand);text-decoration:none;font-weight:600}
       <div class="actions">
         <button class="btn" type="button" id="btn-dl">Download PDF</button>
         <button class="btn sec sm" type="button" id="btn-clear">Clear all</button>
-        <span class="note">Saved automatically in this browser.</span>
+        <span class="note">Saved automatically in this browser. Drag &#10303; to reorder sections.</span>
       </div>
 
-      <details class="sec" open><summary>Personal information</summary><div class="fgrid" id="g-personal"></div></details>
-      <details class="sec"><summary>Contact</summary><div class="fgrid" id="g-contact"></div></details>
-      <details class="sec"><summary>Mailing address</summary><div class="fgrid" id="g-mailing"></div></details>
-      <details class="sec"><summary>Permanent address</summary>
-        <label class="chk"><input type="checkbox" id="f-same"> Same as mailing address</label>
-        <div class="fgrid" id="g-permanent"></div>
-      </details>
-      <details class="sec"><summary>Education</summary>
-        <div id="edu-list"></div>
-        <div class="pad"><button class="btn sec sm" type="button" id="btn-addedu">+ Add education</button></div>
-      </details>
-      <details class="sec"><summary>Job experience (optional)</summary>
-        <div class="pad field"><textarea id="f-exp" placeholder="e.g. Sales Executive – ABC Ltd (2022–2024)"></textarea></div>
-      </details>
-      <details class="sec"><summary>Objective, strength, skills &amp; languages</summary>
+      <details class="sec" data-sec="mailing"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Mailing address</summary><div class="fgrid" id="g-mailing"></div></details>
+      <details class="sec" data-sec="contact"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Contact</summary><div class="fgrid" id="g-contact"></div></details>
+      <details class="sec" data-sec="extras"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Objective &amp; strength</summary>
         <div class="fgrid">
           <div class="field full"><label>Career objective (empty = hide)</label><textarea id="f-objective"></textarea></div>
           <div class="field full"><label>My strength (empty = hide)</label><textarea id="f-strength"></textarea></div>
-          <div class="field full"><label>Computer literacy (one item per line)</label><textarea id="f-computer"></textarea></div>
-          <div class="field full"><label>Language skill (one per line: Language, Speaking, Reading, Writing)</label><textarea id="f-languages"></textarea></div>
         </div>
       </details>
-      <details class="sec"><summary>Photo &amp; signature</summary>
+      <details class="sec" data-sec="computer"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Computer literacy</summary>
+        <div class="pad field"><label>Computer literacy (one item per line)</label><textarea id="f-computer"></textarea></div>
+      </details>
+      <details class="sec" data-sec="experience"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Job experience (optional)</summary>
+        <div id="jobs-list"></div>
+        <div class="pad"><button class="btn sec sm" type="button" id="btn-addjob">+ Add job</button></div>
+      </details>
+      <details class="sec" data-sec="languages"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Language skill</summary>
+        <div class="pad field"><label>Language skill (one per line: Language, Speaking, Reading, Writing)</label><textarea id="f-languages"></textarea></div>
+      </details>
+      <details class="sec" data-sec="education"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Education</summary>
+        <div id="edu-list"></div>
+        <div class="pad"><button class="btn sec sm" type="button" id="btn-addedu">+ Add education</button></div>
+      </details>
+      <details class="sec" data-sec="personal"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Personal information</summary><div class="fgrid" id="g-personal"></div></details>
+      <details class="sec" data-sec="permanent"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Permanent address</summary>
+        <label class="chk"><input type="checkbox" id="f-same"> Same as mailing address</label>
+        <div class="fgrid" id="g-permanent"></div>
+      </details>
+      <details class="sec" data-sec="media"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Photo &amp; signature</summary>
         <div class="fgrid">
           <div class="field full"><label>Passport-size photo</label>
             <div class="fileline"><input type="file" id="in-photo" accept="image/*"><button class="btn danger sm" type="button" id="rm-photo">Remove</button></div></div>
@@ -206,7 +216,7 @@ footer a{color:var(--brand);text-decoration:none;font-weight:600}
       </div>
       <div class="noprint" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
         <button class="btn" type="button" id="btn-dl2">Download PDF</button>
-        <span class="note">In the print window choose <b>Save as PDF</b> as the destination.</span>
+        <span class="note">The PDF is saved directly to your device.</span>
       </div>
     </div>
   </div>
@@ -217,9 +227,15 @@ footer a{color:var(--brand);text-decoration:none;font-weight:600}
       <ul>
         <li>Fill in the sections on the left. The CV on the right updates as you type.</li>
         <li>Add a passport-size photo and your signature to complete the format.</li>
-        <li>Press <b>Download PDF</b> and choose <b>Save as PDF</b>. You get a clean 2-page A4 CV.</li>
+        <li>Press <b>Download PDF</b>. You get a clean 2-page A4 CV saved straight to your device.</li>
         <li>Your data stays on your device. It is only saved in your own browser so you can come back later.</li>
       </ul>
+    </div>
+    <p class="intro">Fill in your details, add your photo and signature, then download a ready-to-send A4 CV as PDF. Everything runs in your browser – nothing is uploaded.</p>
+    <div class="box comments" id="comments-box" hidden>
+      <h2>Comments</h2>
+      <p class="cnote">Share your feedback or ask a question. Comments are posted publicly through GitHub. Your CV details are never sent.</p>
+      <div id="giscus-host"></div>
     </div>
   </section>
 </main>
@@ -232,11 +248,15 @@ footer a{color:var(--brand);text-decoration:none;font-weight:600}
 
 var STORE_KEY = 'workbd_cv_maker_v1';
 
+var OLD_SAMPLES = {
+  computer: 'MS-Word,\nMS-Excel, MS-Power Point,\nInternet,\nAdobe Photoshop,\nE-mail,\nWeb Browsing (Google Chrome, Internet Explorer, Mozilla Firefox) etc.',
+  languages: 'Bengali, Best, Best, Best\nEnglish, Good, Best, Better'
+};
 var DEFAULTS = {
   objective: 'Have a strong aspiration to build up my career as a creative and successful person. I am strong minded to present my integrity, efficiency and sincerity to the best of my ability.',
   strength: 'As an energetic and hard working young man, I would be able to work under pressure and strain. Having capability of interpersonal communication and self decision-making, I am able to successfully meet the crucial challenge of the market.',
-  computer: 'MS-Word,\nMS-Excel, MS-Power Point,\nInternet,\nAdobe Photoshop,\nE-mail,\nWeb Browsing (Google Chrome, Internet Explorer, Mozilla Firefox) etc.',
-  languages: 'Bengali, Best, Best, Best\nEnglish, Good, Best, Better'
+  computer: 'MS-Word,\nMS-Excel, MS-Power Point,\nInternet,\nAdobe Photoshop, Adobe Illustrator, Video Editing,\nE-mail,\nWeb Browsing (Google Chrome, Internet Explorer, Mozilla Firefox) etc.',
+  languages: ''
 };
 
 function freshState() {
@@ -248,11 +268,11 @@ function freshState() {
     same:false,
     p_co:'', p_village:'', p_po:'', p_code:'', p_upazila:'', p_dist:'',
     edu:[
-      { title:'HSC (Higher Secondary Certificate)', group:'', result:'', year:'', inst:'', board:'' },
       { title:'SSC (Secondary School Certificate)', group:'', result:'', year:'', inst:'', board:'' }
     ],
-    exp:'', objective:DEFAULTS.objective, strength:DEFAULTS.strength, computer:DEFAULTS.computer, languages:DEFAULTS.languages,
-    photo:'', signature:''
+    exp:'', jobs:[], objective:DEFAULTS.objective, strength:DEFAULTS.strength, computer:DEFAULTS.computer, languages:DEFAULTS.languages,
+    photo:'', signature:'',
+    order:[], orderV:0, computerV:1
   };
 }
 
@@ -265,7 +285,24 @@ function load() {
       var s = JSON.parse(raw);
       var base = freshState();
       Object.keys(base).forEach(function (k) { if (s[k] !== undefined) base[k] = s[k]; });
-      if (!Array.isArray(base.edu)) base.edu = freshState().edu;
+      if (t(base.exp) === '5') base.exp = '';
+      if (!Array.isArray(base.jobs)) base.jobs = [];
+      if (!base.jobs.length && t(base.exp)) {   // older saved CV: move the free-text experience into the first table row
+        base.jobs = [{ company: t(base.exp).replace(/\s*\n+\s*/g, ', '), desig: '', section: '', duration: '' }];
+      }
+      base.exp = '';
+      if (base.computer === OLD_SAMPLES.computer) base.computer = '';
+      if (base.languages === OLD_SAMPLES.languages) base.languages = '';
+      if (!s.computerV) { if (!t(base.computer)) base.computer = DEFAULTS.computer; base.computerV = 1; }   // one-time: bring back the default computer skills
+      if (Array.isArray(base.edu)) {
+        /* drop the old empty HSC placeholder so only SSC is shown by default */
+        base.edu = base.edu.filter(function (e) {
+          return !(e && e.title === 'HSC (Higher Secondary Certificate)' && !t(e.group) && !t(e.result) && !t(e.year) && !t(e.inst) && !t(e.board));
+        });
+      }
+      if (!Array.isArray(base.edu) || !base.edu.length) base.edu = freshState().edu;
+      if (!Array.isArray(base.order) || base.orderV !== 5) base.order = [];
+      base.orderV = 5;
       d = base;
     }
   } catch (e) { /* storage may be blocked – keep working without it */ }
@@ -328,7 +365,7 @@ function buildFields() {
     });
   });
 
-  ['exp','objective','strength','computer','languages'].forEach(function (k) {
+  ['objective','strength','computer','languages'].forEach(function (k) {
     var ta = $('f-' + k);
     ta.value = d[k] || '';
     ta.addEventListener('input', function () { d[k] = ta.value; onChange(); });
@@ -340,11 +377,88 @@ function buildFields() {
   same.addEventListener('change', function () { d.same = same.checked; applySame(); onChange(); });
 }
 
+function buildJobs() {
+  var host = $('jobs-list');
+  host.innerHTML = '';
+  d.jobs.forEach(function (j, i) {
+    var box = el('div', 'edu');
+    var top = el('div', 'top');
+    top.appendChild(el('span', null, 'Job ' + (i + 1)));
+    var rm = el('button', 'btn danger sm', 'Remove');
+    rm.type = 'button';
+    rm.addEventListener('click', function () { d.jobs.splice(i, 1); buildJobs(); onChange(); });
+    top.appendChild(rm);
+    box.appendChild(top);
+    var g = el('div', 'fgrid');
+    [['company', 'Company Name', true], ['desig', 'Designation'], ['section', 'Section'], ['duration', 'Duration (e.g. 1 year)']].forEach(function (f) {
+      var w = el('div', 'field' + (f[2] ? ' full' : ''));
+      w.appendChild(el('label', null, f[1]));
+      var inp = document.createElement('input');
+      inp.type = 'text'; inp.autocomplete = 'off'; inp.value = j[f[0]] || '';
+      inp.addEventListener('input', function () { j[f[0]] = inp.value; onChange(); });
+      w.appendChild(inp);
+      g.appendChild(w);
+    });
+    box.appendChild(g);
+    host.appendChild(box);
+  });
+}
+
 function applySame() {
   $('g-permanent').style.display = d.same ? 'none' : '';
 }
 
-var TITLES = ['SSC (Secondary School Certificate)','HSC (Higher Secondary Certificate)','Diploma','Honours / Bachelor','Masters','Other'];
+var EDU_YEARS = [];
+for (var yy = new Date().getFullYear() + 5; yy >= 1970; yy--) EDU_YEARS.push(String(yy));
+var EDU_TITLES = ['SSC (Secondary School Certificate)','HSC (Higher Secondary Certificate)','Dakhil','Alim','Diploma','Honours / Bachelor','Masters','M.Phil / PhD'];
+var EDU_GROUPS = ['Science','Business Studies','Humanities','Technical','Vocational','General'];
+var EDU_SUBJECTS = ['Computer Science & Engineering','Civil Engineering','Electrical & Electronic Engineering','Mechanical Engineering','Accounting','Management','Finance','Marketing','English','Bangla','Economics','Political Science','Sociology','Social Science','Mathematics','Physics','Chemistry','Law'];
+var EDU_RES5 = ['5.00','4.50 - 4.99','4.00 - 4.49','3.50 - 3.99','3.00 - 3.49','2.50 - 2.99','2.00 - 2.49'];
+var EDU_RES4 = ['4.00','3.75 - 3.99','3.50 - 3.74','3.25 - 3.49','3.00 - 3.24','2.50 - 2.99','2.00 - 2.49'];
+var EDU_BOARDS = ['Dhaka Board','Rajshahi Board','Cumilla Board','Jashore Board','Chattogram Board','Barishal Board','Sylhet Board','Dinajpur Board','Mymensingh Board','Madrasah Board','Technical Board'];
+var EDU_UNIS = ['National University','University of Dhaka','University of Rajshahi','University of Chittagong','Jahangirnagar University','Bangladesh Open University'];
+/* how an education entry is labelled on the CV, by kind of degree */
+var EDU_CFG = {
+  school: { subj: 'Group',   pass: 'Passing year', board: 'Board',      out: 5, kind: 'school' },
+  tech:   { subj: 'Subject', pass: 'Passing year', board: 'Board',      out: 4, kind: 'tech' },
+  uni:    { subj: 'Subject', pass: 'Passing Year', board: 'University', out: 4, kind: 'uni' }
+};
+function eduType(title) {
+  var x = t(title);
+  if (/diploma/i.test(x)) return EDU_CFG.tech;
+  if (/master|bachelor|honou?rs|phil|ph\.?\s?d|\bm\.?\s?s\.?\s?s\b|\bm\.?\s?sc\b|\bb\.?\s?sc\b|\bmba\b|\bbba\b|\bm\.?\s?a\b|\bb\.?\s?a\b|\bm\.?\s?com\b|\bb\.?\s?com\b|degree|graduat/i.test(x)) return EDU_CFG.uni;
+  return EDU_CFG.school;
+}
+
+function makeMenu(e, key, label, onSet) {
+  var w = el('div', 'field');
+  var lb = el('label', null, label);
+  w.appendChild(lb);
+  var sel = document.createElement('select');
+  var txt = document.createElement('input');
+  txt.type = 'text'; txt.autocomplete = 'off'; txt.placeholder = 'Type here'; txt.style.marginTop = '6px';
+  var opts = [];
+  function fill(newOpts) {
+    opts = newOpts;
+    var cur = e[key] || '';
+    sel.innerHTML = '';
+    var o0 = el('option', null, '— Select —'); o0.value = ''; sel.appendChild(o0);
+    opts.forEach(function (x) { var o = el('option', null, x); o.value = x; sel.appendChild(o); });
+    var oo = el('option', null, 'Other (write your own)'); oo.value = '__other'; sel.appendChild(oo);
+    if (!cur) { sel.value = ''; txt.value = ''; txt.style.display = 'none'; }
+    else if (opts.indexOf(cur) >= 0) { sel.value = cur; txt.style.display = 'none'; }
+    else { sel.value = '__other'; txt.value = cur; txt.style.display = ''; }
+  }
+  sel.addEventListener('change', function () {
+    if (sel.value === '__other') { txt.style.display = ''; e[key] = txt.value; txt.focus(); }
+    else { txt.style.display = 'none'; e[key] = sel.value; }
+    if (onSet) onSet();
+    onChange();
+  });
+  txt.addEventListener('input', function () { e[key] = txt.value; if (onSet) onSet(); onChange(); });
+  w.appendChild(sel); w.appendChild(txt);
+  return { el: w, label: lb, fill: fill };
+}
 
 function buildEdu() {
   var host = $('edu-list');
@@ -360,31 +474,53 @@ function buildEdu() {
     box.appendChild(top);
 
     var g = el('div', 'fgrid');
-    [['title','Exam / degree title',true],['group','Group / Subject'],['result','Result (GPA / Class)'],['year','Passing year'],['inst','Institution'],['board','Board / University']].forEach(function (f) {
-      var w = el('div', 'field' + (f[2] ? ' full' : ''));
-      w.appendChild(el('label', null, f[1]));
-      var inp = document.createElement('input');
-      inp.type = 'text';
-      inp.autocomplete = 'off';
-      inp.value = e[f[0]] || '';
-      if (f[0] === 'title') {
-        var dl = document.createElement('datalist');
-        dl.id = 'dl-title-' + i;
-        TITLES.forEach(function (x) { var o = document.createElement('option'); o.value = x; dl.appendChild(o); });
-        inp.setAttribute('list', dl.id);
-        w.appendChild(dl);
-      }
-      inp.addEventListener('input', function () { e[f[0]] = inp.value; onChange(); });
-      w.appendChild(inp);
-      g.appendChild(w);
-    });
+    var tM = makeMenu(e, 'title', 'Exam / degree title', refresh);
+    tM.el.className += ' full';
+    var gM = makeMenu(e, 'group', 'Group');
+    var rw = el('div', 'field');
+    var rrow = el('div'); rrow.style.cssText = 'display:flex;gap:8px;align-items:flex-start';
+    var rl = el('div'); rl.style.cssText = 'flex:1;min-width:0';
+    rl.appendChild(el('label', null, 'Result'));
+    var rin = document.createElement('input');
+    rin.type = 'text'; rin.autocomplete = 'off'; rin.value = e.result || '';
+    rin.addEventListener('input', function () { e.result = rin.value; onChange(); });
+    rl.appendChild(rin);
+    var ol = el('div'); ol.style.cssText = 'flex:none;width:64px';
+    ol.appendChild(el('label', null, 'Out of'));
+    var oin = document.createElement('input');
+    oin.type = 'text'; oin.autocomplete = 'off'; oin.setAttribute('inputmode', 'decimal'); oin.maxLength = 4;
+    oin.value = (e.outof === undefined || e.outof === null) ? '' : e.outof;
+    oin.addEventListener('input', function () { e.outof = oin.value; e.outofManual = true; onChange(); });
+    ol.appendChild(oin);
+    rrow.appendChild(rl); rrow.appendChild(ol); rw.appendChild(rrow);
+    var yM = makeMenu(e, 'year', 'Passing year');
+    var bM = makeMenu(e, 'board', 'Board');
+    var iw = el('div', 'field');
+    iw.appendChild(el('label', null, 'Institution'));
+    var iin = document.createElement('input');
+    iin.type = 'text'; iin.autocomplete = 'off'; iin.value = e.inst || '';
+    iin.addEventListener('input', function () { e.inst = iin.value; onChange(); });
+    iw.appendChild(iin);
+    function refresh() {
+      var c = eduType(e.title);
+      gM.label.textContent = c.subj;
+      if (!e.outofManual) { e.outof = String(c.out); oin.value = e.outof; }   // 5 for school, 4 for degrees, until the user types their own
+      yM.label.textContent = c.pass;
+      bM.label.textContent = c.board;
+      gM.fill(c.kind === 'school' ? EDU_GROUPS : EDU_SUBJECTS);
+      bM.fill(c.kind === 'uni' ? EDU_UNIS : EDU_BOARDS);
+    }
+    tM.fill(EDU_TITLES);
+    yM.fill(EDU_YEARS);
+    refresh();
+    [tM.el, gM.el, rw, yM.el, iw, bM.el].forEach(function (n) { g.appendChild(n); });
     box.appendChild(g);
     host.appendChild(box);
   });
 }
 
 /* ---------------- images ---------------- */
-function readImage(file, asPng) {
+function readImage(file, asPng, aspect) {
   return new Promise(function (resolve, reject) {
     var fr = new FileReader();
     fr.onerror = reject;
@@ -392,14 +528,20 @@ function readImage(file, asPng) {
       var img = new Image();
       img.onerror = reject;
       img.onload = function () {
-        var max = 600, sc = Math.min(1, max / Math.max(img.width, img.height));
-        var cw = Math.max(1, Math.round(img.width * sc)), ch = Math.max(1, Math.round(img.height * sc));
+        // optional centre-crop to a fixed width/height ratio (used for the photo)
+        var sx = 0, sy = 0, sw = img.width, sh = img.height;
+        if (aspect) {
+          if (sw / sh > aspect) { sw = Math.round(sh * aspect); sx = Math.round((img.width - sw) / 2); }
+          else { sh = Math.round(sw / aspect); sy = Math.round((img.height - sh) / 2); }
+        }
+        var max = 600, sc = Math.min(1, max / Math.max(sw, sh));
+        var cw = Math.max(1, Math.round(sw * sc)), ch = Math.max(1, Math.round(sh * sc));
         var c = document.createElement('canvas');
         c.width = cw; c.height = ch;
         var ctx = c.getContext('2d');
         if (!asPng) { ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, cw, ch); }
-        ctx.drawImage(img, 0, 0, cw, ch);
-        resolve(asPng ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', 0.88));
+        ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
+        resolve(asPng ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', 0.9));
       };
       img.src = fr.result;
     };
@@ -408,16 +550,16 @@ function readImage(file, asPng) {
 }
 
 function bindImages() {
-  function bind(inId, rmId, prop, asPng) {
+  function bind(inId, rmId, prop, asPng, aspect) {
     $(inId).addEventListener('change', function (e) {
       var f = e.target.files && e.target.files[0];
       if (!f) return;
-      readImage(f, asPng).then(function (data) { d[prop] = data; onChange(); })
+      readImage(f, asPng, aspect).then(function (data) { d[prop] = data; onChange(); })
         .catch(function () { alert('Sorry, this image could not be read. Please try another file.'); });
     });
     $(rmId).addEventListener('click', function () { d[prop] = ''; $(inId).value = ''; onChange(); });
   }
-  bind('in-photo', 'rm-photo', 'photo', false);
+  bind('in-photo', 'rm-photo', 'photo', false, 34 / 38);
   bind('in-sign', 'rm-sign', 'signature', true);
 }
 
@@ -443,103 +585,128 @@ function kvGrid(pairs, cls) {
 }
 function strip() {
   var s = el('div', 'strip');
-  var img = document.createElement('img');
-  img.src = 'logo.png'; img.alt = 'Work BD';
-  img.onerror = function () { img.style.display = 'none'; };
-  s.appendChild(img);
-  s.appendChild(el('span', null, 'Made free at work-bd.github.io'));
+  var a = el('a', null, 'work-bd.github.io');
+  a.href = 'https://work-bd.github.io/';
+  a.target = '_blank';
+  a.rel = 'noopener';
+  s.appendChild(a);
   return s;
 }
 
-function render() {
-  var root = $('cv-root');
-  root.innerHTML = '';
-  var name = t(d.name);
-
-  /* ---------- page 1 ---------- */
-  var s1 = el('div', 'sheet');
-  var title = el('div', 'title');
-  title.appendChild(el('div', 't1', 'Curriculum Vitae'));
-  title.appendChild(el('div', 't2', 'Of'));
-  title.appendChild(el('div', 't3', name || 'Your Name'));
-  s1.appendChild(title);
-
-  if (d.photo) {
-    var ph = el('img', 'photo');
-    ph.src = d.photo; ph.alt = 'Photo';
-    s1.appendChild(ph);
-  }
-
-  var mailing = el('div', 'mailing');
-  mailing.appendChild(el('h4', null, 'Mailing Address:'));
+function addressLines(m) {
   [['C/O', d.m_co], ['Village', d.m_village], ['Post Office', d.m_po], ['Upazila', d.m_upazila], ['Dist', d.m_dist]].forEach(function (p) {
     var v = t(p[1]);
     if (!v) return;
-    mailing.appendChild(el('div', null, p[0] + ': ' + v + (p[0] === 'Dist' && !/\.$/.test(v) ? '.' : '')));
+    m.appendChild(el('div', null, p[0] + ': ' + v + (p[0] === 'Dist' && !/\.$/.test(v) ? '.' : '')));
   });
+}
+function contactLines(m) {
+  var any = false;
   var mob = t(d.mobile);
-  if (mob) mailing.appendChild(el('div', null, 'Cell: ' + (/^0\d{10}$/.test(mob) ? '+88' + mob : mob)));
+  if (mob) { m.appendChild(el('div', null, 'Cell: ' + (/^0\d{10}$/.test(mob) ? '+88' + mob : mob))); any = true; }
   if (t(d.email)) {
     var em = el('div');
     em.appendChild(document.createTextNode('E-mail: '));
     em.appendChild(el('span', 'mail', t(d.email)));
-    mailing.appendChild(em);
+    m.appendChild(em); any = true;
   }
-  s1.appendChild(mailing);
-  s1.appendChild(el('hr', 'rule'));
-
-  if (t(d.objective)) s1.appendChild(row('Career\nObjective', el('div', 'just', t(d.objective))));
-  if (t(d.strength)) s1.appendChild(row('My\nStrength', el('div', 'just', t(d.strength))));
-
+  return any;
+}
+function mailBlock(withContact) {
+  var m = el('div', 'mailing');
+  m.appendChild(el('h4', null, 'Mailing Address:'));
+  addressLines(m);
+  if (withContact) contactLines(m);
+  return m;
+}
+function contactBlock() {
+  var m = el('div', 'mailing');
+  m.appendChild(el('h4', null, 'Contact:'));
+  return contactLines(m) ? m : null;
+}
+function objectiveRow() { return t(d.objective) ? row('Career\nObjective', el('div', 'just', t(d.objective))) : null; }
+function strengthRow() { return t(d.strength) ? row('My\nStrength', el('div', 'just', t(d.strength))) : null; }
+function eduRow() {
   var acad = el('div'), n = 0;
-  d.edu.forEach(function (e) {
-    var pairs = [['Group', e.group], ['Result', e.result], ['Passing year', e.year], ['Institution', e.inst], ['Board', e.board]];
-    var g = kvGrid(pairs, 'tight');
-    if (!g) return;
+  var list = d.edu.slice().reverse();   // newest (highest degree) first on the CV
+  function block(e, template) {
+    var c = eduType(e.title);
+    var rows = [[c.subj, e.group, 0], ['Result', e.result, 1], [c.pass, e.year, 0], ['Institution', e.inst, 0], [c.board, e.board, 0]];
+    var g = el('div', 'kv tight'), any = false;
+    rows.forEach(function (r) {
+      var v = t(r[1]);
+      if (!v && !template) return;
+      any = true;
+      g.appendChild(el('div', 'k', r[0]));
+      var vv = el('div', 'v');
+      if (r[2]) {
+        vv.appendChild(el('span', 'res', v || '\u00a0'));
+        var oo = t(e.outof);              // empty "Out of" box = no "(Out of ..)" on the CV
+        if (oo) vv.appendChild(el('span', 'outof', '(Out of ' + oo + ')'));
+      } else {
+        vv.textContent = v || '\u00a0';
+      }
+      g.appendChild(vv);
+    });
+    if (!any) return;
     if (n++ > 0) acad.appendChild(el('div', 'gap'));
     acad.appendChild(el('h5', null, t(e.title) || 'Education'));
     acad.appendChild(g);
-  });
-  if (n) s1.appendChild(row('Academic\nAchievements', acad));
-
-  if (t(d.exp)) s1.appendChild(row('Job\nExperience', el('div', 'pre', t(d.exp))));
-
-  var comp = t(d.computer).split('\n').map(function (x) { return x.trim(); }).filter(Boolean);
-  if (comp.length) {
-    var ul = el('ul', 'arrows');
-    comp.forEach(function (c) { ul.appendChild(el('li', null, c)); });
-    s1.appendChild(row('Computer\nLiteracy', ul));
   }
-  s1.appendChild(strip());
-  root.appendChild(s1);
-
-  /* ---------- page 2 ---------- */
-  var s2 = el('div', 'sheet p2');
-
+  list.forEach(function (e) { block(e, false); });
+  if (!n) list.forEach(function (e) { block(e, true); });   // nothing filled in yet: show the empty template
+  return n ? row('Academic\nAchievements', acad) : null;
+}
+function expRow() {
+  var jobs = (d.jobs || []).filter(function (j) { return t(j.company) || t(j.desig) || t(j.section) || t(j.duration); });
+  if (!jobs.length) return null;
+  var cols = [['company', 'Company Name'], ['desig', 'Designation'], ['section', 'Section'], ['duration', 'Duration']].filter(function (c) {
+    return jobs.some(function (j) { return t(j[c[0]]); });   // a column nobody filled in is left out
+  });
+  var tbl = el('table', 'exp');
+  var hr = el('tr');
+  cols.forEach(function (c) { hr.appendChild(el('th', null, c[1])); });
+  tbl.appendChild(hr);
+  jobs.forEach(function (j) {
+    var tr = el('tr');
+    cols.forEach(function (c) { tr.appendChild(el('td', null, t(j[c[0]]))); });
+    tbl.appendChild(tr);
+  });
+  return row('Jobs\nEXPERIENCE', tbl);
+}
+function computerRow() {
+  var comp = t(d.computer).split('\n').map(function (x) { return x.trim(); }).filter(Boolean);
+  if (!comp.length) return null;
+  var ul = el('ul', 'arrows');
+  comp.forEach(function (c) { ul.appendChild(el('li', null, c)); });
+  return row('Computer\nLiteracy', ul);
+}
+function langRow() {
   var langs = t(d.languages).split('\n').map(function (l) {
     return l.split(',').map(function (c) { return c.trim(); });
   }).filter(function (c) { return c[0]; });
-  if (langs.length) {
-    var tbl = el('table', 'lang');
-    var hr = el('tr');
-    ['Language', 'Speaking', 'Reading', 'Writing'].forEach(function (h) { hr.appendChild(el('th', null, h)); });
-    tbl.appendChild(hr);
-    langs.forEach(function (c) {
-      var tr = el('tr');
-      for (var i = 0; i < 4; i++) tr.appendChild(el('td', null, c[i] || ''));
-      tbl.appendChild(tr);
-    });
-    s2.appendChild(row('Language\nSkill', tbl));
-  }
-
+  if (!langs.length) return null;
+  var tbl = el('table', 'lang');
+  var hr = el('tr');
+  ['Language', 'Speaking', 'Reading', 'Writing'].forEach(function (h) { hr.appendChild(el('th', null, h)); });
+  tbl.appendChild(hr);
+  langs.forEach(function (c) {
+    var tr = el('tr');
+    for (var i = 0; i < 4; i++) tr.appendChild(el('td', null, c[i] || ''));
+    tbl.appendChild(tr);
+  });
+  return row('Language\nSkill', tbl);
+}
+function personalRow() {
   var personal = kvGrid([
-    ['Name', name], ["Father's Name", d.father], ["Mother's Name", d.mother], ['Date of Birth', d.dob],
+    ['Name', t(d.name)], ["Father's Name", d.father], ["Mother's Name", d.mother], ['Date of Birth', d.dob],
     ['National ID No', d.nid], ['Birth Registration No', d.brn], ['Passport No', d.passport],
     ['Nationality', d.nationality], ['Place of Birth', d.birthplace], ['Religion', d.religion],
     ['Blood Group', d.blood], ['Marital Status', d.marital], ['Sex', d.sex], ['Height', d.height], ['Weight', d.weight]
   ], 'roomy');
-  if (personal) s2.appendChild(row('Personal\nInformation', personal));
-
+  return personal ? row('Personal\nInformation', personal) : null;
+}
+function addrRow() {
   var A = d.same
     ? { co: d.m_co, v: d.m_village, po: d.m_po, code: '', up: d.m_upazila, di: d.m_dist }
     : { co: d.p_co, v: d.p_village, po: d.p_po, code: d.p_code, up: d.p_upazila, di: d.p_dist };
@@ -551,15 +718,61 @@ function render() {
   if (t(A.up)) l2.push('Upazila: ' + t(A.up));
   if (t(A.di)) l2.push('Dist: ' + t(A.di) + (/\.$/.test(t(A.di)) ? '' : '.'));
   var addrText = [l1.join(', '), l2.join(', ')].filter(Boolean).join('\n');
-  if (addrText) {
-    var ag = el('div', 'addr');
-    ag.appendChild(kvGrid([['Permanent Address', addrText]], 'roomy'));
-    s2.appendChild(row('Address', ag));
+  if (!addrText) return null;
+  var ag = el('div', 'addr');
+  ag.appendChild(kvGrid([['Permanent Address', addrText]], 'roomy'));
+  return row('Address', ag);
+}
+
+var MM = 96 / 25.4;
+
+function render() {
+  var root = $('cv-root');
+  root.innerHTML = '';
+  var name = t(d.name);
+
+  /* the CV body follows the order of the sections in the form (left side) */
+  var order = secList().map(function (n) { return n.getAttribute('data-sec'); })
+    .filter(function (k) { return k !== 'media'; });
+  var units = [];
+  function addRow(n) { if (n) units.push({ kind: 'row', node: n }); }
+  for (var i = 0; i < order.length; i++) {
+    var k = order[i], nx = order[i + 1];
+    if (k === 'contact' || k === 'mailing') {
+      if ((k === 'contact' && nx === 'mailing') || (k === 'mailing' && nx === 'contact')) {
+        units.push({ kind: 'plain', node: mailBlock(true) }); i++;
+      } else if (k === 'mailing') {
+        units.push({ kind: 'plain', node: mailBlock(false) });
+      } else {
+        var cb = contactBlock();
+        if (cb) units.push({ kind: 'plain', node: cb });
+      }
+    } else if (k === 'personal') addRow(personalRow());
+    else if (k === 'permanent') addRow(addrRow());
+    else if (k === 'education') addRow(eduRow());
+    else if (k === 'experience') addRow(expRow());
+    else if (k === 'extras') { addRow(objectiveRow()); addRow(strengthRow()); }
+    else if (k === 'languages') addRow(langRow());
+    else if (k === 'computer') addRow(computerRow());
   }
+  /* rule lines between the address-style blocks and the labelled rows */
+  units.forEach(function (u, j) {
+    if (u.kind === 'row') { u.el = u.node; return; }
+    var w = el('div');
+    var prev = units[j - 1], next = units[j + 1];
+    if (prev && prev.kind === 'row') {
+      var h1 = el('hr', 'rule hrtop'); w.appendChild(h1);
+      u.node.style.marginTop = '0';
+    }
+    w.appendChild(u.node);
+    if (next && next.kind === 'row') w.appendChild(el('hr', 'rule'));
+    u.el = w;
+  });
 
-  s2.appendChild(row('Certification', el('div', null,
+  /* certification + signature always close the CV */
+  var endBox = el('div');
+  endBox.appendChild(row('Certification', el('div', null,
     'I, the undersigned certify that to the best of my knowledge and belief, these data correctly describe my qualifications and experience.')));
-
   var sign = el('div', 'sign');
   sign.appendChild(el('div', 's1', 'Signature'));
   if (d.signature) {
@@ -570,9 +783,46 @@ function render() {
   }
   sign.appendChild(el('div', 's3', '(' + (name || 'Your Name') + ')'));
   sign.appendChild(el('div', 's3', 'Date:'));
-  s2.appendChild(sign);
-  s2.appendChild(strip());
-  root.appendChild(s2);
+  endBox.appendChild(sign);
+  units.push({ kind: 'end', el: endBox });
+
+  /* ---------- page 1 header (fixed): title + photo ---------- */
+  var cur = el('div', 'sheet');
+  var title = el('div', 'title');
+  title.appendChild(el('div', 't1', 'Curriculum Vitae'));
+  title.appendChild(el('div', 't2', 'Of'));
+  title.appendChild(el('div', 't3', name || 'Your Name'));
+  cur.appendChild(title);
+  if (d.photo) {
+    var ph = el('img', 'photo');
+    ph.src = d.photo; ph.alt = 'Photo';
+    cur.appendChild(ph);
+  }
+  root.appendChild(cur);
+
+  var LIMIT = 275 * MM;      // content must end above the footer strip
+  var PHOTO_BOTTOM = 68 * MM;
+  var onSheet = 0;
+  units.forEach(function (u) {
+    var node = u.el;
+    cur.appendChild(node);
+    if (!cur.classList.contains('p2') && d.photo && u.kind === 'row' && node.offsetTop < PHOTO_BOTTOM) {
+      node.style.marginRight = '38mm';   // keep text clear of the photo
+    }
+    if (onSheet > 0 && node.offsetTop + node.offsetHeight > LIMIT) {
+      cur.removeChild(node);
+      cur.appendChild(strip());
+      cur = el('div', 'sheet p2');
+      root.appendChild(cur);
+      var lead = node.querySelector('.hrtop');
+      if (lead) lead.parentNode.removeChild(lead);
+      node.style.marginRight = '';
+      cur.appendChild(node);
+      onSheet = 0;
+    }
+    onSheet++;
+  });
+  cur.appendChild(strip());
 
   fit();
 }
@@ -587,10 +837,204 @@ function fit() {
   wrap.style.height = Math.ceil(sc.offsetHeight * s) + 'px';
 }
 
+/* ---------------- drag to reorder form sections ---------------- */
+function secList() { return [].slice.call($('formbox').querySelectorAll(':scope > details.sec')); }
+
+function applyOrder() {
+  var box = $('formbox'), all = secList(), byId = {};
+  all.forEach(function (n) { byId[n.getAttribute('data-sec')] = n; });
+  var seen = {};
+  (d.order || []).forEach(function (id) {
+    if (byId[id] && !seen[id]) { box.appendChild(byId[id]); seen[id] = true; }
+  });
+  all.forEach(function (n) { if (!seen[n.getAttribute('data-sec')]) box.appendChild(n); });
+}
+
+function saveOrder() {
+  d.orderV = 5;
+  d.order = secList().map(function (n) { return n.getAttribute('data-sec'); });
+  save();
+  render();
+}
+
+function stepSection(sec, dir) {
+  if (dir < 0) {
+    var prev = sec.previousElementSibling;
+    if (prev && prev.classList.contains('sec')) sec.parentNode.insertBefore(sec, prev);
+  } else {
+    var next = sec.nextElementSibling;
+    if (next && next.classList.contains('sec')) sec.parentNode.insertBefore(next, sec);
+  }
+}
+
+function startDrag(e, sec) {
+  if (e.pointerType === 'mouse' && e.button !== 0) return;
+  e.preventDefault();
+  var grip = e.currentTarget, id = e.pointerId, y = e.clientY, raf = null;
+  try { grip.setPointerCapture(id); } catch (err) {}
+  sec.classList.add('dragging');
+  document.body.classList.add('sorting');
+
+  // only the neighbours are moved, never the dragged section itself, so pointer capture stays valid
+  function settle() {
+    for (var guard = 0; guard < 12; guard++) {
+      var moved = false;
+      var prev = sec.previousElementSibling, next = sec.nextElementSibling, r;
+      if (prev && prev.classList.contains('sec')) {
+        r = prev.getBoundingClientRect();
+        if (y < r.top + r.height / 2) { sec.parentNode.insertBefore(prev, sec.nextSibling); moved = true; }
+      }
+      if (!moved && next && next.classList.contains('sec')) {
+        r = next.getBoundingClientRect();
+        if (y > r.top + r.height / 2) { sec.parentNode.insertBefore(next, sec); moved = true; }
+      }
+      if (!moved) break;
+    }
+  }
+  function autoscroll() {
+    var edge = 70, step = 0;
+    if (y < edge) step = -Math.ceil((edge - y) / 6);
+    else if (y > window.innerHeight - edge) step = Math.ceil((y - (window.innerHeight - edge)) / 6);
+    if (step) { window.scrollBy(0, step); settle(); }
+    raf = requestAnimationFrame(autoscroll);
+  }
+  function move(ev) { if (ev.pointerId !== id) return; y = ev.clientY; settle(); }
+  function end(ev) {
+    if (ev.pointerId !== id) return;
+    cancelAnimationFrame(raf);
+    grip.removeEventListener('pointermove', move);
+    grip.removeEventListener('pointerup', end);
+    grip.removeEventListener('pointercancel', end);
+    sec.classList.remove('dragging');
+    document.body.classList.remove('sorting');
+    try { grip.releasePointerCapture(id); } catch (err) {}
+    saveOrder();
+  }
+  grip.addEventListener('pointermove', move);
+  grip.addEventListener('pointerup', end);
+  grip.addEventListener('pointercancel', end);
+  raf = requestAnimationFrame(autoscroll);
+}
+
+function initSort() {
+  applyOrder();
+  secList().forEach(function (sec) {
+    var grip = sec.querySelector('.grip');
+    if (!grip) return;
+    grip.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); });
+    grip.addEventListener('pointerdown', function (e) { startDrag(e, sec); });
+    grip.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault(); e.stopPropagation();
+        stepSection(sec, e.key === 'ArrowUp' ? -1 : 1);
+        grip.focus();
+        saveOrder();
+      } else if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault(); e.stopPropagation(); // do not toggle the section while the handle has focus
+      }
+    });
+  });
+}
+
 /* ---------------- actions ---------------- */
 function onChange() { render(); save(); }
 
+var H2C_URL = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+var JSPDF_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+var libsPromise = null;
+
+function loadScript(src) {
+  return new Promise(function (resolve, reject) {
+    var sc = document.createElement('script');
+    sc.src = src;
+    sc.onload = resolve;
+    sc.onerror = function () { reject(new Error('Could not load ' + src)); };
+    document.head.appendChild(sc);
+  });
+}
+function ensureLibs() {
+  if (window.html2canvas && window.jspdf) return Promise.resolve();
+  if (!libsPromise) {
+    libsPromise = Promise.all([loadScript(H2C_URL), loadScript(JSPDF_URL)]).catch(function (e) { libsPromise = null; throw e; });
+  }
+  return libsPromise;
+}
+
+// Renders every CV sheet at full A4 size (off-screen), puts it into a PDF and saves the file.
+function buildPdf() {
+  var A4W = 210, A4H = 297;
+  var stage = document.createElement('div');
+  stage.style.cssText = 'position:fixed;left:-10000px;top:0;width:210mm;z-index:-1;background:#fff';
+  var sheets = [].slice.call($('cv-root').querySelectorAll('.sheet')).map(function (n) {
+    var c = n.cloneNode(true);
+    c.style.margin = '0';
+    c.style.boxShadow = 'none';
+    c.style.minHeight = '297mm';
+    stage.appendChild(c);
+    return c;
+  });
+  document.body.appendChild(stage);
+
+  var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+  var pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait', compress: true });
+  var pageCount = 0;
+
+  function addSheet(sheet) {
+    // position of the clickable footer link (in mm, relative to the sheet) – measured while attached
+    var a = sheet.querySelector('.strip a');
+    var link = null;
+    if (a) {
+      var ar = a.getBoundingClientRect(), sr = sheet.getBoundingClientRect(), k = A4W / sr.width;
+      link = { x: (ar.left - sr.left) * k, y: (ar.top - sr.top) * k, w: ar.width * k, h: ar.height * k, url: a.href };
+    }
+    return window.html2canvas(sheet, { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false }).then(function (canvas) {
+      var W = canvas.width, pagePx = Math.round(W * A4H / A4W);
+      var pages = Math.max(1, Math.ceil((canvas.height - 0.01 * pagePx) / pagePx));
+      for (var i = 0; i < pages; i++) {
+        var tmp = document.createElement('canvas');
+        tmp.width = W; tmp.height = pagePx;
+        var ctx = tmp.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, W, pagePx);
+        var sliceH = Math.min(pagePx, canvas.height - i * pagePx);
+        ctx.drawImage(canvas, 0, i * pagePx, W, sliceH, 0, 0, W, sliceH);
+        if (pageCount > 0) pdf.addPage('a4', 'portrait');
+        pageCount++;
+        pdf.addImage(tmp.toDataURL('image/jpeg', 0.93), 'JPEG', 0, 0, A4W, A4H, undefined, 'FAST');
+        if (link) {
+          var top = link.y - i * A4H;
+          if (top >= 0 && top < A4H) pdf.link(link.x, top, link.w, link.h, { url: link.url });
+        }
+      }
+    });
+  }
+
+  return fontsReady.then(function () {
+    var chain = Promise.resolve();
+    sheets.forEach(function (sh) { chain = chain.then(function () { return addSheet(sh); }); });
+    return chain;
+  }).then(function () {
+    document.body.removeChild(stage);
+    var clean = function (x) { return t(x).replace(/[\\/:*?"<>|]+/g, '').replace(/\s+/g, ' ').trim(); };
+    pdf.save([clean(d.name) || 'CV', clean(d.mobile), 'CV'].filter(Boolean).join(', ') + '.pdf');
+  }).catch(function (e) {
+    if (stage.parentNode) document.body.removeChild(stage);
+    throw e;
+  });
+}
+
+var busy = false;
+function setBusy(on) {
+  busy = on;
+  ['btn-dl', 'btn-dl2'].forEach(function (id) {
+    var b = $(id);
+    b.disabled = on;
+    b.textContent = on ? 'Preparing PDF…' : 'Download PDF';
+  });
+}
+
 function download() {
+  if (busy) return;
   if (!t(d.name)) {
     var det = $('f-name').closest('details');
     if (det) det.open = true;
@@ -598,22 +1042,30 @@ function download() {
     alert('Please enter your full name first.');
     return;
   }
-  var old = document.title;
-  document.title = t(d.name) + ' - CV';
-  var restore = function () { document.title = old; window.removeEventListener('afterprint', restore); };
-  window.addEventListener('afterprint', restore);
-  setTimeout(function () { window.print(); }, 50);
+  setBusy(true);
+  ensureLibs().then(buildPdf).then(function () { setBusy(false); }).catch(function (e) {
+    console.error(e);
+    setBusy(false);
+    alert('The PDF could not be created directly (check your internet connection). The print window will open instead – choose "Save as PDF" there.');
+    window.print();
+  });
 }
 
 function init() {
   load();
   buildFields();
   buildEdu();
+  buildJobs();
   bindImages();
+  initSort();
   render();
 
   $('btn-dl').addEventListener('click', download);
   $('btn-dl2').addEventListener('click', download);
+  $('btn-addjob').addEventListener('click', function () {
+    d.jobs.push({ company: '', desig: '', section: '', duration: '' });
+    buildJobs(); onChange();
+  });
   $('btn-addedu').addEventListener('click', function () {
     d.edu.push({ title: '', group: '', result: '', year: '', inst: '', board: '' });
     buildEdu(); onChange();
@@ -623,12 +1075,48 @@ function init() {
     try { localStorage.removeItem(STORE_KEY); } catch (e) {}
     location.reload();
   });
+  setTimeout(function () { ensureLibs().catch(function () {}); }, 1500);
   window.addEventListener('resize', fit);
   if (window.ResizeObserver) new ResizeObserver(fit).observe($('pv-wrap'));
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
 }
 
 document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+<script>
+/* Public comments (Giscus). Fill in the two IDs from https://giscus.app – until both are set, the comment box stays hidden. */
+(function () {
+  var GISCUS = {
+    repo: 'work-bd/work-bd.github.io',
+    repoId: '',          // e.g. R_kgDO...
+    category: 'General',
+    categoryId: ''       // e.g. DIC_kwDO...
+  };
+  if (!GISCUS.repoId || !GISCUS.categoryId) return;
+  var box = document.getElementById('comments-box'), host = document.getElementById('giscus-host');
+  if (!box || !host) return;
+  box.hidden = false;
+  var loaded = false;
+  function load() {
+    if (loaded) return; loaded = true;
+    var sc = document.createElement('script');
+    sc.src = 'https://giscus.app/client.js';
+    sc.async = true; sc.crossOrigin = 'anonymous';
+    var a = {
+      'data-repo': GISCUS.repo, 'data-repo-id': GISCUS.repoId,
+      'data-category': GISCUS.category, 'data-category-id': GISCUS.categoryId,
+      'data-mapping': 'specific', 'data-term': 'CV Maker',
+      'data-strict': '0', 'data-reactions-enabled': '1', 'data-emit-metadata': '0',
+      'data-input-position': 'top', 'data-theme': 'light', 'data-lang': 'en', 'data-loading': 'lazy'
+    };
+    Object.keys(a).forEach(function (k) { sc.setAttribute(k, a[k]); });
+    host.appendChild(sc);
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { io.disconnect(); load(); } }, { rootMargin: '300px' });
+    io.observe(box);
+  } else { load(); }
 })();
 </script>
 </body>
