@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Modern Sidebar CV – Free 1-Page Resume Maker PDF | Work BD</title>
+<title>Modern Sidebar CV – Free 1-Page Resume Maker PDF | To Work BD</title>
 <meta name="description" content="Make a modern one-page sidebar CV or resume online for free. Fill in your details, add your photo and signature, and download a ready A4 PDF. Runs in your browser – nothing is uploaded.">
-<link rel="canonical" href="https://work-bd.github.io/Modern-Sidebar-CV.html">
+<link rel="canonical" href="https://toworkbd.github.io/Modern-Sidebar-CV.html">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#2f4fd8">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Work BD">
-<meta property="og:title" content="Modern Sidebar CV – Free 1-Page Resume Maker PDF | Work BD">
+<meta property="og:site_name" content="To Work BD">
+<meta property="og:title" content="Modern Sidebar CV – Free 1-Page Resume Maker PDF | To Work BD">
 <meta property="og:description" content="Make a modern one-page sidebar CV online for free and download it as an A4 PDF. Nothing is uploaded.">
-<meta property="og:url" content="https://work-bd.github.io/Modern-Sidebar-CV.html">
-<meta property="og:image" content="https://work-bd.github.io/og-image.png">
+<meta property="og:url" content="https://toworkbd.github.io/Modern-Sidebar-CV.html">
+<meta property="og:image" content="https://toworkbd.github.io/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <style>
@@ -23,7 +23,7 @@ html{-webkit-text-size-adjust:100%;-webkit-print-color-adjust:exact;print-color-
 body{margin:0;background:linear-gradient(180deg,#d3e3f4 0,#C2D7EC 360px);background-attachment:fixed;color:var(--ink);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.5}
 header.hero{text-align:center;padding:36px 16px 10px}
 .hlogo{display:inline-block;margin-bottom:10px}.hlogo img{height:60px;width:auto;display:block}
-h1{margin:0;font-size:clamp(26px,4.6vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
+h1{margin:0;font-size:20px;font-weight:800;letter-spacing:-.03em;line-height:1.12}
 .hero p{max-width:640px;margin:10px auto 0;color:var(--mut);font-size:15.5px}
 main{max-width:1280px;margin:0 auto;padding:14px 16px 56px}
 
@@ -183,7 +183,7 @@ footer a{color:var(--brand);text-decoration:none;font-weight:600}
 <body>
 
 <header class="hero noprint">
-  <a class="hlogo" href="./" aria-label="Home"><img src="logo.png" width="131" height="60" alt="Work BD logo"></a>
+  <a class="hlogo" href="./" aria-label="Home"><img src="logo.png" width="131" height="60" alt="To Work BD logo"></a>
   <h1>Modern Sidebar CV</h1>
 </header>
 
@@ -270,13 +270,10 @@ footer a{color:var(--brand);text-decoration:none;font-weight:600}
 
   <section class="how noprint">
     <div class="box">
-      <h2>How to make your CV</h2>
-      <ul>
-        <li>Fill in the sections on the left. The CV on the right updates as you type.</li>
-        <li>Add a passport-size photo and your signature to complete the format.</li>
-        <li>Press <b>Download PDF</b>. You get a clean 1-page A4 CV saved straight to your device.</li>
-        <li>Your data stays on your device. It is only saved in your own browser so you can come back later.</li>
-      </ul>
+      <h2>Free Modern Sidebar CV, Bio-Data &amp; Resume Maker</h2>
+      <p>The Modern Sidebar CV is a free, one-page A4 resume template with a clean side column for your photo, contact details, skills and languages, and a main column for your objective, work experience, education and training. Type your details on the left and watch the CV update live on the right.</p>
+      <p>Add a passport-size photo and your signature, then press <b>Download PDF</b> to get a ready-to-send CV for job applications, internships, scholarships and bio-data forms. No sign-up is needed.</p>
+      <p lang="bn">বিনামূল্যে মডার্ন সাইডবার CV, বায়োডাটা ও রেজুমে তৈরি করুন। ছবি ও স্বাক্ষর যোগ করে এক পেজের A4 PDF ডাউনলোড করুন।</p>
     </div>
     <p class="intro">Fill in your details, add your photo and signature, then download a ready-to-send A4 CV as PDF. Everything runs in your browser – nothing is uploaded.</p>
     <div class="box comments" id="comments-box" hidden>
@@ -896,8 +893,8 @@ function buildModel() {
 /* ----- page drawing ----- */
 function strip() {
   var s = el('div', 'strip');
-  var a = el('a', null, 'work-bd.github.io');
-  a.href = 'https://work-bd.github.io/';
+  var a = el('a', null, 'toworkbd.github.io');
+  a.href = 'https://toworkbd.github.io/';
   a.target = '_blank';
   a.rel = 'noopener';
   s.appendChild(a);
@@ -1359,7 +1356,7 @@ function buildDocxFile(m, im) {
   right += im.signature ? para(image(im.signature, 'signature', sgm[0], sgm[1]), { after: 20 }) : para('', { after: 400 });
   right += para(run('(' + (t(d.name) || 'Your Full Name') + ')', { b: true, sz: 10 }), { after: 20 });
   right += para(run('Date: ' + todayStr(), { b: true, sz: 10 }), { after: 20 });
-  right += para(run('work-bd.github.io', { sz: 9, color: '0000EE' }), { jc: 'right', before: 200, after: 0 });
+  right += para(run('toworkbd.github.io', { sz: 9, color: '0000EE' }), { jc: 'right', before: 200, after: 0 });
 
   var doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
     '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"><w:body>' +
@@ -1413,7 +1410,7 @@ function restoreBackup(file) {
     var p;
     try { p = JSON.parse(String(rd.result)); } catch (e) { p = null; }
     if (!p || p.kind !== BACKUP_KIND || !p.data || typeof p.data !== 'object') {
-      alert('This is not a CV editable file made by Work BD (Download Edit File).');
+      alert('This is not a CV editable file made by To Work BD (Download Edit File).');
       return;
     }
     if (!confirm('Replace everything on this CV page with the data from "' + file.name + '"?')) return;
