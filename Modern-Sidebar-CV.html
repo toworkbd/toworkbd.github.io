@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modern Sidebar CV – Free 1-Page Resume Maker PDF | Work BD</title>
+<meta name="description" content="Make a modern one-page sidebar CV or resume online for free. Fill in your details, add your photo and signature, and download a ready A4 PDF. Runs in your browser – nothing is uploaded.">
+<link rel="canonical" href="https://work-bd.github.io/Modern-Sidebar-CV.html">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#2f4fd8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Work BD">
+<meta property="og:title" content="Modern Sidebar CV – Free 1-Page Resume Maker PDF | Work BD">
+<meta property="og:description" content="Make a modern one-page sidebar CV online for free and download it as an A4 PDF. Nothing is uploaded.">
+<meta property="og:url" content="https://work-bd.github.io/Modern-Sidebar-CV.html">
+<meta property="og:image" content="https://work-bd.github.io/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caladea:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<style>
+:root{--ink:#0f172a;--mut:#5b6478;--line:#e2e8f0;--bg:#C2D7EC;--brand:#2f4fd8;--brand2:#4f46e5;--r:16px;--shadow:0 1px 2px rgba(15,23,42,.06),0 8px 24px rgba(15,23,42,.06)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:linear-gradient(180deg,#d3e3f4 0,#C2D7EC 360px);background-attachment:fixed;color:var(--ink);font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;line-height:1.5}
+header.hero{text-align:center;padding:36px 16px 10px}
+.hlogo{display:inline-block;margin-bottom:10px}.hlogo img{height:60px;width:auto;display:block}
+h1{margin:0;font-size:clamp(26px,4.6vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
+.hero p{max-width:640px;margin:10px auto 0;color:var(--mut);font-size:15.5px}
+main{max-width:1280px;margin:0 auto;padding:14px 16px 56px}
+
+/* extension button */
+.extbar{display:flex;justify-content:flex-end;margin:0 0 14px}
+.btn-ext{background:#fbbf24;color:#1c1917;padding:8px 18px;border-radius:99px;text-decoration:none;font-weight:700;font-size:13.5px;transition:transform .15s,box-shadow .15s;white-space:nowrap}
+.btn-ext:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+
+.layout{display:grid;grid-template-columns:minmax(300px,340px) minmax(0,1fr);gap:18px;align-items:start}
+.box{background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line);align-items:center}
+.btn{font:inherit;font-weight:700;font-size:14px;border:0;border-radius:10px;padding:10px 18px;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--brand),var(--brand2));box-shadow:0 4px 12px rgba(47,79,216,.3)}
+.btn:hover{filter:brightness(1.06)}
+.arow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;width:100%}
+.arow>.btn{flex:1 1 0;min-height:48px;display:inline-flex;align-items:center;gap:9px;justify-content:center;text-align:center;white-space:nowrap}
+.btn.dl{display:inline-flex;align-items:center;gap:9px}
+.btn .ico{height:28px;width:auto;display:block;flex:none}
+.btn.sm .ico{height:24px}
+.btn.sec{background:#eef0f7;color:#0f172a;box-shadow:none}
+.btn.sm{padding:6px 12px;font-size:12.5px}
+.btn.danger{background:#fee2e2;color:#b91c1c;box-shadow:none}
+.note{font-size:12px;color:var(--mut)}
+details.sec{border-bottom:1px solid var(--line)}
+details.sec:last-of-type{border-bottom:0}
+details.sec>summary{cursor:pointer;list-style:none;padding:13px 16px;font-weight:700;font-size:15px;display:flex;justify-content:flex-start;align-items:center}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary::after{content:"+";font-size:20px;color:var(--brand);font-weight:700;margin-left:auto;padding-left:10px}
+details.sec[open]>summary::after{content:"–"}
+.grip{flex:none;display:inline-flex;align-items:center;justify-content:center;width:52px;height:32px;margin:-4px 12px -4px -10px;border-radius:9px;background:#e8edfb;border:1.5px solid #c3cff2;color:var(--brand);font-size:22px;line-height:1;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:0 1px 2px rgba(47,79,216,.15)}
+.grip:hover,.grip:focus-visible{color:#fff;background:var(--brand);border-color:var(--brand);outline:none}
+details.sec.dragging{background:#eef2ff;box-shadow:0 6px 18px rgba(47,79,216,.25);position:relative;z-index:2}
+.dragging .grip{cursor:grabbing;color:#fff;background:var(--brand);border-color:var(--brand)}
+body.sorting,body.sorting *{cursor:grabbing!important;user-select:none!important;-webkit-user-select:none!important}
+.fgrid{display:grid;grid-template-columns:1fr;gap:10px 12px;padding:2px 16px 16px}
+.fgrid .full{grid-column:1/-1}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--mut);margin-bottom:3px}
+.field input[type=text],.field input[type=tel],.field input[type=email],.field select,.field textarea{width:100%;font:inherit;font-size:14px;padding:8px 10px;border:1.5px solid #d6deea;border-radius:9px;background:#fff;color:var(--ink)}
+.field textarea{min-height:84px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(47,79,216,.15)}
+.chk{display:flex;gap:8px;align-items:center;font-size:13.5px;font-weight:600;padding:0 16px 12px}
+.edu{margin:0 16px 12px;padding:12px;border:1.5px dashed #cfd8f6;border-radius:12px;background:#f8faff}
+.edu .fgrid{padding:0}
+.edu .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700;font-size:13px;color:var(--brand)}
+.phctl{display:none;gap:14px;align-items:center;flex-wrap:wrap;margin-top:10px;padding:10px;border:1.5px dashed #cfd8f6;border-radius:12px;background:#f8faff}
+.phpv{width:110px;height:110px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1.5px #cfd8f6;background:#eee center/cover no-repeat;cursor:grab;touch-action:none;flex:none}
+.phpv:active{cursor:grabbing}
+.phsl{flex:1;min-width:180px;display:grid;gap:6px}
+.phsl label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--mut);margin:0}
+.phsl label span{width:62px;flex:none}
+.phsl input[type=range]{flex:1;min-width:0}
+[data-sec=media] .field{text-align:center}
+[data-sec=media] .phctl{justify-content:center}
+[data-sec=media] .fileline{display:grid;grid-template-columns:minmax(0,1fr) 104px minmax(0,1fr);align-items:center;gap:8px}
+[data-sec=media] .fileline input[type=file]{grid-column:2;grid-row:1}
+[data-sec=media] .fileline .btn.danger{grid-column:3;grid-row:1;justify-self:start}
+[data-sec=media] .fileline input[type=file]{width:104px;margin:0 auto}
+[data-sec=media] .fileline input[type=file]::file-selector-button{width:104px;margin:0}
+[data-sec=media] .fileline input[type=file]::-webkit-file-upload-button{width:104px;margin:0}
+#sg-ok{grid-column:1;grid-row:1;justify-self:end;white-space:nowrap;background:#16a34a;background-image:none;border-color:#16a34a;color:#fff;pointer-events:none}
+.phbtns{display:flex;gap:8px}
+.phbtns .btn.done{background:#16a34a;background-image:none;border-color:#16a34a;color:#fff}.phbtns .btn{flex:1}
+.phhint{font-size:11.5px;color:var(--mut);width:100%}
+.fileline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.fileline input[type=file]{font-size:12.5px;max-width:100%;width:104px;overflow:hidden;color:transparent}
+.fileline input[type=file]::file-selector-button{color:var(--ink,#111);font:inherit;font-size:12.5px;cursor:pointer}
+.fileline input[type=file]::-webkit-file-upload-button{color:var(--ink,#111);font:inherit;font-size:12.5px;cursor:pointer}
+.pad{padding:2px 16px 16px}
+#formbox{width:100%;max-width:340px}
+
+/* preview */
+.pvbox{padding:14px;overflow:hidden}
+#pv-wrap{width:100%;overflow:hidden;position:relative}
+#pv-scale{transform-origin:top left;width:210mm}
+
+/* ---------- CV sheet (A4, one page, Modern Sidebar) ---------- */
+.sheet{position:relative;width:210mm;height:297mm;margin:0 0 14px;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.25);font-family:Inter,"Noto Sans Bengali","Nirmala UI",system-ui,Arial,sans-serif;font-size:var(--fs,12.5px);line-height:1.38;color:#1e293b;display:flex;overflow:hidden}
+.sheet *{font-family:inherit}
+.side{flex:0 0 70mm;background:#1fa2e8;color:#fff;padding:14mm 7mm 14mm 7mm}
+.main{flex:1;min-width:0;padding:16mm 12mm 18mm 11mm}
+.avatar{width:38mm;height:38mm;border-radius:50%;background:#eaf6fd;margin:0 auto 7mm;overflow:hidden;display:flex;align-items:center;justify-content:center;border:1.4mm solid #fff;box-sizing:border-box;text-align:center}
+.avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block}
+.avatar .ph{color:#7b8aa0;font-size:.8em;line-height:1.3;padding:0 6mm}
+.sh{font-weight:700;font-size:1em;letter-spacing:.07em;text-transform:uppercase;margin:5.5mm 0 2.2mm;padding-bottom:1mm;border-bottom:1px solid rgba(255,255,255,.55)}
+.avatar+.sh{margin-top:0}
+.pill{background:rgba(11,111,176,.55);border-radius:1mm;padding:1.6mm 2.4mm;margin:0 0 1.6mm;font-size:.92em;word-break:break-word}
+.sl{font-size:.92em;color:#eaf7fe;margin:0 0 .8mm;word-break:break-word}
+.bl{list-style:none;margin:0;padding:0}
+.bl li{font-size:.92em;color:#eaf7fe;margin:0 0 .8mm;padding-left:3.4mm;text-indent:-3.4mm;word-break:break-word}
+.bl li::before{content:"\25AA\00a0";}
+.gh{font-weight:700;margin:1.4mm 0 .5mm}
+.side .gh{font-size:.95em}
+.skv{display:grid;grid-template-columns:auto 1fr;gap:.4mm 3mm;font-size:.9em;color:#eaf7fe}
+.t3{font-size:2.25em;font-weight:800;letter-spacing:-.02em;line-height:1.1;color:#0f172a;min-height:1.1em;word-break:break-word}
+.t1{font-size:1.1em;color:#1fa2e8;font-weight:600;letter-spacing:.04em;margin-top:1.2mm}
+.mh{color:#1fa2e8;font-weight:800;font-size:1.02em;letter-spacing:.07em;text-transform:uppercase;margin:5.5mm 0 2mm;padding-bottom:1mm;border-bottom:1.5px solid #1fa2e8}
+.t1+.mh{margin-top:6mm}
+.mp{font-size:.95em;white-space:pre-wrap}
+.mp.just{text-align:justify}
+.main .gh{font-size:.98em;margin-top:2mm}
+.main .gh:first-of-type{margin-top:0}
+.mkv{display:grid;grid-template-columns:34mm 1fr;gap:.5mm 0;font-size:.95em}
+.mkv .v{white-space:pre-wrap;word-break:break-word}
+.mkv .v::before{content:": "}
+.skv .v{word-break:break-word}
+.flow{columns:2;column-gap:8mm;font-size:.95em}
+.flow .fi{break-inside:avoid;margin:0 0 .9mm;word-break:break-word}
+.flow .k{font-weight:700;color:#475569}
+table.mt{width:100%;border-collapse:collapse;font-size:.9em}
+table.mt th,table.mt td{border:1px solid #cbd5e1;padding:1.2mm 2mm;text-align:left;vertical-align:top}
+table.mt th{background:#eaf6fd;color:#0b6fb0;font-weight:700}
+.sign{margin:3mm 0 0}
+.sign .s1{font-style:italic;font-weight:700;font-size:.95em}
+.sign img{display:block;height:13mm;max-width:55mm;object-fit:contain;margin:1px 0}
+.sign .s3{font-weight:700;margin-top:3px;font-size:.95em}
+.strip{position:absolute;left:81mm;right:12mm;bottom:8mm;display:flex;justify-content:flex-end;align-items:center;border-top:1px solid #cdd5df;padding-top:2mm;font-family:Inter,Arial,sans-serif;font-size:12px}
+.strip a{color:#0000ee;text-decoration:none}
+.strip a:hover{color:#0000ee;text-decoration:underline}
+
+.how{max-width:1280px;margin:22px auto 0}
+.how .box{padding:20px 22px}
+.how h2{margin:0 0 8px;font-size:20px;letter-spacing:-.02em}
+.how p,.how li{font-size:14.5px;color:#334155}
+.how ul{margin:8px 0 0;padding-left:20px}
+.how .intro{max-width:760px;margin:16px auto 0;text-align:center;color:var(--mut);font-size:15px}
+.how .box.comments{margin-top:22px}
+.comments .cnote{margin:0 0 12px;font-size:12.5px;color:var(--mut)}
+
+footer{text-align:center;color:var(--mut);font-size:13px;padding:26px;border-top:1px solid var(--line);background:rgba(255,255,255,.9)}
+.flogo{display:inline-block;margin-bottom:6px}.flogo img{height:36px;width:auto;display:block}
+footer a{color:var(--brand);text-decoration:none;font-weight:600}
+
+@media (max-width:980px){.layout{grid-template-columns:minmax(0,1fr)}}
+.layout>*{min-width:0}
+@media (max-width:520px){.fgrid{grid-template-columns:1fr}.pvbox{padding:8px}}
+
+@media print{
+  html,body{background:#fff!important}
+  .noprint{display:none!important}
+  main{padding:0;max-width:none}
+  .layout{display:block}
+  .pvbox{padding:0;border:0;box-shadow:none;border-radius:0;overflow:visible}
+  #pv-wrap{height:auto!important;overflow:visible!important}
+  #pv-scale{transform:none!important;width:210mm!important}
+  .sheet{box-shadow:none;margin:0}
+  @page{size:A4;margin:0}
+}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2MPXSDJBBS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-2MPXSDJBBS');
+</script>
+</head>
+<body>
+
+<header class="hero noprint">
+  <a class="hlogo" href="./" aria-label="Home"><img src="logo.png" width="131" height="60" alt="Work BD logo"></a>
+  <h1>Modern Sidebar CV</h1>
+</header>
+
+<main>
+  <div class="extbar noprint">
+    <a class="btn-ext" href="https://chromewebstore.google.com/detail/all-job-form-auto-filler/mimopbkpobmlnfilfhlclpeiediabpeg" target="_blank" rel="noopener">Get the extension</a>
+  </div>
+
+  <div class="layout">
+    <!-- ================= FORM ================= -->
+    <div class="box noprint" id="formbox">
+      <div class="actions">
+        <div class="arow">
+          <button class="btn dl" type="button" id="btn-dl" title="Download PDF" aria-label="Download PDF"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10.5l5 5 5-5"/><path d="M5 20h14"/></svg>PDF</button>
+          <button class="btn dl" type="button" id="btn-bak" title="Download Edit File" aria-label="Download Edit File"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10.5l5 5 5-5"/><path d="M5 20h14"/></svg>Edit File</button>
+        </div>
+        <div class="arow">
+          <button class="btn dl" type="button" id="btn-restore" title="Upload File - load a CV you saved earlier with Download Edit File" aria-label="Upload File"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M7 8l5-5 5 5"/><path d="M5 20h14"/></svg>Upload File</button>
+          <input type="file" id="in-restore" accept=".json,application/json" style="display:none">
+          <button class="btn" type="button" id="btn-clear">Clear all</button>
+        </div>
+        <span class="note">Saved automatically in this browser. Drag &#10303; to reorder sections.</span>
+      </div>
+
+      <details class="sec" data-sec="mailing"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Mailing address</summary><div class="fgrid" id="g-mailing"></div></details>
+      <details class="sec" data-sec="contact"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Contact</summary><div class="fgrid" id="g-contact"></div></details>
+      <details class="sec" data-sec="extras"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Objective &amp; strength</summary>
+        <div class="fgrid">
+          <div class="field full"><label>Career objective (empty = hide)</label><textarea id="f-objective"></textarea></div>
+          <div class="field full"><label>My strength (empty = hide)</label><textarea id="f-strength"></textarea></div>
+        </div>
+      </details>
+      <details class="sec" data-sec="computer"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Computer literacy</summary>
+        <div class="pad field"><label>Computer literacy (one item per line)</label><textarea id="f-computer"></textarea></div>
+      </details>
+      <details class="sec" data-sec="experience"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Job experience (optional)</summary>
+        <div id="jobs-list"></div>
+        <div class="pad"><button class="btn sec sm" type="button" id="btn-addjob">+ Add job</button></div>
+      </details>
+      <details class="sec" data-sec="languages"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Language skill</summary>
+        <div id="lang-list"></div>
+        <div class="pad"><button class="btn sec sm" type="button" id="btn-addlang">+ Add language</button></div>
+      </details>
+      <details class="sec" data-sec="education"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Education</summary>
+        <div id="edu-list"></div>
+        <div class="pad"><button class="btn sec sm" type="button" id="btn-addedu">+ Add education</button></div>
+      </details>
+      <details class="sec" data-sec="personal"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Personal information</summary><div class="fgrid" id="g-personal"></div></details>
+      <details class="sec" data-sec="permanent"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Permanent address</summary>
+        <label class="chk"><input type="checkbox" id="f-same"> Same as mailing address</label>
+        <div class="fgrid" id="g-permanent"></div>
+      </details>
+      <details class="sec" data-sec="media"><summary><span class="grip" role="button" tabindex="0" title="Drag to move this section up or down" aria-label="Move section (drag, or use the up and down arrow keys)">&#10303;</span>Photo &amp; signature</summary>
+        <div class="fgrid">
+          <div class="field full"><label>Photos</label>
+            <div class="fileline"><input type="file" id="in-photo" accept="image/*"><button class="btn danger sm" type="button" id="rm-photo">Remove</button></div>
+            <div class="phctl" id="ph-ctl">
+              <div class="phpv" id="ph-pv" title="Drag to move the photo"></div>
+              <div class="phsl">
+                <label><span>Size</span><input type="range" id="ph-z" min="30" max="300" step="1"></label>
+                <label><span>Up / Down</span><input type="range" id="ph-y" min="-100" max="100" step="0.5"></label>
+                <div class="phbtns"><button class="btn sm" type="button" id="ph-ok">OK</button><button class="btn sm" type="button" id="ph-reset">Reset</button></div>
+              </div>
+            </div></div>
+          <div class="field full"><label>Signature</label>
+            <div class="fileline"><input type="file" id="in-sign" accept="image/*"><button class="btn danger sm" type="button" id="rm-sign">Remove</button><button class="btn sm" type="button" id="sg-ok" tabindex="-1" style="display:none">✓ Uploaded</button></div></div>
+        </div>
+      </details>
+    </div>
+
+    <!-- ================= PREVIEW ================= -->
+    <div>
+      <div class="box pvbox">
+        <div id="pv-wrap"><div id="pv-scale"><div id="cv-root"></div></div></div>
+      </div>
+      <div class="noprint" style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <button class="btn dl" type="button" id="btn-dl2" title="Download PDF" aria-label="Download PDF"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10.5l5 5 5-5"/><path d="M5 20h14"/></svg>PDF</button>
+        <button class="btn dl" type="button" id="btn-bak2" title="Download Edit File" aria-label="Download Edit File"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10.5l5 5 5-5"/><path d="M5 20h14"/></svg>Edit File</button>
+        <button class="btn dl" type="button" id="btn-docx2" title="Download Word File" aria-label="Download Word File"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10.5l5 5 5-5"/><path d="M5 20h14"/></svg>Word File</button>
+        <span class="note">The PDF, editable backup file and Word file are saved directly to your device.</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="how noprint">
+    <div class="box">
+      <h2>How to make your CV</h2>
+      <ul>
+        <li>Fill in the sections on the left. The CV on the right updates as you type.</li>
+        <li>Add a passport-size photo and your signature to complete the format.</li>
+        <li>Press <b>Download PDF</b>. You get a clean 1-page A4 CV saved straight to your device.</li>
+        <li>Your data stays on your device. It is only saved in your own browser so you can come back later.</li>
+      </ul>
+    </div>
+    <p class="intro">Fill in your details, add your photo and signature, then download a ready-to-send A4 CV as PDF. Everything runs in your browser – nothing is uploaded.</p>
+    <div class="box comments" id="comments-box" hidden>
+      <h2>Comments</h2>
+      <p class="cnote">Share your feedback or ask a question. Comments are posted publicly through GitHub. Your CV details are never sent.</p>
+      <div id="giscus-host"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="noprint">&copy; 2026 All Rights Reserved.</footer>
+
+<script>
+(function(){
+'use strict';
+
+var STORE_KEY = 'workbd_cv_modern_sidebar_v1';
+
+var OLD_SAMPLES = {
+  computer: 'MS-Word,\nMS-Excel, MS-Power Point,\nInternet,\nAdobe Photoshop,\nE-mail,\nWeb Browsing (Google Chrome, Internet Explorer, Mozilla Firefox) etc.',
+  languages: 'Bengali, Best, Best, Best\nEnglish, Good, Best, Better'
+};
+var DEFAULTS = {
+  objective: 'Have a strong aspiration to build up my career as a creative and successful person. I am strong minded to present my integrity, efficiency and sincerity to the best of my ability.',
+  strength: 'As an energetic and hard working young man, I would be able to work under pressure and strain. Having capability of interpersonal communication and self decision-making, I am able to successfully meet the crucial challenge of the market.',
+  computer: 'MS-Word,\nMS-Excel, MS-Power Point,\nInternet,\nAdobe Photoshop, Adobe Illustrator, Video Editing,\nE-mail,\nWeb Browsing (Google Chrome, Internet Explorer, Mozilla Firefox) etc.',
+  languages: ''
+};
+
+function freshState() {
+  return {
+    name:'', father:'', mother:'', dob:'', sex:'', religion:'Islam', nationality:'Bangladeshi', marital:'',
+    nid:'', brn:'', passport:'', birthplace:'', blood:'', height:'', weight:'',
+    mobile:'', email:'',
+    m_co:'', m_village:'', m_po:'', m_upazila:'', m_dist:'',
+    same:false,
+    p_co:'', p_village:'', p_po:'', p_code:'', p_upazila:'', p_dist:'',
+    edu:[
+      { title:'SSC (Secondary School Certificate)', group:'', result:'', year:'', inst:'', board:'' }
+    ],
+    exp:'', jobs:[], objective:DEFAULTS.objective, strength:DEFAULTS.strength, computer:DEFAULTS.computer, languages:DEFAULTS.languages,
+    photo:'', photoSrc:'', photoBg:'#ffffff', photoZ:90, photoX:0, photoY:0, signature:'',
+    order:[], orderV:0, computerV:1, relV:1
+  };
+}
+
+var d = freshState();
+
+function load() {
+  try {
+    var raw = localStorage.getItem(STORE_KEY);
+    if (raw) {
+      var s = JSON.parse(raw);
+      var base = freshState();
+      Object.keys(base).forEach(function (k) { if (s[k] !== undefined) base[k] = s[k]; });
+      if (t(base.exp) === '5') base.exp = '';
+      if (!Array.isArray(base.jobs)) base.jobs = [];
+      if (!base.jobs.length && t(base.exp)) {   // older saved CV: move the free-text experience into the first table row
+        base.jobs = [{ company: t(base.exp).replace(/\s*\n+\s*/g, ', '), desig: '', section: '', duration: '' }];
+      }
+      base.exp = '';
+      if (base.computer === OLD_SAMPLES.computer) base.computer = '';
+      if (base.languages === OLD_SAMPLES.languages) base.languages = '';
+      if (!s.computerV) { if (!t(base.computer)) base.computer = DEFAULTS.computer; base.computerV = 1; }   // one-time: bring back the default computer skills
+      if (!s.relV) { if (!t(base.religion)) base.religion = 'Islam'; base.relV = 1; }   // one-time: default religion for saved CVs
+      if (Array.isArray(base.edu)) {
+        /* drop the old empty HSC placeholder so only SSC is shown by default */
+        base.edu = base.edu.filter(function (e) {
+          return !(e && e.title === 'HSC (Higher Secondary Certificate)' && !t(e.group) && !t(e.result) && !t(e.year) && !t(e.inst) && !t(e.board));
+        });
+      }
+      if (!Array.isArray(base.edu) || !base.edu.length) base.edu = freshState().edu;
+      if (!Array.isArray(base.order) || base.orderV !== 5) base.order = [];
+      base.orderV = 5;
+      d = base;
+    }
+  } catch (e) { /* storage may be blocked – keep working without it */ }
+}
+var saveTimer = null;
+function save() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(function () {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(d)); } catch (e) {}
+  }, 250);
+}
+
+function $(id) { return document.getElementById(id); }
+function el(tag, cls, text) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined && text !== null) e.textContent = text;
+  return e;
+}
+function t(s) { return (s === undefined || s === null) ? '' : String(s).trim(); }
+
+/* ---------------- form construction ---------------- */
+var GROUPS = {
+  'g-personal': [
+    ['name','Full name'],['father',"Father's name"],['mother',"Mother's name"],['dob','Date of birth'],
+    ['sex','Sex','select',['','Male','Female','Other']],['religion','Religion','menu',['Islam','Hinduism','Buddhism','Christianity','Sikhism','Jainism','Judaism',"Bahá'í",'Zoroastrianism']],['nationality','Nationality'],
+    ['marital','Marital status','select',['','Unmarried','Married','Divorced','Widowed']],
+    ['nid','National ID No'],['brn','Birth registration No'],['passport','Passport No'],['birthplace','Place of birth'],
+    ['blood','Blood group'],['height','Height'],['weight','Weight']
+  ],
+  'g-contact': [['mobile','Mobile (e.g. +8801XXXXXXXXX)','tel'],['email','Email','email']],
+  'g-mailing': [['m_co','C/O'],['m_village','Village / Road / House'],['m_po','Post office'],['m_upazila','Upazila / PS'],['m_dist','District']],
+  'g-permanent': [['p_co','C/O'],['p_village','Village / Road / House'],['p_po','Post office'],['p_code','Post code'],['p_upazila','Upazila / PS'],['p_dist','District']]
+};
+
+function buildFields() {
+  Object.keys(GROUPS).forEach(function (gid) {
+    var host = $(gid);
+    GROUPS[gid].forEach(function (f) {
+      var key = f[0], label = f[1], type = f[2] || 'text';
+      if (type === 'menu') {   // dropdown with a typed "Other" choice
+        var mn = makeMenu(d, key, label);
+        mn.fill(f[3]);
+        host.appendChild(mn.el);
+        return;
+      }
+      var wrap = el('div', 'field' + (key === 'name' ? ' full' : ''));
+      var lb = el('label', null, label);
+      lb.setAttribute('for', 'f-' + key);
+      wrap.appendChild(lb);
+      var inp;
+      if (type === 'select') {
+        inp = document.createElement('select');
+        f[3].forEach(function (o) { var op = el('option', null, o || '—'); op.value = o; inp.appendChild(op); });
+      } else {
+        inp = document.createElement('input');
+        inp.type = (type === 'tel' || type === 'email') ? type : 'text';
+        inp.autocomplete = 'off';
+      }
+      inp.id = 'f-' + key;
+      inp.value = d[key] || '';
+      inp.addEventListener('input', function () { d[key] = inp.value; onChange(); });
+      inp.addEventListener('change', function () { d[key] = inp.value; onChange(); });
+      wrap.appendChild(inp);
+      host.appendChild(wrap);
+    });
+  });
+
+  ['objective','strength','computer'].forEach(function (k) {
+    var ta = $('f-' + k);
+    ta.value = d[k] || '';
+    ta.addEventListener('input', function () { d[k] = ta.value; onChange(); });
+  });
+
+  var same = $('f-same');
+  same.checked = !!d.same;
+  applySame();
+  same.addEventListener('change', function () { d.same = same.checked; applySame(); onChange(); });
+}
+
+/* ---------- language skill: dropdown rows (stored as the same "Language, Speaking, Reading, Writing" lines as before) ---------- */
+var LANG_NAMES = ['Bengali','English','Hindi','Urdu','Arabic','French','German','Spanish','Chinese','Japanese','Korean','Malay'];
+var LANG_LEVELS = ['Best','Better','Good','Average','Basic'];
+var langRows = [];
+function parseLangs() {
+  return t(d.languages).split('\n').map(function (l) {
+    var c = l.split(',').map(function (x) { return x.trim(); });
+    return { lang: c[0] || '', sp: c[1] || '', rd: c[2] || '', wr: c[3] || '' };
+  }).filter(function (r) { return r.lang; });
+}
+function syncLangs() {
+  d.languages = langRows.filter(function (r) { return t(r.lang); }).map(function (r) {
+    return [r.lang, r.sp, r.rd, r.wr].map(function (x) { return String(x || '').replace(/[,\n]/g, ' ').trim(); }).join(', ');
+  }).join('\n');
+}
+function buildLangs() {
+  var host = $('lang-list');
+  host.innerHTML = '';
+  langRows.forEach(function (r, i) {
+    var box = el('div', 'edu');
+    var top = el('div', 'top');
+    top.appendChild(el('span', null, 'Language ' + (i + 1)));
+    var rm = el('button', 'btn danger sm', 'Remove');
+    rm.type = 'button';
+    rm.addEventListener('click', function () { langRows.splice(i, 1); buildLangs(); syncLangs(); onChange(); });
+    top.appendChild(rm);
+    box.appendChild(top);
+    var g = el('div', 'fgrid');
+    var lM = makeMenu(r, 'lang', 'Language', syncLangs);
+    lM.el.className += ' full';
+    lM.fill(LANG_NAMES);
+    g.appendChild(lM.el);
+    var lv = el('div', 'full');
+    lv.style.cssText = 'display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px';
+    [['sp', 'Speaking'], ['rd', 'Reading'], ['wr', 'Writing']].forEach(function (f) {
+      var w = el('div', 'field');
+      w.appendChild(el('label', null, f[1]));
+      var sel = document.createElement('select');
+      var o0 = el('option', null, 'Select'); o0.value = ''; sel.appendChild(o0);
+      var list = LANG_LEVELS.slice();
+      if (r[f[0]] && list.indexOf(r[f[0]]) < 0) list.push(r[f[0]]);   // keep any older custom value
+      list.forEach(function (x) { var o = el('option', null, x); o.value = x; sel.appendChild(o); });
+      sel.value = r[f[0]] || '';
+      sel.addEventListener('change', function () { r[f[0]] = sel.value; syncLangs(); onChange(); });
+      w.appendChild(sel);
+      lv.appendChild(w);
+    });
+    g.appendChild(lv);
+    box.appendChild(g);
+    host.appendChild(box);
+  });
+}
+
+function buildJobs() {
+  var host = $('jobs-list');
+  host.innerHTML = '';
+  d.jobs.forEach(function (j, i) {
+    var box = el('div', 'edu');
+    var top = el('div', 'top');
+    top.appendChild(el('span', null, 'Job ' + (i + 1)));
+    var rm = el('button', 'btn danger sm', 'Remove');
+    rm.type = 'button';
+    rm.addEventListener('click', function () { d.jobs.splice(i, 1); buildJobs(); onChange(); });
+    top.appendChild(rm);
+    box.appendChild(top);
+    var g = el('div', 'fgrid');
+    [['company', 'Company Name', true], ['desig', 'Designation'], ['section', 'Section'], ['duration', 'Duration (e.g. 1 year)']].forEach(function (f) {
+      var w = el('div', 'field' + (f[2] ? ' full' : ''));
+      w.appendChild(el('label', null, f[1]));
+      var inp = document.createElement('input');
+      inp.type = 'text'; inp.autocomplete = 'off'; inp.value = j[f[0]] || '';
+      inp.addEventListener('input', function () { j[f[0]] = inp.value; onChange(); });
+      w.appendChild(inp);
+      g.appendChild(w);
+    });
+    box.appendChild(g);
+    host.appendChild(box);
+  });
+}
+
+function applySame() {
+  $('g-permanent').style.display = d.same ? 'none' : '';
+}
+
+var EDU_YEARS = [];
+for (var yy = new Date().getFullYear() + 5; yy >= 1970; yy--) EDU_YEARS.push(String(yy));
+var EDU_TITLES = ['SSC (Secondary School Certificate)','HSC (Higher Secondary Certificate)','Dakhil','Alim','Diploma','Honours / Bachelor','Masters','M.Phil / PhD'];
+var EDU_GROUPS = ['Science','Business Studies','Humanities','Technical','Vocational','General'];
+var EDU_SUBJECTS = ['Computer Science & Engineering','Civil Engineering','Electrical & Electronic Engineering','Mechanical Engineering','Accounting','Management','Finance','Marketing','English','Bangla','Economics','Political Science','Sociology','Social Science','Mathematics','Physics','Chemistry','Law'];
+var EDU_RES5 = ['5.00','4.50 - 4.99','4.00 - 4.49','3.50 - 3.99','3.00 - 3.49','2.50 - 2.99','2.00 - 2.49'];
+var EDU_RES4 = ['4.00','3.75 - 3.99','3.50 - 3.74','3.25 - 3.49','3.00 - 3.24','2.50 - 2.99','2.00 - 2.49'];
+var EDU_BOARDS = ['Dhaka Board','Rajshahi Board','Cumilla Board','Jashore Board','Chattogram Board','Barishal Board','Sylhet Board','Dinajpur Board','Mymensingh Board','Madrasah Board','Technical Board'];
+var EDU_UNIS = ['National University','University of Dhaka','University of Rajshahi','University of Chittagong','Jahangirnagar University','Bangladesh Open University'];
+/* how an education entry is labelled on the CV, by kind of degree */
+var EDU_CFG = {
+  school: { subj: 'Group',   pass: 'Passing year', board: 'Board',      out: 5, kind: 'school' },
+  tech:   { subj: 'Subject', pass: 'Passing year', board: 'Board',      out: 4, kind: 'tech' },
+  uni:    { subj: 'Subject', pass: 'Passing Year', board: 'University', out: 4, kind: 'uni' }
+};
+function eduType(title) {
+  var x = t(title);
+  if (/diploma/i.test(x)) return EDU_CFG.tech;
+  if (/master|bachelor|honou?rs|phil|ph\.?\s?d|\bm\.?\s?s\.?\s?s\b|\bm\.?\s?sc\b|\bb\.?\s?sc\b|\bmba\b|\bbba\b|\bm\.?\s?a\b|\bb\.?\s?a\b|\bm\.?\s?com\b|\bb\.?\s?com\b|degree|graduat/i.test(x)) return EDU_CFG.uni;
+  return EDU_CFG.school;
+}
+
+function makeMenu(e, key, label, onSet) {
+  var w = el('div', 'field');
+  var lb = el('label', null, label);
+  w.appendChild(lb);
+  var sel = document.createElement('select');
+  var txt = document.createElement('input');
+  txt.type = 'text'; txt.autocomplete = 'off'; txt.placeholder = 'Type here'; txt.style.marginTop = '6px';
+  var opts = [];
+  function fill(newOpts) {
+    opts = newOpts;
+    var cur = e[key] || '';
+    sel.innerHTML = '';
+    var o0 = el('option', null, '— Select —'); o0.value = ''; sel.appendChild(o0);
+    opts.forEach(function (x) { var o = el('option', null, x); o.value = x; sel.appendChild(o); });
+    var oo = el('option', null, 'Other (write your own)'); oo.value = '__other'; sel.appendChild(oo);
+    if (!cur) { sel.value = ''; txt.value = ''; txt.style.display = 'none'; }
+    else if (opts.indexOf(cur) >= 0) { sel.value = cur; txt.style.display = 'none'; }
+    else { sel.value = '__other'; txt.value = cur; txt.style.display = ''; }
+  }
+  sel.addEventListener('change', function () {
+    if (sel.value === '__other') { txt.style.display = ''; e[key] = txt.value; txt.focus(); }
+    else { txt.style.display = 'none'; e[key] = sel.value; }
+    if (onSet) onSet();
+    onChange();
+  });
+  txt.addEventListener('input', function () { e[key] = txt.value; if (onSet) onSet(); onChange(); });
+  w.appendChild(sel); w.appendChild(txt);
+  return { el: w, label: lb, fill: fill };
+}
+
+function buildEdu() {
+  var host = $('edu-list');
+  host.innerHTML = '';
+  d.edu.forEach(function (e, i) {
+    var box = el('div', 'edu');
+    var top = el('div', 'top');
+    top.appendChild(el('span', null, 'Education ' + (i + 1)));
+    var rm = el('button', 'btn danger sm', 'Remove');
+    rm.type = 'button';
+    rm.addEventListener('click', function () { d.edu.splice(i, 1); buildEdu(); onChange(); });
+    top.appendChild(rm);
+    box.appendChild(top);
+
+    var g = el('div', 'fgrid');
+    var tM = makeMenu(e, 'title', 'Exam / degree title', refresh);
+    tM.el.className += ' full';
+    var gM = makeMenu(e, 'group', 'Group');
+    var rw = el('div', 'field');
+    var rrow = el('div'); rrow.style.cssText = 'display:flex;gap:8px;align-items:flex-start';
+    var rl = el('div'); rl.style.cssText = 'flex:1;min-width:0';
+    rl.appendChild(el('label', null, 'Result'));
+    var rin = document.createElement('input');
+    rin.type = 'text'; rin.autocomplete = 'off'; rin.value = e.result || '';
+    rin.addEventListener('input', function () { e.result = rin.value; onChange(); });
+    rl.appendChild(rin);
+    var ol = el('div'); ol.style.cssText = 'flex:none;width:64px';
+    ol.appendChild(el('label', null, 'Out of'));
+    var oin = document.createElement('input');
+    oin.type = 'text'; oin.autocomplete = 'off'; oin.setAttribute('inputmode', 'decimal'); oin.maxLength = 4;
+    oin.value = (e.outof === undefined || e.outof === null) ? '' : e.outof;
+    oin.addEventListener('input', function () { e.outof = oin.value; e.outofManual = true; onChange(); });
+    ol.appendChild(oin);
+    rrow.appendChild(rl); rrow.appendChild(ol); rw.appendChild(rrow);
+    var yM = makeMenu(e, 'year', 'Passing year');
+    var bM = makeMenu(e, 'board', 'Board');
+    var iw = el('div', 'field');
+    iw.appendChild(el('label', null, 'Institution'));
+    var iin = document.createElement('input');
+    iin.type = 'text'; iin.autocomplete = 'off'; iin.value = e.inst || '';
+    iin.addEventListener('input', function () { e.inst = iin.value; onChange(); });
+    iw.appendChild(iin);
+    function refresh() {
+      var c = eduType(e.title);
+      gM.label.textContent = c.subj;
+      if (!e.outofManual) { e.outof = String(c.out); oin.value = e.outof; }   // 5 for school, 4 for degrees, until the user types their own
+      yM.label.textContent = c.pass;
+      bM.label.textContent = c.board;
+      gM.fill(c.kind === 'school' ? EDU_GROUPS : EDU_SUBJECTS);
+      bM.fill(c.kind === 'uni' ? EDU_UNIS : EDU_BOARDS);
+    }
+    tM.fill(EDU_TITLES);
+    yM.fill(EDU_YEARS);
+    refresh();
+    [tM.el, gM.el, rw, yM.el, iw, bM.el].forEach(function (n) { g.appendChild(n); });
+    box.appendChild(g);
+    host.appendChild(box);
+  });
+}
+
+/* ---------------- images ---------------- */
+function readImage(file, asPng, aspect) {
+  return new Promise(function (resolve, reject) {
+    var fr = new FileReader();
+    fr.onerror = reject;
+    fr.onload = function () {
+      var img = new Image();
+      img.onerror = reject;
+      img.onload = function () {
+        // optional centre-crop to a fixed width/height ratio (used for the photo)
+        var sx = 0, sy = 0, sw = img.width, sh = img.height;
+        if (aspect) {
+          if (sw / sh > aspect) { sw = Math.round(sh * aspect); sx = Math.round((img.width - sw) / 2); }
+          else { sh = Math.round(sw / aspect); sy = Math.round((img.height - sh) / 2); }
+        }
+        var max = 600, sc = Math.min(1, max / Math.max(sw, sh));
+        var cw = Math.max(1, Math.round(sw * sc)), ch = Math.max(1, Math.round(sh * sc));
+        var c = document.createElement('canvas');
+        c.width = cw; c.height = ch;
+        var ctx = c.getContext('2d');
+        if (!asPng) { ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, cw, ch); }
+        ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch);
+        resolve(asPng ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', 0.9));
+      };
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+
+/* ---- photo: resize / move controls ---- */
+var photoImg = null, phRaf = 0, phOpen = true;
+function phLoadImg(cb) {
+  if (!d.photoSrc) { photoImg = null; if (cb) cb(); return; }
+  var im = new Image();
+  im.onload = function () { photoImg = im; if (cb) cb(); };
+  im.src = d.photoSrc;
+}
+function phDraw() {
+  if (!photoImg) return;
+  var out = 600, c = document.createElement('canvas');
+  c.width = c.height = out;
+  var x = c.getContext('2d');
+  x.fillStyle = d.photoBg || '#ffffff'; x.fillRect(0, 0, out, out);
+  var w = photoImg.width, h = photoImg.height, base = out / Math.min(w, h), sc = base * (d.photoZ / 100);
+  var dw = w * sc, dh = h * sc;
+  x.drawImage(photoImg, (out - dw) / 2 + d.photoX * out / 100, (out - dh) / 2 + d.photoY * out / 100, dw, dh);
+  d.photo = c.toDataURL('image/jpeg', 0.92);
+}
+function phSync() {
+  var on = !!d.photoSrc;
+  $('ph-ctl').style.display = (on && phOpen) ? 'flex' : 'none';
+  if (!on) return;
+  $('ph-z').value = d.photoZ; $('ph-y').value = d.photoY;
+  $('ph-pv').style.backgroundImage = d.photo ? 'url(' + d.photo + ')' : 'none';
+}
+function phApply() {
+  var ok = $('ph-ok'); ok.classList.remove('done'); ok.textContent = 'OK';
+  if (phRaf) return;
+  phRaf = requestAnimationFrame(function () { phRaf = 0; phDraw(); phSync(); onChange(); });
+}
+// default placement: whole width visible, top of the photo kept with a little head-room
+function phReset() {
+  if (!photoImg) return;
+  var out = 600, w = photoImg.width, h = photoImg.height;
+  d.photoZ = 90; d.photoX = 0;
+  var dh = h * (out / Math.min(w, h)) * 0.9;
+  d.photoY = Math.round(((0.06 * out - (out - dh) / 2) / out * 100) * 2) / 2;
+  phApply();
+}
+function readPhotoSrc(file) {
+  return new Promise(function (resolve, reject) {
+    var fr = new FileReader();
+    fr.onerror = reject;
+    fr.onload = function () {
+      var img = new Image();
+      img.onerror = reject;
+      img.onload = function () {
+        var sc = Math.min(1, 900 / Math.max(img.width, img.height));
+        var cw = Math.max(1, Math.round(img.width * sc)), ch = Math.max(1, Math.round(img.height * sc));
+        var c = document.createElement('canvas'); c.width = cw; c.height = ch;
+        var x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, cw, ch); x.drawImage(img, 0, 0, cw, ch);
+        // background colour = average of the top strip of the photo (used to fill empty space when zoomed out)
+        var bg = '#ffffff';
+        try {
+          var px = x.getImageData(0, 0, cw, Math.max(1, Math.round(ch * 0.03))).data, r = 0, g = 0, b = 0, n = 0;
+          for (var i = 0; i < px.length; i += 16) { r += px[i]; g += px[i + 1]; b += px[i + 2]; n++; }
+          bg = 'rgb(' + Math.round(r / n) + ',' + Math.round(g / n) + ',' + Math.round(b / n) + ')';
+        } catch (e) {}
+        resolve({ src: c.toDataURL('image/jpeg', 0.88), bg: bg });
+      };
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(file);
+  });
+}
+
+function sgSync() { $('sg-ok').style.display = d.signature ? '' : 'none'; }
+
+function bindImages() {
+  $('in-photo').addEventListener('change', function (e) {
+    var f = e.target.files && e.target.files[0];
+    if (!f) return;
+    readPhotoSrc(f).then(function (r) {
+      d.photoSrc = r.src; d.photoBg = r.bg; phOpen = true;
+      phLoadImg(phReset);
+    }).catch(function () { alert('Sorry, this image could not be read. Please try another file.'); });
+  });
+  $('rm-photo').addEventListener('click', function () {
+    d.photo = ''; d.photoSrc = ''; photoImg = null; $('in-photo').value = ''; phSync(); onChange();
+  });
+  $('ph-z').addEventListener('input', function () { d.photoZ = +this.value; phApply(); });
+  $('ph-y').addEventListener('input', function () { d.photoY = +this.value; phApply(); });
+  $('ph-reset').addEventListener('click', phReset);
+  $('ph-ok').addEventListener('click', function () { this.classList.add('done'); this.textContent = '\u2713 OK'; });
+  // drag the round preview to move the photo
+  var pv = $('ph-pv'), drag = null;
+  pv.addEventListener('pointerdown', function (e) { drag = { x: e.clientX, y: e.clientY, px: d.photoX, py: d.photoY }; pv.setPointerCapture(e.pointerId); e.preventDefault(); });
+  pv.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    var k = 100 / pv.clientWidth;
+    d.photoX = Math.max(-100, Math.min(100, drag.px + (e.clientX - drag.x) * k));
+    d.photoY = Math.max(-100, Math.min(100, drag.py + (e.clientY - drag.y) * k));
+    phApply();
+  });
+  function end() { drag = null; }
+  pv.addEventListener('pointerup', end); pv.addEventListener('pointercancel', end);
+
+  // signature (unchanged)
+  $('in-sign').addEventListener('change', function (e) {
+    var f = e.target.files && e.target.files[0];
+    if (!f) return;
+    readImage(f, true).then(function (data) { d.signature = data; sgSync(); onChange(); })
+      .catch(function () { alert('Sorry, this image could not be read. Please try another file.'); });
+  });
+  $('rm-sign').addEventListener('click', function () { d.signature = ''; $('in-sign').value = ''; sgSync(); onChange(); });
+  sgSync();
+  // saved CV from an earlier visit: restore the controls
+  phLoadImg(phSync);
+}
+
+/* ---------------- CV rendering (Modern Sidebar, one page) ---------------- */
+var MM = 96 / 25.4;
+
+function todayStr() {
+  var n = new Date(), dd = n.getDate(), mm = n.getMonth() + 1;
+  return (dd < 10 ? '0' : '') + dd + '/' + (mm < 10 ? '0' : '') + mm + '/' + n.getFullYear();
+}
+function fmtDob(v) {
+  var MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var str = String(v || '').trim(), y, m, dd;
+  var a = /^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})$/.exec(str);
+  var b = /^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})$/.exec(str);
+  if (a) { y = +a[1]; m = +a[2]; dd = +a[3]; }
+  else if (b) { dd = +b[1]; m = +b[2]; y = +b[3]; }
+  else return v;
+  if (m < 1 || m > 12 || dd < 1 || dd > 31) return v;
+  return (dd < 10 ? '0' : '') + dd + ' ' + MONTHS[m - 1] + ', ' + y;
+}
+
+/* ----- the CV content as plain blocks (used by both the page preview/PDF and the Word file) ----- */
+function blkContact() {
+  var lines = [], mob = t(d.mobile);
+  if (mob) {
+    var mdig = mob.replace(/[\s-]/g, ''), mm = mdig.match(/^(?:\+?88)?(01\d{9})$/);
+    lines.push('Cell: ' + (mm ? '+88' + mm[1].slice(0, 5) + '-' + mm[1].slice(5) : mob));
+  }
+  if (t(d.email)) lines.push('E-mail: ' + t(d.email));
+  return lines.length ? [{ title: 'Contact', pills: lines }] : [];
+}
+function blkMailing() {
+  var lines = [];
+  [['C/O', d.m_co], ['Village', d.m_village], ['Post Office', d.m_po], ['Upazila', d.m_upazila], ['District', d.m_dist]].forEach(function (p) {
+    var v = t(p[1]);
+    if (v) lines.push(p[0] + ': ' + v + (p[0] === 'District' && !/\.$/.test(v) ? '.' : ''));
+  });
+  return lines.length ? [{ title: 'Mailing Address', lines: lines }] : [];
+}
+function blkComputer() {
+  var comp = t(d.computer).split('\n').map(function (x) { return x.trim(); }).filter(Boolean);
+  return comp.length ? [{ title: 'Computer Literacy', bullets: comp }] : [];
+}
+function blkLangs() {
+  var langs = t(d.languages).split('\n').map(function (l) {
+    return l.split(',').map(function (c) { return c.trim(); });
+  }).filter(function (c) { return c[0]; });
+  if (!langs.length) return [];
+  return [{ title: 'Language Skill', groups: langs.map(function (c) {
+    var kv = [];
+    if (c[1]) kv.push(['Speaking', c[1]]);
+    if (c[2]) kv.push(['Reading', c[2]]);
+    if (c[3]) kv.push(['Writing', c[3]]);
+    return { heading: c[0], kv: kv };
+  }) }];
+}
+function blkExtras() {
+  var out = [];
+  if (t(d.objective)) out.push({ title: 'Career Objective', para: t(d.objective), just: true });
+  if (t(d.strength)) out.push({ title: 'My Strength', para: t(d.strength), just: true });
+  return out;
+}
+function blkEdu() {
+  var groups = [], list = d.edu.slice().reverse();   // newest (highest degree) first
+  function block(e, template) {
+    var c = eduType(e.title);
+    var rows = [[c.subj, e.group, 0], ['Result', e.result, 1], [c.pass, e.year, 0], ['Institution', e.inst, 0], [c.board, e.board, 0]];
+    var kv = [], any = false;
+    rows.forEach(function (r) {
+      var v = t(r[1]);
+      if (!v && !template) return;
+      any = true;
+      if (r[2]) { var oo = t(e.outof); v = (v || '') + (oo ? (v ? '  ' : '') + '(Out of ' + oo + ')' : ''); }
+      kv.push([r[0], v]);
+    });
+    if (any) groups.push({ heading: t(e.title) || 'Education', kv: kv });
+  }
+  list.forEach(function (e) { block(e, false); });
+  if (!groups.length) list.forEach(function (e) { block(e, true); });
+  return groups.length ? [{ title: 'Academic Achievements', groups: groups }] : [];
+}
+function blkExp() {
+  var jobs = (d.jobs || []).filter(function (j) { return t(j.company) || t(j.desig) || t(j.section) || t(j.duration); });
+  if (!jobs.length) return [];
+  var cols = [['company', 'Company Name'], ['desig', 'Designation'], ['section', 'Section'], ['duration', 'Duration']].filter(function (c) {
+    return jobs.some(function (j) { return t(j[c[0]]); });
+  });
+  return [{ title: 'Job Experience', table: { head: cols.map(function (c) { return c[1]; }),
+    rows: jobs.map(function (j) { return cols.map(function (c) { return t(j[c[0]]); }); }) } }];
+}
+function blkPersonal() {
+  var pairs = [
+    ['Name', t(d.name)], ["Father's Name", d.father], ["Mother's Name", d.mother], ['Date of Birth', fmtDob(d.dob)],
+    ['National ID No', d.nid], ['Birth Registration No', d.brn], ['Passport No', d.passport],
+    ['Nationality', d.nationality], ['Place of Birth', d.birthplace], ['Religion', d.religion],
+    ['Blood Group', d.blood], ['Marital Status', d.marital], ['Sex', d.sex], ['Height', d.height], ['Weight', d.weight]
+  ].filter(function (p) { return t(p[1]); }).map(function (p) { return [p[0], t(p[1])]; });
+  return pairs.length ? [{ title: 'Personal Information', kv: pairs, flow: true }] : [];
+}
+function blkAddr() {
+  var A = d.same
+    ? { co: d.m_co, v: d.m_village, po: d.m_po, code: '', up: d.m_upazila, di: d.m_dist }
+    : { co: d.p_co, v: d.p_village, po: d.p_po, code: d.p_code, up: d.p_upazila, di: d.p_dist };
+  var l1 = [], l2 = [];
+  if (t(A.co)) l1.push('C/O: ' + t(A.co));
+  if (t(A.v)) l1.push('Village: ' + t(A.v));
+  if (t(A.po)) l1.push('Post Office: ' + t(A.po));
+  if (t(A.code)) l1.push('Post Code: ' + t(A.code));
+  if (t(A.up)) l2.push('Upazila: ' + t(A.up));
+  if (t(A.di)) l2.push('District: ' + t(A.di) + (/\.$/.test(t(A.di)) ? '' : '.'));
+  var txt = [l1.join(', '), l2.join(', ')].filter(Boolean).join('\n');
+  return txt ? [{ title: 'Permanent Address', para: txt }] : [];
+}
+
+var SIDE_KEYS = { contact: blkContact, mailing: blkMailing, computer: blkComputer, languages: blkLangs };
+var MAIN_KEYS = { extras: blkExtras, education: blkEdu, experience: blkExp, personal: blkPersonal, permanent: blkAddr };
+var CERT_TEXT = 'I, the undersigned certify that to the best of my knowledge and belief, these data correctly describe my qualifications and experience.';
+
+function buildModel() {
+  var order = secList().map(function (n) { return n.getAttribute('data-sec'); });   // follows the section order in the form
+  var side = [], main = [];
+  order.forEach(function (k) {
+    if (SIDE_KEYS[k]) side = side.concat(SIDE_KEYS[k]());
+    else if (MAIN_KEYS[k]) main = main.concat(MAIN_KEYS[k]());
+  });
+  return { name: t(d.name) || 'Your Name', side: side, main: main };
+}
+
+/* ----- page drawing ----- */
+function strip() {
+  var s = el('div', 'strip');
+  var a = el('a', null, 'work-bd.github.io');
+  a.href = 'https://work-bd.github.io/';
+  a.target = '_blank';
+  a.rel = 'noopener';
+  s.appendChild(a);
+  return s;
+}
+function drawKv(parent, kv, cls) {
+  var g = el('div', cls);
+  kv.forEach(function (p) {
+    g.appendChild(el('div', 'k', p[0]));
+    g.appendChild(el('div', 'v', p[1] || '\u00a0'));
+  });
+  parent.appendChild(g);
+}
+function drawBlock(parent, b, isSide) {
+  parent.appendChild(el('div', isSide ? 'sh' : 'mh', b.title));
+  if (b.pills) b.pills.forEach(function (x) { parent.appendChild(el('div', 'pill', x)); });
+  if (b.lines) b.lines.forEach(function (x) { parent.appendChild(el('div', 'sl', x)); });
+  if (b.bullets) {
+    var ul = el('ul', 'bl');
+    b.bullets.forEach(function (x) { ul.appendChild(el('li', null, x)); });
+    parent.appendChild(ul);
+  }
+  if (b.para) parent.appendChild(el('div', 'mp' + (b.just ? ' just' : ''), b.para));
+  if (b.groups) {
+    b.groups.forEach(function (g) {
+      parent.appendChild(el('div', 'gh', g.heading));
+      drawKv(parent, g.kv, isSide ? 'skv' : 'mkv');
+    });
+  }
+  if (b.kv) {
+    if (b.flow) {
+      var f = el('div', 'flow');
+      b.kv.forEach(function (p) {
+        var it = el('div', 'fi');
+        it.appendChild(el('span', 'k', p[0] + ': '));
+        it.appendChild(el('span', 'v', p[1]));
+        f.appendChild(it);
+      });
+      parent.appendChild(f);
+    } else drawKv(parent, b.kv, 'mkv');
+  }
+  if (b.table) {
+    var tbl = el('table', 'mt'), hr = el('tr');
+    b.table.head.forEach(function (h) { hr.appendChild(el('th', null, h)); });
+    tbl.appendChild(hr);
+    b.table.rows.forEach(function (r) {
+      var tr = el('tr');
+      r.forEach(function (c) { tr.appendChild(el('td', null, c)); });
+      tbl.appendChild(tr);
+    });
+    parent.appendChild(tbl);
+  }
+}
+
+var FIT_SCALE = 1;
+var PAD_SIDE = [14, 14], PAD_MAIN = [16, 18];   // top / bottom padding of the two columns, in mm
+
+function render() {
+  var root = $('cv-root');
+  root.innerHTML = '';
+  var m = buildModel();
+
+  var sheet = el('div', 'sheet');
+  var side = el('div', 'side'), sin = el('div', 'in');
+  var main = el('div', 'main'), min = el('div', 'in');
+  side.appendChild(sin); main.appendChild(min);
+  sheet.appendChild(side); sheet.appendChild(main);
+
+  var av = el('div', 'avatar');
+  if (d.photo) { var im = el('img'); im.src = d.photo; im.alt = 'Photo'; av.appendChild(im); }
+  else av.appendChild(el('span', 'ph', 'Passport size photo'));
+  sin.appendChild(av);
+  m.side.forEach(function (b) { drawBlock(sin, b, true); });
+
+  min.appendChild(el('div', 't3', m.name));
+  min.appendChild(el('div', 't1', 'Curriculum Vitae'));
+  m.main.forEach(function (b) { drawBlock(min, b, false); });
+  min.appendChild(el('div', 'mh', 'Certification'));
+  min.appendChild(el('div', 'mp', CERT_TEXT));
+  var sg = el('div', 'sign');
+  sg.appendChild(el('div', 's1', 'Signature'));
+  if (d.signature) { var si = el('img'); si.src = d.signature; si.alt = 'Signature'; sg.appendChild(si); }
+  else { var sp = el('div'); sp.style.height = '12mm'; sg.appendChild(sp); }
+  sg.appendChild(el('div', 's3', '(' + (t(d.name) || 'Your Full Name') + ')'));
+  sg.appendChild(el('div', 's3', 'Date: ' + todayStr()));
+  min.appendChild(sg);
+  sheet.appendChild(strip());
+  root.appendChild(sheet);
+
+  /* always exactly one A4 page: shrink the text a little until both columns fit */
+  var availS = (297 - PAD_SIDE[0] - PAD_SIDE[1]) * MM, availM = (297 - PAD_MAIN[0] - PAD_MAIN[1]) * MM;
+  var fs;
+  for (fs = 12.5; fs >= 6.5; fs -= 0.25) {
+    sheet.style.setProperty('--fs', fs + 'px');
+    if (sin.offsetHeight <= availS && min.offsetHeight <= availM) break;
+  }
+  FIT_SCALE = Math.max(0.55, Math.min(1, fs / 12.5));
+  fit();
+}
+
+/* ---------------- preview scaling ---------------- */
+function fit() {
+  var wrap = $('pv-wrap'), sc = $('pv-scale');
+  var full = 210 * 96 / 25.4; // 210mm in CSS px
+  var avail = wrap.clientWidth;
+  var s = Math.min(1, avail / full);
+  sc.style.transform = 'scale(' + s + ')';
+  wrap.style.height = Math.ceil(sc.offsetHeight * s) + 'px';
+}
+
+/* ---------------- drag to reorder form sections ---------------- */
+function secList() { return [].slice.call($('formbox').querySelectorAll(':scope > details.sec')); }
+
+function applyOrder() {
+  var box = $('formbox'), all = secList(), byId = {};
+  all.forEach(function (n) { byId[n.getAttribute('data-sec')] = n; });
+  var seen = {};
+  (d.order || []).forEach(function (id) {
+    if (byId[id] && !seen[id]) { box.appendChild(byId[id]); seen[id] = true; }
+  });
+  all.forEach(function (n) { if (!seen[n.getAttribute('data-sec')]) box.appendChild(n); });
+}
+
+function saveOrder() {
+  d.orderV = 5;
+  d.order = secList().map(function (n) { return n.getAttribute('data-sec'); });
+  save();
+  render();
+}
+
+function stepSection(sec, dir) {
+  if (dir < 0) {
+    var prev = sec.previousElementSibling;
+    if (prev && prev.classList.contains('sec')) sec.parentNode.insertBefore(sec, prev);
+  } else {
+    var next = sec.nextElementSibling;
+    if (next && next.classList.contains('sec')) sec.parentNode.insertBefore(next, sec);
+  }
+}
+
+function startDrag(e, sec) {
+  if (e.pointerType === 'mouse' && e.button !== 0) return;
+  e.preventDefault();
+  var grip = e.currentTarget, id = e.pointerId, y = e.clientY, raf = null;
+  try { grip.setPointerCapture(id); } catch (err) {}
+  sec.classList.add('dragging');
+  document.body.classList.add('sorting');
+
+  // only the neighbours are moved, never the dragged section itself, so pointer capture stays valid
+  function settle() {
+    for (var guard = 0; guard < 12; guard++) {
+      var moved = false;
+      var prev = sec.previousElementSibling, next = sec.nextElementSibling, r;
+      if (prev && prev.classList.contains('sec')) {
+        r = prev.getBoundingClientRect();
+        if (y < r.top + r.height / 2) { sec.parentNode.insertBefore(prev, sec.nextSibling); moved = true; }
+      }
+      if (!moved && next && next.classList.contains('sec')) {
+        r = next.getBoundingClientRect();
+        if (y > r.top + r.height / 2) { sec.parentNode.insertBefore(next, sec); moved = true; }
+      }
+      if (!moved) break;
+    }
+  }
+  function autoscroll() {
+    var edge = 70, step = 0;
+    if (y < edge) step = -Math.ceil((edge - y) / 6);
+    else if (y > window.innerHeight - edge) step = Math.ceil((y - (window.innerHeight - edge)) / 6);
+    if (step) { window.scrollBy(0, step); settle(); }
+    raf = requestAnimationFrame(autoscroll);
+  }
+  function move(ev) { if (ev.pointerId !== id) return; y = ev.clientY; settle(); }
+  function end(ev) {
+    if (ev.pointerId !== id) return;
+    cancelAnimationFrame(raf);
+    grip.removeEventListener('pointermove', move);
+    grip.removeEventListener('pointerup', end);
+    grip.removeEventListener('pointercancel', end);
+    sec.classList.remove('dragging');
+    document.body.classList.remove('sorting');
+    try { grip.releasePointerCapture(id); } catch (err) {}
+    saveOrder();
+  }
+  grip.addEventListener('pointermove', move);
+  grip.addEventListener('pointerup', end);
+  grip.addEventListener('pointercancel', end);
+  raf = requestAnimationFrame(autoscroll);
+}
+
+function initSort() {
+  applyOrder();
+  secList().forEach(function (sec) {
+    var grip = sec.querySelector('.grip');
+    if (!grip) return;
+    grip.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); });
+    grip.addEventListener('pointerdown', function (e) { startDrag(e, sec); });
+    grip.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        e.preventDefault(); e.stopPropagation();
+        stepSection(sec, e.key === 'ArrowUp' ? -1 : 1);
+        grip.focus();
+        saveOrder();
+      } else if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault(); e.stopPropagation(); // do not toggle the section while the handle has focus
+      }
+    });
+  });
+}
+
+/* ---------------- actions ---------------- */
+function onChange() { render(); save(); }
+
+var H2C_URL = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+var JSPDF_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+var libsPromise = null;
+
+function loadScript(src) {
+  return new Promise(function (resolve, reject) {
+    var sc = document.createElement('script');
+    sc.src = src;
+    sc.onload = resolve;
+    sc.onerror = function () { reject(new Error('Could not load ' + src)); };
+    document.head.appendChild(sc);
+  });
+}
+function ensureLibs() {
+  if (window.html2canvas && window.jspdf) return Promise.resolve();
+  if (!libsPromise) {
+    libsPromise = Promise.all([loadScript(H2C_URL), loadScript(JSPDF_URL)]).catch(function (e) { libsPromise = null; throw e; });
+  }
+  return libsPromise;
+}
+
+// Renders every CV sheet at full A4 size (off-screen), puts it into a PDF and saves the file.
+function buildPdf() {
+  var A4W = 210, A4H = 297;
+  var stage = document.createElement('div');
+  stage.style.cssText = 'position:fixed;left:-10000px;top:0;width:210mm;z-index:-1;background:#fff';
+  var sheets = [].slice.call($('cv-root').querySelectorAll('.sheet')).map(function (n) {
+    var c = n.cloneNode(true);
+    c.style.margin = '0';
+    c.style.boxShadow = 'none';
+    c.style.minHeight = '297mm';
+    stage.appendChild(c);
+    return c;
+  });
+  document.body.appendChild(stage);
+
+  var fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+  var pdf = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait', compress: true });
+  var pageCount = 0;
+
+  function addSheet(sheet) {
+    // position of the clickable footer link (in mm, relative to the sheet) – measured while attached
+    var a = sheet.querySelector('.strip a');
+    var link = null;
+    if (a) {
+      var ar = a.getBoundingClientRect(), sr = sheet.getBoundingClientRect(), k = A4W / sr.width;
+      link = { x: (ar.left - sr.left) * k, y: (ar.top - sr.top) * k, w: ar.width * k, h: ar.height * k, url: a.href };
+    }
+    return window.html2canvas(sheet, { scale: 2, backgroundColor: '#ffffff', useCORS: true, logging: false }).then(function (canvas) {
+      var W = canvas.width, pagePx = Math.round(W * A4H / A4W);
+      var pages = Math.max(1, Math.ceil((canvas.height - 0.01 * pagePx) / pagePx));
+      for (var i = 0; i < pages; i++) {
+        var tmp = document.createElement('canvas');
+        tmp.width = W; tmp.height = pagePx;
+        var ctx = tmp.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, W, pagePx);
+        var sliceH = Math.min(pagePx, canvas.height - i * pagePx);
+        ctx.drawImage(canvas, 0, i * pagePx, W, sliceH, 0, 0, W, sliceH);
+        if (pageCount > 0) pdf.addPage('a4', 'portrait');
+        pageCount++;
+        pdf.addImage(tmp.toDataURL('image/jpeg', 0.93), 'JPEG', 0, 0, A4W, A4H, undefined, 'FAST');
+        if (link) {
+          var top = link.y - i * A4H;
+          if (top >= 0 && top < A4H) pdf.link(link.x, top, link.w, link.h, { url: link.url });
+        }
+      }
+    });
+  }
+
+  return fontsReady.then(function () {
+    var chain = Promise.resolve();
+    sheets.forEach(function (sh) { chain = chain.then(function () { return addSheet(sh); }); });
+    return chain;
+  }).then(function () {
+    document.body.removeChild(stage);
+    var clean = function (x) { return t(x).replace(/[\\/:*?"<>|]+/g, '').replace(/\s+/g, ' ').trim(); };
+    pdf.save([clean(d.name) || 'CV', clean(d.mobile), 'CV'].filter(Boolean).join(', ') + '.pdf');
+  }).catch(function (e) {
+    if (stage.parentNode) document.body.removeChild(stage);
+    throw e;
+  });
+}
+
+var busy = false;
+function setBusy(on, kind) {
+  busy = on;
+  ['btn-dl', 'btn-dl2', 'btn-bak', 'btn-bak2', 'btn-docx2'].forEach(function (id) {
+    var b = $(id);
+    if (!b) return;
+    if (b.getAttribute('data-orig') === null) b.setAttribute('data-orig', b.innerHTML);   // keep the icon markup
+    b.disabled = on;
+    var mine = id.indexOf('docx') > -1 ? 'docx' : (id.indexOf('bak') > -1 ? 'bak' : 'pdf');
+    if (on && kind === mine) b.textContent = (mine === 'docx') ? 'Preparing Word file…' : 'Preparing PDF…';
+    else b.innerHTML = b.getAttribute('data-orig');
+  });
+}
+
+function needName() {
+  if (t(d.name)) return false;
+  var det = $('f-name').closest('details');
+  if (det) det.open = true;
+  $('f-name').focus();
+  alert('Please enter your full name first.');
+  return true;
+}
+function cleanName(x) { return t(x).replace(/[\\/:*?"<>|]+/g, '').replace(/\s+/g, ' ').trim(); }
+function saveBlob(blob, fname) {
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = fname;
+  document.body.appendChild(a); a.click();
+  setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(url); }, 1500);
+}
+
+/* ---------- editable Word (.docx) export ---------- */
+function imgToBytes(dataUrl, ext) {
+  if (!dataUrl) return Promise.resolve(null);
+  return new Promise(function (resolve) {
+    var im = new Image();
+    im.onload = function () {
+      try {
+        var w = im.naturalWidth || im.width, h = im.naturalHeight || im.height;
+        var k = Math.min(1, 900 / Math.max(w, h));
+        var cw = Math.max(1, Math.round(w * k)), ch = Math.max(1, Math.round(h * k));
+        var c = document.createElement('canvas'); c.width = cw; c.height = ch;
+        var cx = c.getContext('2d');
+        if (ext === 'jpeg') { cx.fillStyle = '#fff'; cx.fillRect(0, 0, cw, ch); }
+        cx.drawImage(im, 0, 0, cw, ch);
+        var b64 = c.toDataURL(ext === 'jpeg' ? 'image/jpeg' : 'image/png', 0.92).split(',')[1];
+        var bin = atob(b64), bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        resolve({ bytes: bytes, w: cw, h: ch, ext: ext });
+      } catch (e) { resolve(null); }
+    };
+    im.onerror = function () { resolve(null); };
+    im.src = dataUrl;
+  });
+}
+/* ---------- editable Word (.docx) export – Modern Sidebar layout (built here, no extra library) ---------- */
+var CRC_T = null;
+function crc32(b) {
+  if (!CRC_T) { CRC_T = []; for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1); CRC_T[n] = c >>> 0; } }
+  var crc = 0xFFFFFFFF;
+  for (var i = 0; i < b.length; i++) crc = CRC_T[(crc ^ b[i]) & 255] ^ (crc >>> 8);
+  return (crc ^ 0xFFFFFFFF) >>> 0;
+}
+function zipStore(files) {   // files: [{name, data:Uint8Array}] – plain (stored) zip
+  var enc = new TextEncoder(), parts = [], central = [], offset = 0;
+  function u16(v) { return [v & 255, (v >> 8) & 255]; }
+  function u32(v) { return [v & 255, (v >> 8) & 255, (v >> 16) & 255, (v >>> 24) & 255]; }
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), crc = crc32(f.data), sz = f.data.length;
+    var lh = [].concat(u32(0x04034b50), u16(20), u16(0x0800), u16(0), u16(0), u16(0x21), u32(crc), u32(sz), u32(sz), u16(nm.length), u16(0));
+    parts.push(new Uint8Array(lh), nm, f.data);
+    central.push({ nm: nm, crc: crc, sz: sz, off: offset });
+    offset += lh.length + nm.length + sz;
+  });
+  var cdStart = offset, cdSize = 0;
+  central.forEach(function (c) {
+    var h = [].concat(u32(0x02014b50), u16(20), u16(20), u16(0x0800), u16(0), u16(0), u16(0x21), u32(c.crc), u32(c.sz), u32(c.sz), u16(c.nm.length), u16(0), u16(0), u16(0), u16(0), u32(0), u32(c.off));
+    parts.push(new Uint8Array(h), c.nm);
+    cdSize += h.length + c.nm.length;
+  });
+  parts.push(new Uint8Array([].concat(u32(0x06054b50), u16(0), u16(0), u16(central.length), u16(central.length), u32(cdSize), u32(cdStart), u16(0))));
+  return new Blob(parts, { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+}
+function xe(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+function buildDocxFile(m, im) {
+  var BLUE = '1FA2E8', DARK = '0B6FB0', rels = [], media = [];
+  function run(txt, o) {
+    o = o || {};
+    var rp = '<w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:cs="Calibri"/>' + (o.b ? '<w:b/>' : '') + (o.i ? '<w:i/>' : '') +
+      (o.color ? '<w:color w:val="' + o.color + '"/>' : '') + '<w:sz w:val="' + Math.max(2, Math.round((o.sz || 10) * FIT_SCALE * 2)) + '"/>';
+    var parts = String(txt).split('\n'), x = '';
+    parts.forEach(function (p, i) { x += (i ? '<w:br/>' : '') + '<w:t xml:space="preserve">' + xe(p) + '</w:t>'; });
+    return '<w:r><w:rPr>' + rp + '</w:rPr>' + x + '</w:r>';
+  }
+  function para(runs, o) {
+    o = o || {};
+    var pp = (o.border ? '<w:pBdr><w:bottom w:val="single" w:sz="6" w:space="1" w:color="' + o.border + '"/></w:pBdr>' : '') +
+      (o.shade ? '<w:shd w:val="clear" w:color="auto" w:fill="' + o.shade + '"/>' : '') +
+      '<w:spacing w:before="' + (o.before || 0) + '" w:after="' + (o.after === undefined ? 40 : o.after) + '"/>' +
+      (o.ind ? '<w:ind w:left="' + o.ind + '" w:hanging="' + (o.hang || 0) + '"/>' : '') +
+      (o.jc ? '<w:jc w:val="' + o.jc + '"/>' : '');
+    return '<w:p><w:pPr>' + pp + '</w:pPr>' + runs + '</w:p>';
+  }
+  function image(info, name, wMm, hMm) {
+    if (!info) return '';
+    var id = 'rId' + (rels.length + 10), file = 'media/' + name + '.' + (info.ext === 'jpeg' ? 'jpeg' : 'png');
+    rels.push('<Relationship Id="' + id + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="' + file + '"/>');
+    media.push({ name: 'word/' + file, data: info.bytes });
+    var cx = Math.round(wMm * 36000), cy = Math.round(hMm * 36000), n = rels.length;
+    return '<w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="' + cx + '" cy="' + cy + '"/><wp:docPr id="' + n + '" name="' + name + '"/>' +
+      '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">' +
+      '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="' + n + '" name="' + name + '"/><pic:cNvPicPr/></pic:nvPicPr>' +
+      '<pic:blipFill><a:blip r:embed="' + id + '"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>' +
+      '<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="' + cx + '" cy="' + cy + '"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic>' +
+      '</a:graphicData></a:graphic></wp:inline></w:drawing></w:r>';
+  }
+  function cellTable(tbl, w) {
+    var cols = tbl.head.length, cw = Math.floor(w / cols), x = '<w:tbl><w:tblPr><w:tblW w:w="' + w + '" w:type="dxa"/><w:tblBorders>';
+    ['top', 'left', 'bottom', 'right', 'insideH', 'insideV'].forEach(function (s) { x += '<w:' + s + ' w:val="single" w:sz="4" w:space="0" w:color="CBD5E1"/>'; });
+    x += '</w:tblBorders><w:tblLayout w:type="fixed"/><w:tblCellMar><w:left w:w="70" w:type="dxa"/><w:right w:w="70" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid>';
+    for (var i = 0; i < cols; i++) x += '<w:gridCol w:w="' + cw + '"/>';
+    x += '</w:tblGrid>';
+    function tr(cells, head) {
+      var r = '<w:tr>';
+      cells.forEach(function (c) {
+        r += '<w:tc><w:tcPr><w:tcW w:w="' + cw + '" w:type="dxa"/>' + (head ? '<w:shd w:val="clear" w:color="auto" w:fill="EAF6FD"/>' : '') + '</w:tcPr>' +
+          para(run(c, { b: head, sz: 9, color: head ? DARK : '1E293B' }), { after: 20 }) + '</w:tc>';
+      });
+      return r + '</w:tr>';
+    }
+    x += tr(tbl.head, true);
+    tbl.rows.forEach(function (r) { x += tr(r, false); });
+    return x + '</w:tbl>' + para('', { after: 40 });
+  }
+  function blockXml(b, isSide, w) {
+    var x = para(run(b.title.toUpperCase(), { b: true, sz: isSide ? 10 : 11, color: isSide ? 'FFFFFF' : BLUE }),
+      { border: isSide ? 'FFFFFF' : BLUE, before: 160, after: 60 });
+    var tc = isSide ? 'FFFFFF' : '1E293B';
+    if (b.pills) b.pills.forEach(function (s) { x += para(run(s, { sz: 9.5, color: 'FFFFFF' }), { shade: DARK, after: 40 }); });
+    if (b.lines) b.lines.forEach(function (s) { x += para(run(s, { sz: 9.5, color: 'FFFFFF' }), { after: 20 }); });
+    if (b.bullets) b.bullets.forEach(function (s) { x += para(run('\u25AA ' + s, { sz: 9.5, color: 'FFFFFF' }), { after: 20, ind: 220, hang: 220 }); });
+    if (b.para) x += para(run(b.para, { sz: 10, color: tc }), { after: 60, jc: b.just ? 'both' : '' });
+    if (b.groups) b.groups.forEach(function (g) {
+      x += para(run(g.heading, { b: true, sz: 10, color: tc }), { before: 40, after: 20 });
+      g.kv.forEach(function (p) { x += para(run(p[0] + ': ', { sz: 9.5, color: isSide ? 'E6F5FD' : '475569' }) + run(p[1], { sz: 9.5, color: tc }), { after: 10 }); });
+    });
+    if (b.kv) b.kv.forEach(function (p) { x += para(run(p[0] + ': ', { b: true, sz: 10, color: '475569' }) + run(p[1], { sz: 10, color: tc }), { after: 20 }); });
+    if (b.table) x += cellTable(b.table, w);
+    return x;
+  }
+  var SIDE_W = 3969, MAIN_W = 11906 - SIDE_W, MAIN_IN = MAIN_W - 620 - 400;
+  var left = '', right = '';
+  if (im.photo) { var pr = im.photo.w / im.photo.h, pw = 32, ph = pw / pr; if (ph > 40) { ph = 40; pw = ph * pr; } left += para(image(im.photo, 'photo', pw, ph), { jc: 'center', after: 120, before: 240 }); }
+  m.side.forEach(function (b) { left += blockXml(b, true, SIDE_W); });
+  right += para(run(m.name, { b: true, sz: 26, color: '0F172A' }), { before: 360, after: 0 });
+  right += para(run('Curriculum Vitae', { sz: 12, color: BLUE }), { after: 80 });
+  m.main.forEach(function (b) { right += blockXml(b, false, MAIN_IN); });
+  right += blockXml({ title: 'Certification', para: CERT_TEXT }, false, MAIN_IN);
+  right += para(run('Signature', { b: true, i: true, sz: 10 }), { before: 120, after: 20 });
+  var sgm = null;
+  if (im.signature) { var ra = im.signature.w / im.signature.h, sh = 16, sw = sh * ra; if (sw > 55) { sw = 55; sh = sw / ra; } sgm = [sw, sh]; }
+  right += im.signature ? para(image(im.signature, 'signature', sgm[0], sgm[1]), { after: 20 }) : para('', { after: 400 });
+  right += para(run('(' + (t(d.name) || 'Your Full Name') + ')', { b: true, sz: 10 }), { after: 20 });
+  right += para(run('Date: ' + todayStr(), { b: true, sz: 10 }), { after: 20 });
+  right += para(run('work-bd.github.io', { sz: 9, color: '0000EE' }), { jc: 'right', before: 200, after: 0 });
+
+  var doc = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+    '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"><w:body>' +
+    '<w:tbl><w:tblPr><w:tblW w:w="11906" w:type="dxa"/><w:tblLayout w:type="fixed"/><w:tblCellMar><w:left w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr>' +
+    '<w:tblGrid><w:gridCol w:w="' + SIDE_W + '"/><w:gridCol w:w="' + MAIN_W + '"/></w:tblGrid>' +
+    '<w:tr><w:trPr><w:cantSplit/><w:trHeight w:val="16700" w:hRule="atLeast"/></w:trPr>' +
+    '<w:tc><w:tcPr><w:tcW w:w="' + SIDE_W + '" w:type="dxa"/><w:shd w:val="clear" w:color="auto" w:fill="' + BLUE + '"/><w:tcMar><w:left w:w="400" w:type="dxa"/><w:right w:w="300" w:type="dxa"/></w:tcMar></w:tcPr>' + left + '</w:tc>' +
+    '<w:tc><w:tcPr><w:tcW w:w="' + MAIN_W + '" w:type="dxa"/><w:tcMar><w:left w:w="620" w:type="dxa"/><w:right w:w="400" w:type="dxa"/></w:tcMar></w:tcPr>' + right + '</w:tc></w:tr></w:tbl>' +
+    '<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/></w:pPr></w:p>' +
+    '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="0" w:right="0" w:bottom="0" w:left="0" w:header="0" w:footer="0" w:gutter="0"/></w:sectPr></w:body></w:document>';
+
+  var enc = new TextEncoder();
+  var files = [
+    { name: '[Content_Types].xml', data: enc.encode('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpeg" ContentType="image/jpeg"/><Default Extension="png" ContentType="image/png"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>') },
+    { name: '_rels/.rels', data: enc.encode('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>') },
+    { name: 'word/document.xml', data: enc.encode(doc) },
+    { name: 'word/_rels/document.xml.rels', data: enc.encode('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' + rels.join('') + '</Relationships>') }
+  ].concat(media);
+  return zipStore(files);
+}
+function buildDocx() {
+  return Promise.all([imgToBytes(d.photo, 'jpeg'), imgToBytes(d.signature, 'png')]).then(function (im) {
+    var blob = buildDocxFile(buildModel(), { photo: im[0], signature: im[1] });
+    saveBlob(blob, [cleanName(d.name) || 'CV', cleanName(d.mobile), 'CV'].filter(Boolean).join(', ') + '.docx');
+  });
+}
+
+function downloadDocx() {
+  if (busy || needName()) return;
+  setBusy(true, 'docx');
+  buildDocx().then(function () { setBusy(false); }).catch(function (e) {
+    console.error(e);
+    setBusy(false);
+    alert('The Word file could not be created. Please try again.');
+  });
+}
+
+/* ---------- editable backup file (save everything on this CV, load it again later) ---------- */
+var BACKUP_KIND = 'job-form-filler-cv-backup';   // same kind as the extension, so the file works in both places
+function downloadBackup() {
+  if (needName()) return;
+  var payload = { kind: BACKUP_KIND, version: 1, saved: new Date().toISOString(), data: d };
+  saveBlob(new Blob([JSON.stringify(payload)], { type: 'application/json' }),
+    [cleanName(d.name) || 'CV', cleanName(d.mobile), 'CV editable'].filter(Boolean).join(', ') + '.json');
+}
+function restoreBackup(file) {
+  if (!file) return;
+  var rd = new FileReader();
+  rd.onerror = function () { alert('The file could not be read.'); };
+  rd.onload = function () {
+    var p;
+    try { p = JSON.parse(String(rd.result)); } catch (e) { p = null; }
+    if (!p || p.kind !== BACKUP_KIND || !p.data || typeof p.data !== 'object') {
+      alert('This is not a CV editable file made by Work BD (Download Edit File).');
+      return;
+    }
+    if (!confirm('Replace everything on this CV page with the data from "' + file.name + '"?')) return;
+    var keep = freshState(), clean = {};
+    Object.keys(keep).forEach(function (k) { if (p.data[k] !== undefined) clean[k] = p.data[k]; });   // only known CV fields are accepted
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(clean)); } catch (e) { alert('Could not save the loaded file.'); return; }
+    location.reload();
+  };
+  rd.readAsText(file);
+}
+
+function download() {
+  if (busy) return;
+  if (!t(d.name)) {
+    var det = $('f-name').closest('details');
+    if (det) det.open = true;
+    $('f-name').focus();
+    alert('Please enter your full name first.');
+    return;
+  }
+  setBusy(true, 'pdf');
+  ensureLibs().then(buildPdf).then(function () { setBusy(false); }).catch(function (e) {
+    console.error(e);
+    setBusy(false);
+    alert('The PDF could not be created directly (check your internet connection). The print window will open instead – choose "Save as PDF" there.');
+    window.print();
+  });
+}
+
+function init() {
+  load();
+  buildFields();
+  buildEdu();
+  buildJobs();
+  langRows = parseLangs();
+  buildLangs();
+  bindImages();
+  initSort();
+  render();
+
+  $('btn-dl').addEventListener('click', download);
+  $('btn-dl2').addEventListener('click', download);
+  $('btn-bak').addEventListener('click', downloadBackup);
+  $('btn-bak2').addEventListener('click', downloadBackup);
+  $('btn-docx2').addEventListener('click', downloadDocx);
+  $('btn-restore').addEventListener('click', function () { $('in-restore').click(); });
+  $('in-restore').addEventListener('change', function () { var f = this.files && this.files[0]; this.value = ''; restoreBackup(f); });
+  $('btn-addjob').addEventListener('click', function () {
+    d.jobs.push({ company: '', desig: '', section: '', duration: '' });
+    buildJobs(); onChange();
+  });
+  $('btn-addlang').addEventListener('click', function () {
+    langRows.push({ lang: '', sp: '', rd: '', wr: '' });
+    buildLangs();
+  });
+  $('btn-addedu').addEventListener('click', function () {
+    d.edu.push({ title: '', group: '', result: '', year: '', inst: '', board: '' });
+    buildEdu(); onChange();
+  });
+  $('btn-clear').addEventListener('click', function () {
+    if (!confirm('Clear all information and start again?')) return;
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+    location.reload();
+  });
+  setTimeout(function () { ensureLibs().catch(function () {}); }, 1500);
+  window.addEventListener('resize', fit);
+  if (window.ResizeObserver) new ResizeObserver(fit).observe($('pv-wrap'));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+}
+
+document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+<script>
+/* Public comments (Giscus). Fill in the two IDs from https://giscus.app – until both are set, the comment box stays hidden. */
+(function () {
+  var GISCUS = {
+    repo: 'work-bd/work-bd.github.io',
+    repoId: '',          // e.g. R_kgDO...
+    category: 'General',
+    categoryId: ''       // e.g. DIC_kwDO...
+  };
+  if (!GISCUS.repoId || !GISCUS.categoryId) return;
+  var box = document.getElementById('comments-box'), host = document.getElementById('giscus-host');
+  if (!box || !host) return;
+  box.hidden = false;
+  var loaded = false;
+  function load() {
+    if (loaded) return; loaded = true;
+    var sc = document.createElement('script');
+    sc.src = 'https://giscus.app/client.js';
+    sc.async = true; sc.crossOrigin = 'anonymous';
+    var a = {
+      'data-repo': GISCUS.repo, 'data-repo-id': GISCUS.repoId,
+      'data-category': GISCUS.category, 'data-category-id': GISCUS.categoryId,
+      'data-mapping': 'specific', 'data-term': 'CV Maker',
+      'data-strict': '0', 'data-reactions-enabled': '1', 'data-emit-metadata': '0',
+      'data-input-position': 'top', 'data-theme': 'light', 'data-lang': 'en', 'data-loading': 'lazy'
+    };
+    Object.keys(a).forEach(function (k) { sc.setAttribute(k, a[k]); });
+    host.appendChild(sc);
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { io.disconnect(); load(); } }, { rootMargin: '300px' });
+    io.observe(box);
+  } else { load(); }
+})();
+</script>
+</body>
+</html>
