@@ -68,7 +68,7 @@ h1{margin:0;font-size:28px}.sub{margin:6px 0 18px;color:var(--mut)}
 dialog{border:0;border-radius:14px;padding:18px;width:min(760px,96vw);box-shadow:0 20px 60px rgba(10,20,50,.35)}
 dialog::backdrop{background:rgba(15,20,40,.55)}
 #pk{width:min(380px,92vw)}#pk .srcrow{margin:12px 0}
-.pg .acts .btn{min-width:0;padding:12px 6px;font-size:14px}
+.pg .acts{flex-wrap:nowrap;gap:4px}.pg .acts .btn{flex:1 1 0;min-width:0;padding:10px 2px;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #sgc{display:block;margin:8px auto;max-width:100%;height:auto;touch-action:none;border-radius:6px;background:#eee}
 #sg label{display:block;margin-top:10px;font-size:14px;font-weight:600}#sg input[type=range]{width:100%;margin-top:6px}
 #sg .hint,#cf .sigprev .hint{font-size:12.5px;color:var(--mut);margin:6px 0 0}
@@ -88,7 +88,12 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
 #hl{max-height:94vh;overflow:auto}
 #hl .btn{min-width:0;padding:10px 8px;font-size:14px}
 #hl .row{margin-top:10px}
-#hl-wrap{overflow:auto;max-height:60vh;margin-top:10px;-webkit-overflow-scrolling:touch}
+#hl-wrap{overflow:auto;max-height:68vh;margin-top:10px;-webkit-overflow-scrolling:touch}
+#hl-list .hl-slot{margin:0 auto 14px;width:fit-content;max-width:100%}
+#hl-list .hl-cap{font-size:12.5px;font-weight:700;color:var(--mut);margin:0 0 4px;text-align:center}
+#hl-list .hl-slot.off{cursor:pointer}
+#hl-list .hl-slot.off canvas{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff;opacity:.92}
+#hl-list .hl-slot.on .hl-cap{color:#2f4fd8}
 #hl-stage{position:relative;display:block;width:fit-content;max-width:100%;margin:0 auto}
 #hlc{display:block;max-width:100%;height:auto;touch-action:none;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:crosshair}
 #hl .hint{font-size:12.5px;color:var(--mut);margin:8px 0 0}
@@ -184,7 +189,7 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
   <b>📝 Edit / 🖍️ Highlight</b>
   <div class="row" id="hl-tools" style="margin-top:10px"><button type="button" class="btn" data-t="edit">📝 Edit</button><button type="button" class="btn on" data-t="hl">🖍️ Highlight</button></div>
   <div class="row" id="hl-zoom" style="align-items:center"><button type="button" class="btn" id="hl-zo" style="flex:0 0 52px">−</button><span id="hl-zv" style="flex:1;text-align:center;font-weight:700;font-size:14px">100%</span><button type="button" class="btn" id="hl-zi" style="flex:0 0 52px">+</button><button type="button" class="btn" id="hl-zr" style="flex:0 0 auto;padding:10px 14px">↺ 100%</button></div>
-  <div id="hl-wrap"><div id="hl-stage"><canvas id="hlc"></canvas></div></div>
+  <div id="hl-wrap"><div id="hl-list"></div><div id="hl-stage"><canvas id="hlc"></canvas></div></div>
   <p class="hint" id="hl-hint"></p>
   <div class="row" id="hl-opts"><label>রঙ<input type="color" id="hl-col" value="#fff200"></label><label>ব্রাশের সাইজ: <span id="hl-pv">18</span><input type="range" id="hl-pen" min="4" max="60" value="18"></label></div>
   <div class="row"><button type="button" class="btn" id="hl-undo">↶ Undo</button><button type="button" class="btn" id="hl-redo">↷ Redo</button><button type="button" class="btn" id="hl-clear">Clear</button></div>
@@ -284,7 +289,7 @@ function draw(pg){
   const t = document.createElement('canvas'); t.width = w; t.height = h; t.getContext('2d').drawImage(b, 0, 0, w, h);
   pg.pv.width = w; pg.pv.height = h; pg.pv.getContext('2d').drawImage(toGray(pg.light ? enhance(t) : t, pg.gray), 0, 0);
   if(pg.gb){ pg.gb.classList.toggle('on', pg.gray); pg.gb.textContent = pg.gray ? '✓ সাদাকালো' : '⚫ সাদাকালো'; }
-  if(pg.lb){ pg.lb.classList.toggle('on', pg.light); pg.lb.textContent = pg.light ? '💡 Light দেওয়া হয়েছে ✓' : '💡 Light দিন'; }
+  if(pg.lb){ pg.lb.classList.toggle('on', pg.light); pg.lb.textContent = pg.light ? '💡 Light ✓' : '💡 Light দিন'; }
 }
 function renum(){
   pages.forEach((pg, i) => {
@@ -297,7 +302,7 @@ function renum(){
 }
 function addPage(base, file, reload){
   const pg = {base, file, reload, light:false, gray:false}, el = document.createElement('div'); el.className = 'pg';
-  el.innerHTML = '<div class="ph"><b></b><span><button data-a="up" title="উপরে নিন">↑</button><button data-a="down" title="নিচে নিন">↓</button><button data-a="reset" title="আগের অবস্থা">↺</button><button data-a="del" title="মুছুন">✕</button></span></div><canvas></canvas><div class="acts"><button class="btn" data-a="fix">✂️ Crop</button><button class="btn" data-a="light">💡 Light দিন</button><button class="btn" data-a="gray">⚫ সাদাকালো</button></div><div class="acts acts2"><button class="btn" data-a="edit">📝 Edit</button><button class="btn" data-a="hl">🖍️ Highlight</button></div>';
+  el.innerHTML = '<div class="ph"><b></b><span><button data-a="up" title="উপরে নিন">↑</button><button data-a="down" title="নিচে নিন">↓</button><button data-a="reset" title="আগের অবস্থা">↺</button><button data-a="del" title="মুছুন">✕</button></span></div><canvas></canvas><div class="acts"><button class="btn" data-a="fix">✂️ Crop</button><button class="btn" data-a="light">💡 Light দিন</button><button class="btn" data-a="gray">⚫ সাদাকালো</button><button class="btn" data-a="edit">📝 Edit</button><button class="btn" data-a="hl">🖍️ Highlight</button></div>';
   pg.el = el; pg.pv = el.querySelector('canvas'); pg.lb = el.querySelector('[data-a=light]'); pg.gb = el.querySelector('[data-a=gray]');
   el.onclick = async e => {
     const a = e.target.closest('[data-a]'); if(!a) return;
@@ -489,7 +494,7 @@ const toBn = s => String(s).replace(/[0-9]/g, d => '০১২৩৪৫৬৭৮�
 if(CERT){
   $('#cert-b').hidden = false; $('#cert-b2').hidden = false; $('#start').classList.add('three');
   $('#ttl').textContent = '📜 প্রত্যয়ন + PDF তৈরি';
-  $('#sub').textContent = 'প্রত্যয়ন লিখুন, তারপর দলিল বা অন্য কাগজের ছবি যোগ করে একটি PDF বানান। ছবি কোথাও আপলোড হয় না।';
+  $('#sub').hidden = true;
 }
 // এক অনুচ্ছেদ লেখা: দুই পাশ সমান (justify), শেষ লাইন বাদে
 function para(g, text, x0, y, maxW, lh, indent){
@@ -736,7 +741,7 @@ $('#cf-ok').onclick = async () => {
     else {
       addPage(cv, null); const pg = pages[pages.length-1]; pg.cert = true; pg.lb = null; certPg = pg;
       pg.el.querySelector('[data-a=reset]').remove();
-      pg.el.querySelector('.acts').innerHTML = '<button class="btn" data-a="cert">✏️ প্রত্যয়ন বদলান</button>'; pg.el.querySelector('.acts2').remove();
+      pg.el.querySelector('.acts').innerHTML = '<button class="btn" data-a="cert">✏️ প্রত্যয়ন বদলান</button>'; 
       pages.splice(pages.indexOf(pg), 1); pages.unshift(pg); $('#pages').prepend(pg.el); renum();
     }
     $('#cf').close(); msg(''); certPg.el.scrollIntoView({behavior:'smooth', block:'start'});
@@ -820,8 +825,36 @@ function hlOpen(pg, tool){
   Object.assign(HL, {pg, src:pg.base, ops:[], redo:[], drag:null, inp:null});
   HL.W = Math.min(900, pg.base.width); HL.H = Math.round(HL.W*pg.base.height/pg.base.width);
   hlc.width = HL.W; hlc.height = HL.H; HL.cache = document.createElement('canvas'); HL.cache.width = HL.W; HL.cache.height = HL.H;
-  hlTp.clear(); hlPz = null; HL.z = 1; $('#hl-wrap').scrollLeft = 0; $('#hl-wrap').scrollTop = 0;
-  hlSetTool(tool); $('#hl').showModal(); hlSizeCanvas(); hlBuild();
+  hlTp.clear(); hlPz = null; HL.z = 1;
+  hlSetTool(tool); if(!$('#hl').open) $('#hl').showModal();
+  hlList(pg); hlSizeCanvas(); hlBuild();
+  const w = $('#hl-wrap'), sl = $('#hl-stage').parentNode; w.scrollLeft = 0;
+  w.scrollTop += sl.getBoundingClientRect().top - w.getBoundingClientRect().top - 4;
+}
+function hlList(act){
+  const st = $('#hl-stage'), box = $('#hl-list'), w = $('#hl-wrap'); st.remove(); box.innerHTML = '';
+  const L = pages.filter(p => !p.cert);
+  L.forEach((p, i) => {
+    const sl = document.createElement('div'), cap = document.createElement('div'); cap.className = 'hl-cap';
+    cap.textContent = 'পৃষ্ঠা '+toBn(i+1)+(p === act ? ' (এডিট হচ্ছে)' : ' — এডিট করতে ট্যাপ করুন');
+    sl.appendChild(cap);
+    if(p === act){ sl.className = 'hl-slot on'; sl.appendChild(st); }
+    else {
+      sl.className = 'hl-slot off';
+      const bw = Math.min(900, p.base.width), c = document.createElement('canvas');
+      c.width = bw; c.height = Math.round(bw*p.base.height/p.base.width); c.getContext('2d').drawImage(p.base, 0, 0, c.width, c.height);
+      c.style.width = Math.min(bw, w.clientWidth)+'px'; sl.appendChild(c);
+      sl.onclick = () => { hlApply(); hlOpen(p, HL.tool); };
+    }
+    box.appendChild(sl);
+  });
+}
+function hlApply(){
+  hlCommitText(false);
+  if(HL.ops.length){
+    const s = HL.src, c = SG.cnv(s.width, s.height); hlRender(c.getContext('2d'), c.width, c.height);
+    HL.pg.base = c; draw(HL.pg); track('palli_edit', {tool:'edit_highlight', n:HL.ops.length});
+  }
 }
 HL.z = 1;
 function hlSizeCanvas(){
@@ -885,14 +918,7 @@ $('#hl-undo').onclick = () => { hlCancelText(); if(HL.ops.length){ HL.redo.push(
 $('#hl-redo').onclick = () => { hlCancelText(); if(HL.redo.length){ HL.ops.push(HL.redo.pop()); hlBuild(); } };
 $('#hl-clear').onclick = () => { hlCancelText(); HL.ops = []; HL.redo = []; hlBuild(); };
 $('#hl-x').onclick = () => { hlCancelText(); $('#hl').close(); };
-$('#hl-ok').onclick = () => {
-  hlCommitText(false);
-  if(HL.ops.length){
-    const s = HL.src, c = SG.cnv(s.width, s.height); hlRender(c.getContext('2d'), c.width, c.height);
-    HL.pg.base = c; draw(HL.pg); track('palli_edit', {tool:'edit_highlight', n:HL.ops.length});
-  }
-  $('#hl').close();
-};
+$('#hl-ok').onclick = () => { hlApply(); $('#hl').close(); };
 
 // ---- PDF করুন ----
 $('#mk').onclick = async () => {
