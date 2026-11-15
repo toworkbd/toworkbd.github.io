@@ -53,6 +53,7 @@ h1{margin:0;font-size:28px}.sub{margin:6px 0 18px;color:var(--mut)}
 #cf .sigprev .btn{flex:0 0 auto;min-width:0;padding:8px 12px;font-size:13px}
 .pg{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:14px}
 .ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.ph button:disabled{opacity:.35;cursor:default}
 .ph button{border:0;background:#eef0f7;border-radius:8px;width:34px;height:34px;margin-left:6px;cursor:pointer;font-size:16px}
 .pg canvas{display:block;max-width:100%;height:auto;margin:0 auto;border:1px solid var(--line);border-radius:6px;background:#fff}
 .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
@@ -82,6 +83,20 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
 .big[data-s=pdf]{background:linear-gradient(180deg,#fff5f5,#ffe3e3)!important;border-color:#fbb6b6!important;color:#a31d1d!important;box-shadow:0 6px 16px rgba(200,40,40,.13)}
 .big[data-s=pdf]:hover{border-color:#ef4444!important}
 .seo-about{max-width:760px;margin:22px auto 0;padding:0 16px 8px;color:var(--mut,#5b6577);font-size:14px;line-height:1.8;text-align:center}.seo-about h2{font-size:16px;color:var(--ink,#1c2430);margin:0 0 8px}
+
+/* Edit / Highlight এডিটর */
+#hl{max-height:94vh;overflow:auto}
+#hl .btn{min-width:0;padding:10px 8px;font-size:14px}
+#hl .row{margin-top:10px}
+#hl-wrap{overflow:auto;max-height:60vh;margin-top:10px;-webkit-overflow-scrolling:touch}
+#hl-stage{position:relative;display:block;width:fit-content;max-width:100%;margin:0 auto}
+#hlc{display:block;max-width:100%;height:auto;touch-action:none;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:crosshair}
+#hl .hint{font-size:12.5px;color:var(--mut);margin:8px 0 0}
+#hl label{display:block;flex:1;min-width:130px;font-size:14px;font-weight:600}
+#hl input[type=range]{width:100%;margin-top:6px}
+#hl input[type=color]{display:block;width:100%;height:38px;margin-top:6px;border:1px solid #c8cddd;border-radius:8px;padding:2px;background:#fff}
+#hl-bc{position:absolute;left:0;top:0;z-index:4;pointer-events:none;border-radius:50%;border:1.5px solid rgba(15,23,42,.7);box-shadow:0 0 0 1px rgba(255,255,255,.85);transform:translate(-50%,-50%);display:none}
+.hl-inp{position:absolute;box-sizing:border-box;border:1.5px dashed #2f4fd8;padding:0 3px;margin:0;font-family:inherit;outline:none;border-radius:0;min-width:0}
 </style>
 </head>
 <body>
@@ -163,6 +178,17 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
     <button class="btn" onclick="$('#ed').close()">বাতিল</button>
     <button class="btn pri" id="ea">✓ সোজা করুন</button>
   </div>
+</dialog>
+
+<dialog id="hl">
+  <b>📝 Edit / 🖍️ Highlight</b>
+  <div class="row" id="hl-tools" style="margin-top:10px"><button type="button" class="btn" data-t="edit">📝 Edit</button><button type="button" class="btn on" data-t="hl">🖍️ Highlight</button></div>
+  <div class="row" id="hl-zoom" style="align-items:center"><button type="button" class="btn" id="hl-zo" style="flex:0 0 52px">−</button><span id="hl-zv" style="flex:1;text-align:center;font-weight:700;font-size:14px">100%</span><button type="button" class="btn" id="hl-zi" style="flex:0 0 52px">+</button><button type="button" class="btn" id="hl-zr" style="flex:0 0 auto;padding:10px 14px">↺ 100%</button></div>
+  <div id="hl-wrap"><div id="hl-stage"><canvas id="hlc"></canvas></div></div>
+  <p class="hint" id="hl-hint"></p>
+  <div class="row" id="hl-opts"><label>রঙ<input type="color" id="hl-col" value="#fff200"></label><label>ব্রাশের সাইজ: <span id="hl-pv">18</span><input type="range" id="hl-pen" min="4" max="60" value="18"></label></div>
+  <div class="row"><button type="button" class="btn" id="hl-undo">↶ Undo</button><button type="button" class="btn" id="hl-redo">↷ Redo</button><button type="button" class="btn" id="hl-clear">Clear</button></div>
+  <div class="row"><button type="button" class="btn" id="hl-x">বাতিল</button><button type="button" class="btn pri" id="hl-ok">✓ ঠিক আছে</button></div>
 </dialog>
 
 <input type="file" id="gal" accept="image/*" multiple hidden>
@@ -261,13 +287,17 @@ function draw(pg){
   if(pg.lb){ pg.lb.classList.toggle('on', pg.light); pg.lb.textContent = pg.light ? '💡 Light দেওয়া হয়েছে ✓' : '💡 Light দিন'; }
 }
 function renum(){
-  pages.forEach((pg, i) => pg.el.querySelector('b').textContent = 'পেজ '+(i+1));
+  pages.forEach((pg, i) => {
+    pg.el.querySelector('b').textContent = 'পেজ '+(i+1);
+    const u = pg.el.querySelector('[data-a=up]'), d = pg.el.querySelector('[data-a=down]');
+    if(u) u.disabled = i == 0; if(d) d.disabled = i == pages.length-1;
+  });
   $('#start').hidden = pages.length > 0; $('#bar').hidden = !pages.length;
   $('#mk').textContent = '📄 PDF করুন' + (pages.length ? ' ('+pages.length+')' : '');
 }
 function addPage(base, file, reload){
   const pg = {base, file, reload, light:false, gray:false}, el = document.createElement('div'); el.className = 'pg';
-  el.innerHTML = '<div class="ph"><b></b><span><button data-a="reset" title="আগের অবস্থা">↺</button><button data-a="del" title="মুছুন">✕</button></span></div><canvas></canvas><div class="acts"><button class="btn" data-a="fix">✂️ Crop</button><button class="btn" data-a="light">💡 Light দিন</button><button class="btn" data-a="gray">⚫ সাদাকালো</button></div>';
+  el.innerHTML = '<div class="ph"><b></b><span><button data-a="up" title="উপরে নিন">↑</button><button data-a="down" title="নিচে নিন">↓</button><button data-a="reset" title="আগের অবস্থা">↺</button><button data-a="del" title="মুছুন">✕</button></span></div><canvas></canvas><div class="acts"><button class="btn" data-a="fix">✂️ Crop</button><button class="btn" data-a="light">💡 Light দিন</button><button class="btn" data-a="gray">⚫ সাদাকালো</button></div><div class="acts acts2"><button class="btn" data-a="edit">📝 Edit</button><button class="btn" data-a="hl">🖍️ Highlight</button></div>';
   pg.el = el; pg.pv = el.querySelector('canvas'); pg.lb = el.querySelector('[data-a=light]'); pg.gb = el.querySelector('[data-a=gray]');
   el.onclick = async e => {
     const a = e.target.closest('[data-a]'); if(!a) return;
@@ -276,6 +306,13 @@ function addPage(base, file, reload){
     else if(k == 'light'){ pg.light = !pg.light; draw(pg); }
     else if(k == 'cert') openCert();
     else if(k == 'fix') sgOpen(pg.base, c => { pg.base = c; draw(pg); }, '✂️ Crop / এডিট');
+    else if(k == 'up' || k == 'down'){
+      const i = pages.indexOf(pg), j = k == 'up' ? i-1 : i+1; if(j < 0 || j >= pages.length) return;
+      pages.splice(i, 1); pages.splice(j, 0, pg); pages.forEach(p => $('#pages').appendChild(p.el)); renum();
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+    else if(k == 'edit') hlOpen(pg, 'edit');
+    else if(k == 'hl') hlOpen(pg, 'hl');
     else if(k == 'gray'){ pg.gray = !pg.gray; draw(pg); }
     else if(k == 'reset'){ try { pg.base = pg.reload ? await pg.reload() : await load(pg.file); pg.light = false; pg.gray = false; draw(pg); } catch(err){ msg(err.message, 'err'); } }
   };
@@ -699,12 +736,162 @@ $('#cf-ok').onclick = async () => {
     else {
       addPage(cv, null); const pg = pages[pages.length-1]; pg.cert = true; pg.lb = null; certPg = pg;
       pg.el.querySelector('[data-a=reset]').remove();
-      pg.el.querySelector('.acts').innerHTML = '<button class="btn" data-a="cert">✏️ প্রত্যয়ন বদলান</button>';
+      pg.el.querySelector('.acts').innerHTML = '<button class="btn" data-a="cert">✏️ প্রত্যয়ন বদলান</button>'; pg.el.querySelector('.acts2').remove();
       pages.splice(pages.indexOf(pg), 1); pages.unshift(pg); $('#pages').prepend(pg.el); renum();
     }
     $('#cf').close(); msg(''); certPg.el.scrollIntoView({behavior:'smooth', block:'start'});
   } catch(e){ console.error(e); alert('ত্রুটি: '+(e.message||e)); }
   b.disabled = false; b.textContent = '✓ প্রত্যয়ন তৈরি করুন';
+};
+
+// ---- Edit / Highlight এডিটর (ছবির ওপর হাইলাইট ও লেখা বদলানো) ----
+const HL = {pg:null, src:null, cache:null, ops:[], redo:[], tool:'hl', W:0, H:0, drag:null, inp:null};
+const hlc = $('#hlc'), hlx = hlc.getContext('2d'), hlLayer = document.createElement('canvas');
+const HL_FONT = '"Noto Sans Bengali","Hind Siliguri","Kalpurush","Nirmala UI",system-ui,sans-serif';
+const HL_HINT = {
+  edit: 'Edit: যে লেখা বদলাতে চান তার ওপর আঙুল/মাউস দিয়ে বক্স টানুন, নতুন লেখা টাইপ করে Enter চাপুন। পুরোনো লেখা ঢেকে যাবে। শুধু মুছতে চাইলে ফাঁকা রেখে Enter চাপুন।',
+  hl: 'Highlight: লেখার ওপর আঙুল/মাউস টেনে হাইলাইট করুন। ব্রাশের সাইজ ও রঙ নিচ থেকে বদলান।'
+};
+function hlStroke(ctx, o, W, H){
+  hlLayer.width = W; hlLayer.height = H;
+  const g = hlLayer.getContext('2d'); g.strokeStyle = o.col; g.lineWidth = o.w*W; g.lineCap = g.lineJoin = 'round';
+  g.beginPath(); o.pts.forEach((p, i) => i ? g.lineTo(p[0]*W, p[1]*H) : g.moveTo(p[0]*W, p[1]*H));
+  if(o.pts.length == 1) g.lineTo(o.pts[0][0]*W + .1, o.pts[0][1]*H);
+  g.stroke();
+  ctx.globalCompositeOperation = 'multiply'; ctx.drawImage(hlLayer, 0, 0); ctx.globalCompositeOperation = 'source-over';
+}
+function hlRender(ctx, W, H){
+  ctx.globalCompositeOperation = 'source-over'; ctx.drawImage(HL.src, 0, 0, W, H);
+  for(const o of HL.ops){
+    if(o.t == 'edit'){
+      const x = o.x*W, y = o.y*H, w = o.w*W, h = o.h*H;
+      ctx.fillStyle = o.bg; ctx.fillRect(x, y, w, h);
+      if(o.text){ ctx.font = Math.max(6, h*.78)+'px '+HL_FONT; ctx.fillStyle = o.fg; ctx.textBaseline = 'middle'; ctx.textAlign = 'left'; ctx.fillText(o.text, x + h*.08, y + h*.53); }
+    } else hlStroke(ctx, o, W, H);
+  }
+}
+function hlBuild(){ hlRender(HL.cache.getContext('2d'), HL.W, HL.H); hlShow(); }
+function hlShow(){
+  hlx.clearRect(0, 0, HL.W, HL.H); hlx.drawImage(HL.cache, 0, 0);
+  const d = HL.drag; if(!d) return;
+  if(d.o) hlStroke(hlx, d.o, HL.W, HL.H);
+  else {
+    const x = Math.min(d.x0, d.x1)*HL.W, y = Math.min(d.y0, d.y1)*HL.H, w = Math.abs(d.x1-d.x0)*HL.W, h = Math.abs(d.y1-d.y0)*HL.H;
+    hlx.save(); hlx.fillStyle = 'rgba(47,79,216,.14)'; hlx.fillRect(x, y, w, h); hlx.strokeStyle = '#2f4fd8'; hlx.lineWidth = 2; hlx.setLineDash([6, 4]); hlx.strokeRect(x, y, w, h); hlx.restore();
+  }
+}
+function hlSample(r){ // ব্যাকগ্রাউন্ড = সবচেয়ে বেশি রঙ, লেখার রঙ = তার থেকে সবচেয়ে আলাদা পিক্সেল
+  try {
+    const x = Math.floor(r.x*HL.W), y = Math.floor(r.y*HL.H), w = Math.max(1, Math.min(HL.W-x, Math.ceil(r.w*HL.W))), h = Math.max(1, Math.min(HL.H-y, Math.ceil(r.h*HL.H)));
+    const d = HL.cache.getContext('2d').getImageData(x, y, w, h).data, hist = {}; let best = null;
+    for(let i = 0; i < d.length; i += 4){
+      const k = (d[i]>>4)+','+(d[i+1]>>4)+','+(d[i+2]>>4), e = hist[k] || (hist[k] = {n:0, r:0, g:0, b:0});
+      e.n++; e.r += d[i]; e.g += d[i+1]; e.b += d[i+2]; if(!best || e.n > best.n) best = e;
+    }
+    const bg = [best.r/best.n, best.g/best.n, best.b/best.n].map(Math.round); let fg = bg, fd = -1;
+    for(let i = 0; i < d.length; i += 4){ const dd = (d[i]-bg[0])**2 + (d[i+1]-bg[1])**2 + (d[i+2]-bg[2])**2; if(dd > fd){ fd = dd; fg = [d[i], d[i+1], d[i+2]]; } }
+    const hx = c => '#'+c.map(v => v.toString(16).padStart(2, '0')).join('');
+    return {bg: hx(bg), fg: fd > 1800 ? hx(fg) : '#000000'};
+  } catch(e){ return {bg:'#ffffff', fg:'#000000'}; }
+}
+function hlStartText(r){
+  hlShow();
+  const col = hlSample(r), cr = hlc.getBoundingClientRect(), hpx = r.h*cr.height, inp = document.createElement('input');
+  inp.type = 'text'; inp.className = 'hl-inp'; inp.autocomplete = 'off'; inp.spellcheck = false;
+  Object.assign(inp.style, {left:r.x*cr.width+'px', top:r.y*cr.height+'px', width:Math.max(r.w*cr.width, 70)+'px', height:hpx+'px', fontSize:Math.max(6, hpx*.78)+'px', background:col.bg, color:col.fg});
+  HL.inp = {el:inp, r, col};
+  inp.onkeydown = ev => { if(ev.key == 'Enter'){ ev.preventDefault(); hlCommitText(true); } else if(ev.key == 'Escape'){ ev.preventDefault(); hlCancelText(); } };
+  inp.onblur = () => hlCommitText(false);
+  $('#hl-stage').appendChild(inp); setTimeout(() => inp.focus(), 30);
+}
+function hlCommitText(explicit){ // ফাঁকা লেখা: Enter = মুছে ফেলা, অন্যত্র ক্লিক = বাতিল
+  const t = HL.inp; if(!t) return; HL.inp = null; t.el.onblur = null; const v = t.el.value; t.el.remove();
+  if(!v.trim() && !explicit){ hlShow(); return; }
+  HL.ops.push(Object.assign({t:'edit', text:v.trim() ? v : '', bg:t.col.bg, fg:t.col.fg}, t.r)); HL.redo = []; hlBuild();
+}
+function hlCancelText(){ const t = HL.inp; if(!t) return; HL.inp = null; t.el.onblur = null; t.el.remove(); hlShow(); }
+function hlSetTool(t){
+  hlCommitText(false); HL.tool = t;
+  document.querySelectorAll('#hl-tools [data-t]').forEach(b => b.classList.toggle('on', b.dataset.t == t));
+  $('#hl-opts').hidden = t != 'hl'; $('#hl-hint').textContent = HL_HINT[t];
+}
+function hlOpen(pg, tool){
+  document.querySelectorAll('.hl-inp').forEach(e => e.remove());
+  Object.assign(HL, {pg, src:pg.base, ops:[], redo:[], drag:null, inp:null});
+  HL.W = Math.min(900, pg.base.width); HL.H = Math.round(HL.W*pg.base.height/pg.base.width);
+  hlc.width = HL.W; hlc.height = HL.H; HL.cache = document.createElement('canvas'); HL.cache.width = HL.W; HL.cache.height = HL.H;
+  hlTp.clear(); hlPz = null; HL.z = 1; $('#hl-wrap').scrollLeft = 0; $('#hl-wrap').scrollTop = 0;
+  hlSetTool(tool); $('#hl').showModal(); hlSizeCanvas(); hlBuild();
+}
+HL.z = 1;
+function hlSizeCanvas(){
+  const w = $('#hl-wrap'), base = Math.min(HL.W, w.clientWidth), st = $('#hl-stage');
+  st.style.maxWidth = HL.z > 1 ? 'none' : ''; hlc.style.maxWidth = HL.z > 1 ? 'none' : ''; hlc.style.width = HL.z > 1 ? Math.round(base*HL.z)+'px' : '';
+  $('#hl-zv').textContent = Math.round(HL.z*100)+'%';
+}
+function hlZoom(z, cx, cy){ // cx, cy: যে বিন্দুটি জায়গায় থাকবে (স্ক্রিন কো-অর্ডিনেট)
+  z = Math.max(1, Math.min(4, z)); const w = $('#hl-wrap'), wr = w.getBoundingClientRect(), r = hlc.getBoundingClientRect();
+  if(cx == null){ cx = wr.left + wr.width/2; cy = wr.top + wr.height/2; }
+  const fx = (cx-r.left)/r.width, fy = (cy-r.top)/r.height;
+  HL.z = z; hlSizeCanvas();
+  const r2 = hlc.getBoundingClientRect(); w.scrollLeft += r2.left + fx*r2.width - cx; w.scrollTop += r2.top + fy*r2.height - cy;
+}
+const hlTp = new Map(); let hlPz = null;
+const hlMid = () => { const [a, b] = [...hlTp.values()]; return [(a[0]+b[0])/2, (a[1]+b[1])/2, Math.hypot(a[0]-b[0], a[1]-b[1]) || 1]; };
+$('#hl-zi').onclick = () => hlZoom(HL.z*1.25); $('#hl-zo').onclick = () => hlZoom(HL.z/1.25);
+$('#hl-zr').onclick = () => { hlZoom(1); const w = $('#hl-wrap'); w.scrollLeft = 0; w.scrollTop = 0; };
+$('#hl-wrap').addEventListener('wheel', e => { if(!e.ctrlKey) return; e.preventDefault(); hlZoom(HL.z*(e.deltaY < 0 ? 1.1 : 1/1.1), e.clientX, e.clientY); }, {passive:false});
+// গোল ব্রাশ কার্সর: বৃত্তের মাপ = ব্রাশের মাপ
+const hlBc = document.createElement('div'); hlBc.id = 'hl-bc'; $('#hl-stage').appendChild(hlBc);
+let hlLast = null;
+function hlCur(){
+  hlc.style.cursor = HL.tool == 'hl' ? 'none' : 'crosshair';
+  if(!hlLast || HL.tool != 'hl' || hlPz){ hlBc.style.display = 'none'; return; }
+  const r = hlc.getBoundingClientRect(), d = Math.max(6, (+$('#hl-pen').value)/600*r.width), h = $('#hl-col').value,
+    rgb = [1, 3, 5].map(i => parseInt(h.slice(i, i+2), 16)).join(',');
+  hlBc.style.width = hlBc.style.height = d+'px'; hlBc.style.left = (hlLast[0]-r.left)+'px'; hlBc.style.top = (hlLast[1]-r.top)+'px';
+  hlBc.style.background = 'rgba('+rgb+',.5)'; hlBc.style.display = 'block';
+}
+hlc.addEventListener('pointermove', e => { hlLast = [e.clientX, e.clientY]; hlCur(); });
+hlc.addEventListener('pointerdown', e => { hlLast = [e.clientX, e.clientY]; hlCur(); });
+hlc.addEventListener('pointerleave', () => { hlLast = null; hlCur(); });
+hlc.addEventListener('pointerup', () => { if(HL.tool != 'hl') hlCur(); });
+$('#hl-pen').addEventListener('input', hlCur); $('#hl-col').addEventListener('input', hlCur);
+$('#hl-tools').addEventListener('click', hlCur);
+const hlPos = e => { const r = hlc.getBoundingClientRect(); return [Math.min(1, Math.max(0, (e.clientX-r.left)/r.width)), Math.min(1, Math.max(0, (e.clientY-r.top)/r.height))]; };
+hlc.onpointerdown = e => {
+  hlCommitText(false);
+  if(e.pointerType == 'touch'){ hlTp.set(e.pointerId, [e.clientX, e.clientY]);
+    if(hlTp.size >= 2){ HL.drag = null; const m = hlMid(); hlPz = {d:m[2], z:HL.z, mx:m[0], my:m[1]}; hlShow(); e.preventDefault(); return; } }
+  const [x, y] = hlPos(e); hlc.setPointerCapture(e.pointerId);
+  HL.drag = HL.tool == 'hl' ? {o:{t:'hl', pts:[[x, y]], col:$('#hl-col').value, w:(+$('#hl-pen').value)/600}} : {x0:x, y0:y, x1:x, y1:y};
+  e.preventDefault(); hlShow();
+};
+hlc.onpointermove = e => {
+  if(hlTp.has(e.pointerId)) hlTp.set(e.pointerId, [e.clientX, e.clientY]);
+  if(hlPz){ if(hlTp.size >= 2){ const [mx, my, d] = hlMid(), w = $('#hl-wrap'); hlZoom(hlPz.z*d/hlPz.d, mx, my); w.scrollLeft -= mx-hlPz.mx; w.scrollTop -= my-hlPz.my; hlPz.mx = mx; hlPz.my = my; } return; }
+  const d = HL.drag; if(!d) return; const [x, y] = hlPos(e); if(d.o) d.o.pts.push([x, y]); else { d.x1 = x; d.y1 = y; } hlShow(); };
+hlc.onpointerup = hlc.onpointercancel = e => {
+  hlTp.delete(e.pointerId); if(hlPz){ if(hlTp.size < 2) hlPz = null; return; }
+  const d = HL.drag; if(!d) return; HL.drag = null;
+  if(d.o){ HL.ops.push(d.o); HL.redo = []; hlBuild(); return; }
+  const x = Math.min(d.x0, d.x1), y = Math.min(d.y0, d.y1), w = Math.abs(d.x1-d.x0), h = Math.abs(d.y1-d.y0);
+  if(w*HL.W < 8 || h*HL.H < 8){ hlShow(); return; }
+  hlStartText({x, y, w, h});
+};
+$('#hl-tools').onclick = e => { const b = e.target.closest('[data-t]'); if(b) hlSetTool(b.dataset.t); };
+$('#hl-pen').oninput = e => $('#hl-pv').textContent = e.target.value;
+$('#hl-undo').onclick = () => { hlCancelText(); if(HL.ops.length){ HL.redo.push(HL.ops.pop()); hlBuild(); } };
+$('#hl-redo').onclick = () => { hlCancelText(); if(HL.redo.length){ HL.ops.push(HL.redo.pop()); hlBuild(); } };
+$('#hl-clear').onclick = () => { hlCancelText(); HL.ops = []; HL.redo = []; hlBuild(); };
+$('#hl-x').onclick = () => { hlCancelText(); $('#hl').close(); };
+$('#hl-ok').onclick = () => {
+  hlCommitText(false);
+  if(HL.ops.length){
+    const s = HL.src, c = SG.cnv(s.width, s.height); hlRender(c.getContext('2d'), c.width, c.height);
+    HL.pg.base = c; draw(HL.pg); track('palli_edit', {tool:'edit_highlight', n:HL.ops.length});
+  }
+  $('#hl').close();
 };
 
 // ---- PDF করুন ----
