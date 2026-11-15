@@ -88,11 +88,12 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
 #hl{max-height:94vh;overflow:auto}
 #hl .btn{min-width:0;padding:10px 8px;font-size:14px}
 #hl .row{margin-top:10px}
-#hl-wrap{overflow:auto;max-height:68vh;margin-top:10px;-webkit-overflow-scrolling:touch}
+#hl-wrap{overflow:auto;max-height:52vh;margin-top:10px;-webkit-overflow-scrolling:touch}
+#hl-bar{display:flex;gap:6px;margin-top:10px}#hl-bar .row{display:contents}#hl-bar #hl-undo,#hl-bar #hl-redo{font-size:22px;line-height:1;font-weight:900}#hl-bar .btn{flex:1 1 0;min-width:0;margin:0;height:44px;padding:0 2px;display:flex;align-items:center;justify-content:center;font-size:13px;white-space:nowrap}
 #hl-list .hl-slot{margin:0 auto 14px;width:fit-content;max-width:100%}
-#hl-list .hl-cap{font-size:12.5px;font-weight:700;color:var(--mut);margin:0 0 4px;text-align:center}
-#hl-list .hl-slot.off{cursor:pointer}
-#hl-list .hl-slot.off canvas{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff;opacity:.92}
+#hl-list .hl-cap{font-size:12.5px;font-weight:700;color:var(--mut);padding:6px 0;text-align:center}
+#hl-list .hl-slot.off{cursor:crosshair}
+#hl-list .hl-slot.off canvas{touch-action:none;display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff;opacity:.92}
 #hl-list .hl-slot.on .hl-cap{color:#2f4fd8}
 #hl-stage{position:relative;display:block;width:fit-content;max-width:100%;margin:0 auto}
 #hlc{display:block;max-width:100%;height:auto;touch-action:none;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:crosshair}
@@ -116,16 +117,16 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
   <p class="sub" id="sub">ছবি তুলুন, গ্যালারি থেকে নিন বা PDF ফাইল দিন; সোজা ও উজ্জ্বল করে নতুন PDF বানান। ছবি কোথাও আপলোড হয় না।</p>
   <div class="srcrow" id="start">
     <button class="big" id="cert-b" hidden>📝<b>প্রত্যয়ন</b></button>
-    <button class="big" data-s="gal">🖼️<b>গ্যালারি থেকে</b></button>
-    <button class="big" data-s="cam">📷<b>ক্যামেরা</b></button>
-    <button class="big" data-s="pdf">📑<b>PDF ফাইল</b></button>
+    <button class="big" data-s="gal">🖼️<b>From gallery</b></button>
+    <button class="big" data-s="cam">📷<b>Camera</b></button>
+    <button class="big" data-s="pdf">📑<b>PDF file</b></button>
   </div>
   <div id="pages"></div>
   <div id="bar" hidden>
     <button class="btn" id="add">➕ Add image / PDF</button>
-    <button class="btn" id="cert-b2" hidden>📝 প্রত্যয়ন</button>
-    <select id="qs" class="btn" aria-label="PDF সাইজ" style="padding:10px 8px"><option value="100">📉 ১০০ KB</option><option value="200">⚖️ ২০০ KB</option><option value="250" selected>📄 ২৫০ KB</option><option value="300">🗂️ ৩০০ KB</option><option value="500">🖼️ ৫০০ KB</option><option value="999">💎 ৯৯৯ KB</option></select>
-    <button class="btn pri" id="mk">📄 PDF করুন</button>
+    <button class="btn" id="cert-b2" hidden>📝 Certificate</button>
+    <select id="qs" class="btn" aria-label="PDF size" style="padding:10px 8px"><option value="100">📉 100 KB</option><option value="200">⚖️ 200 KB</option><option value="250" selected>📄 250 KB</option><option value="300">🗂️ 300 KB</option><option value="500">🖼️ 500 KB</option><option value="999">💎 999 KB</option></select>
+    <button class="btn pri" id="mk">📄 Make PDF</button>
   </div>
   <div id="st" role="status"></div>
 </main>
@@ -135,11 +136,11 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
 <dialog id="pk">
   <b>ছবি / PDF কোথা থেকে নেবেন?</b>
   <div class="srcrow">
-    <button class="big" data-s="gal">🖼️<b>গ্যালারি</b></button>
-    <button class="big" data-s="cam">📷<b>ক্যামেরা</b></button>
-    <button class="big" data-s="pdf">📑<b>PDF ফাইল</b></button>
+    <button class="big" data-s="gal">🖼️<b>Gallery</b></button>
+    <button class="big" data-s="cam">📷<b>Camera</b></button>
+    <button class="big" data-s="pdf">📑<b>PDF file</b></button>
   </div>
-  <button class="btn" onclick="this.closest('dialog').close()" style="width:100%">বন্ধ করুন</button>
+  <button class="btn" onclick="this.closest('dialog').close()" style="width:100%">Close</button>
 </dialog>
 
 <dialog id="cf">
@@ -159,19 +160,19 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
     <b>✍️ স্বাক্ষর (ঐচ্ছিক)</b>
     <input type="file" id="cf-sigf" accept="image/*">
     <p class="hint">সাদা কাগজে কলম দিয়ে সই করে ছবি তুলুন বা গ্যালারি থেকে দিন। ব্যাকগ্রাউন্ড নিজে থেকে সরে যাবে এবং সই নামের ঠিক উপরে বসবে।</p>
-    <div class="sigprev" id="cf-sigw" hidden><canvas id="cf-sigp"></canvas><button class="btn edit" id="cf-sige" type="button">✂️ Crop / এডিট</button><button class="btn" id="cf-sigx" type="button">✕ বাদ দিন</button></div>
+    <div class="sigprev" id="cf-sigw" hidden><canvas id="cf-sigp"></canvas><button class="btn edit" id="cf-sige" type="button">✂️ Crop / Edit</button><button class="btn" id="cf-sigx" type="button">✕ Remove</button></div>
   </div>
-  <div class="row"><button class="btn" id="cf-x">বাতিল</button><button class="btn pri" id="cf-ok">✓ প্রত্যয়ন তৈরি করুন</button></div>
+  <div class="row"><button class="btn" id="cf-x">Cancel</button><button class="btn pri" id="cf-ok">✓ Create certificate</button></div>
 </dialog>
 
 <dialog id="sg">
   <b id="sg-t">✍️ স্বাক্ষর এডিট করুন</b>
   <canvas id="sgc"></canvas>
   <p class="hint">প্রতিটি লাল কোণা আলাদাভাবে টানুন — কাটতে চাওয়া অংশের চারপাশে বসান। ছবি বাঁকা থাকলে সোজা হয়ে যাবে। মাঝের বিন্দু ধরলে পাশটি সোজা উপর-নিচ বা ডান-বাম যাবে, ভেতরে টানলে পুরো ফ্রেম সরে।</p>
-  <div class="row"><button class="btn" id="sg-rl">↺ ঘোরান</button><button class="btn" id="sg-rr">↻ ঘোরান</button><button class="btn" id="sg-gr">⚫ সাদাকালো</button></div>
+  <div class="row"><button class="btn" id="sg-rl">↺ Rotate</button><button class="btn" id="sg-rr">↻ Rotate</button><button class="btn" id="sg-gr">⚫ Grayscale</button></div>
   <label>সামান্য কাত ঠিক করুন <span id="sg-fv">০°</span><input type="range" id="sg-fine" min="-15" max="15" step="0.5" value="0"></label>
   <label>আলো <span id="sg-lv">০</span><input type="range" id="sg-lsl" min="-50" max="50" step="1" value="0"></label>
-  <div class="row"><button class="btn" id="sg-x">বাতিল</button><button class="btn pri" id="sg-ok">✓ ঠিক আছে</button></div>
+  <div class="row"><button class="btn" id="sg-x">Cancel</button><button class="btn pri" id="sg-ok">✓ OK</button></div>
 </dialog>
 
 <dialog id="ed">
@@ -179,21 +180,23 @@ dialog::backdrop{background:rgba(15,20,40,.55)}
   <div style="font-size:13px;color:var(--mut)">চারটি বিন্দু টেনে কাগজের চার কোণে বসান, তারপর "সোজা করুন" চাপুন। এতে কাটা ও সোজা দুটোই হয়।</div>
   <canvas id="ec"></canvas>
   <div class="row">
-    <button class="btn" id="er">↻ ঘোরান</button>
-    <button class="btn" onclick="$('#ed').close()">বাতিল</button>
-    <button class="btn pri" id="ea">✓ সোজা করুন</button>
+    <button class="btn" id="er">↻ Rotate</button>
+    <button class="btn" onclick="$('#ed').close()">Cancel</button>
+    <button class="btn pri" id="ea">✓ Straighten</button>
   </div>
 </dialog>
 
 <dialog id="hl">
   <b>📝 Edit / 🖍️ Highlight</b>
-  <div class="row" id="hl-tools" style="margin-top:10px"><button type="button" class="btn" data-t="edit">📝 Edit</button><button type="button" class="btn on" data-t="hl">🖍️ Highlight</button></div>
+  <div id="hl-bar">
+  <div class="row" id="hl-tools" style="margin-top:10px"><button type="button" class="btn" data-t="edit">Edit</button><button type="button" class="btn on" data-t="hl">Highlight</button></div>
+  <div class="row" id="hl-ur"><button type="button" class="btn" id="hl-undo" title="Undo" aria-label="Undo">↶</button><button type="button" class="btn" id="hl-redo" title="Redo" aria-label="Redo">↷</button><button type="button" class="btn" id="hl-clear">Clear</button></div>
+  </div>
   <div class="row" id="hl-zoom" style="align-items:center"><button type="button" class="btn" id="hl-zo" style="flex:0 0 52px">−</button><span id="hl-zv" style="flex:1;text-align:center;font-weight:700;font-size:14px">100%</span><button type="button" class="btn" id="hl-zi" style="flex:0 0 52px">+</button><button type="button" class="btn" id="hl-zr" style="flex:0 0 auto;padding:10px 14px">↺ 100%</button></div>
   <div id="hl-wrap"><div id="hl-list"></div><div id="hl-stage"><canvas id="hlc"></canvas></div></div>
   <p class="hint" id="hl-hint"></p>
   <div class="row" id="hl-opts"><label>রঙ<input type="color" id="hl-col" value="#fff200"></label><label>ব্রাশের সাইজ: <span id="hl-pv">18</span><input type="range" id="hl-pen" min="4" max="60" value="18"></label></div>
-  <div class="row"><button type="button" class="btn" id="hl-undo">↶ Undo</button><button type="button" class="btn" id="hl-redo">↷ Redo</button><button type="button" class="btn" id="hl-clear">Clear</button></div>
-  <div class="row"><button type="button" class="btn" id="hl-x">বাতিল</button><button type="button" class="btn pri" id="hl-ok">✓ ঠিক আছে</button></div>
+  <div class="row"><button type="button" class="btn" id="hl-x">Cancel</button><button type="button" class="btn pri" id="hl-ok">✓ OK</button></div>
 </dialog>
 
 <input type="file" id="gal" accept="image/*" multiple hidden>
@@ -288,8 +291,8 @@ function draw(pg){
   const b = pg.base, k = Math.min(1, 800/Math.max(b.width, b.height)), w = Math.round(b.width*k), h = Math.round(b.height*k);
   const t = document.createElement('canvas'); t.width = w; t.height = h; t.getContext('2d').drawImage(b, 0, 0, w, h);
   pg.pv.width = w; pg.pv.height = h; pg.pv.getContext('2d').drawImage(toGray(pg.light ? enhance(t) : t, pg.gray), 0, 0);
-  if(pg.gb){ pg.gb.classList.toggle('on', pg.gray); pg.gb.textContent = pg.gray ? '✓ সাদাকালো' : '⚫ সাদাকালো'; }
-  if(pg.lb){ pg.lb.classList.toggle('on', pg.light); pg.lb.textContent = pg.light ? '💡 Light ✓' : '💡 Light দিন'; }
+  if(pg.gb){ pg.gb.classList.toggle('on', pg.gray); pg.gb.textContent = pg.gray ? '✓ Grayscale' : 'Grayscale'; }
+  if(pg.lb){ pg.lb.classList.toggle('on', pg.light); pg.lb.textContent = pg.light ? 'Light ✓' : 'Light'; }
 }
 function renum(){
   pages.forEach((pg, i) => {
@@ -298,11 +301,11 @@ function renum(){
     if(u) u.disabled = i == 0; if(d) d.disabled = i == pages.length-1;
   });
   $('#start').hidden = pages.length > 0; $('#bar').hidden = !pages.length;
-  $('#mk').textContent = '📄 PDF করুন' + (pages.length ? ' ('+pages.length+')' : '');
+  $('#mk').textContent = '📄 Make PDF' + (pages.length ? ' ('+pages.length+')' : '');
 }
 function addPage(base, file, reload){
   const pg = {base, file, reload, light:false, gray:false}, el = document.createElement('div'); el.className = 'pg';
-  el.innerHTML = '<div class="ph"><b></b><span><button data-a="up" title="উপরে নিন">↑</button><button data-a="down" title="নিচে নিন">↓</button><button data-a="reset" title="আগের অবস্থা">↺</button><button data-a="del" title="মুছুন">✕</button></span></div><canvas></canvas><div class="acts"><button class="btn" data-a="fix">✂️ Crop</button><button class="btn" data-a="light">💡 Light দিন</button><button class="btn" data-a="gray">⚫ সাদাকালো</button><button class="btn" data-a="edit">📝 Edit</button><button class="btn" data-a="hl">🖍️ Highlight</button></div>';
+  el.innerHTML = '<div class="ph"><b></b><span><button data-a="up" title="Move up">↑</button><button data-a="down" title="Move down">↓</button><button data-a="reset" title="Reset">↺</button><button data-a="del" title="Delete">✕</button></span></div><canvas></canvas><div class="acts"><button class="btn" data-a="fix">Crop</button><button class="btn" data-a="light">Light</button><button class="btn" data-a="gray">Grayscale</button><button class="btn" data-a="edit">Edit</button><button class="btn" data-a="hl">Highlight</button></div>';
   pg.el = el; pg.pv = el.querySelector('canvas'); pg.lb = el.querySelector('[data-a=light]'); pg.gb = el.querySelector('[data-a=gray]');
   el.onclick = async e => {
     const a = e.target.closest('[data-a]'); if(!a) return;
@@ -310,7 +313,7 @@ function addPage(base, file, reload){
     if(k == 'del'){ el.remove(); pages.splice(pages.indexOf(pg), 1); renum(); }
     else if(k == 'light'){ pg.light = !pg.light; draw(pg); }
     else if(k == 'cert') openCert();
-    else if(k == 'fix') sgOpen(pg.base, c => { pg.base = c; draw(pg); }, '✂️ Crop / এডিট');
+    else if(k == 'fix') sgOpen(pg.base, c => { pg.base = c; draw(pg); }, '✂️ Crop / Edit');
     else if(k == 'up' || k == 'down'){
       const i = pages.indexOf(pg), j = k == 'up' ? i-1 : i+1; if(j < 0 || j >= pages.length) return;
       pages.splice(i, 1); pages.splice(j, 0, pg); pages.forEach(p => $('#pages').appendChild(p.el)); renum();
@@ -698,14 +701,14 @@ function sgOpen(src, cb, title){
   Object.assign(sgE, {src, cb: cb || sgSigDone, r90:0, fine:0, light:0, gray:false});
   $('#sg-t').textContent = title || '✍️ স্বাক্ষর এডিট করুন';
   $('#sg-fine').value = 0; $('#sg-fv').textContent = '০°'; $('#sg-lsl').value = 0; $('#sg-lv').textContent = '০';
-  $('#sg-gr').classList.remove('on'); $('#sg-gr').textContent = '⚫ সাদাকালো';
+  $('#sg-gr').classList.remove('on'); $('#sg-gr').textContent = '⚫ Grayscale';
   $('#sg').showModal(); sgRebuild(true);
 }
 $('#sg-rl').onclick = () => { sgE.r90 = (sgE.r90 - 90 + 360) % 360; sgRebuild(true); };
 $('#sg-rr').onclick = () => { sgE.r90 = (sgE.r90 + 90) % 360; sgRebuild(true); };
 $('#sg-fine').oninput = e => { sgE.fine = +e.target.value; $('#sg-fv').textContent = sgE.fine+'°'; sgRebuild(true); };
 $('#sg-lsl').oninput = e => { sgE.light = +e.target.value; $('#sg-lv').textContent = (sgE.light > 0 ? '+' : '')+sgE.light.toLocaleString('bn-BD'); sgTone(); };
-$('#sg-gr').onclick = () => { sgE.gray = !sgE.gray; const b = $('#sg-gr'); b.classList.toggle('on', sgE.gray); b.textContent = sgE.gray ? '✓ সাদাকালো' : '⚫ সাদাকালো'; sgTone(); };
+$('#sg-gr').onclick = () => { sgE.gray = !sgE.gray; const b = $('#sg-gr'); b.classList.toggle('on', sgE.gray); b.textContent = sgE.gray ? '✓ Grayscale' : '⚫ Grayscale'; sgTone(); };
 const sgSigDone = c => { sigC = sigProcess(c); sigShow(); track('cert_signature', {ok:1}); };
 $('#sg-x').onclick = () => $('#sg').close();
 $('#sg-ok').onclick = () => {
@@ -734,19 +737,19 @@ $('#cert-b').onclick = $('#cert-b2').onclick = openCert;
 $('#cf-x').onclick = () => $('#cf').close();
 $('#cf-ok').onclick = async () => {
   for(const k in CF){ const el = $('#cf-'+k); if(el) CF[k] = el.value; }
-  const b = $('#cf-ok'); b.disabled = true; b.textContent = 'তৈরি হচ্ছে…';
+  const b = $('#cf-ok'); b.disabled = true; b.textContent = 'Creating…';
   try {
     await ensureFont(); const cv = certCanvas(CF);
     if(certPg && pages.includes(certPg)){ certPg.base = cv; draw(certPg); }
     else {
       addPage(cv, null); const pg = pages[pages.length-1]; pg.cert = true; pg.lb = null; certPg = pg;
       pg.el.querySelector('[data-a=reset]').remove();
-      pg.el.querySelector('.acts').innerHTML = '<button class="btn" data-a="cert">✏️ প্রত্যয়ন বদলান</button>'; 
+      pg.el.querySelector('.acts').innerHTML = '<button class="btn" data-a="cert">✏️ Edit certificate</button>'; 
       pages.splice(pages.indexOf(pg), 1); pages.unshift(pg); $('#pages').prepend(pg.el); renum();
     }
     $('#cf').close(); msg(''); certPg.el.scrollIntoView({behavior:'smooth', block:'start'});
   } catch(e){ console.error(e); alert('ত্রুটি: '+(e.message||e)); }
-  b.disabled = false; b.textContent = '✓ প্রত্যয়ন তৈরি করুন';
+  b.disabled = false; b.textContent = '✓ Create certificate';
 };
 
 // ---- Edit / Highlight এডিটর (ছবির ওপর হাইলাইট ও লেখা বদলানো) ----
@@ -820,31 +823,35 @@ function hlSetTool(t){
   document.querySelectorAll('#hl-tools [data-t]').forEach(b => b.classList.toggle('on', b.dataset.t == t));
   $('#hl-opts').hidden = t != 'hl'; $('#hl-hint').textContent = HL_HINT[t];
 }
-function hlOpen(pg, tool){
+function hlOpen(pg, tool, keep){
   document.querySelectorAll('.hl-inp').forEach(e => e.remove());
   Object.assign(HL, {pg, src:pg.base, ops:[], redo:[], drag:null, inp:null});
   HL.W = Math.min(900, pg.base.width); HL.H = Math.round(HL.W*pg.base.height/pg.base.width);
   hlc.width = HL.W; hlc.height = HL.H; HL.cache = document.createElement('canvas'); HL.cache.width = HL.W; HL.cache.height = HL.H;
-  hlTp.clear(); hlPz = null; HL.z = 1;
+  hlTp.clear(); hlPz = null; if(!keep) HL.z = 1;
+  const w0 = $('#hl-wrap'), sx = w0.scrollLeft, sy = w0.scrollTop;
   hlSetTool(tool); if(!$('#hl').open) $('#hl').showModal();
   hlList(pg); hlSizeCanvas(); hlBuild();
-  const w = $('#hl-wrap'), sl = $('#hl-stage').parentNode; w.scrollLeft = 0;
-  w.scrollTop += sl.getBoundingClientRect().top - w.getBoundingClientRect().top - 4;
+  const w = $('#hl-wrap'), sl = $('#hl-stage').parentNode;
+  if(keep){ w.scrollLeft = sx; w.scrollTop = sy; }
+  else { w.scrollLeft = 0; w.scrollTop += sl.getBoundingClientRect().top - w.getBoundingClientRect().top - 4; }
 }
 function hlList(act){
   const st = $('#hl-stage'), box = $('#hl-list'), w = $('#hl-wrap'); st.remove(); box.innerHTML = '';
   const L = pages.filter(p => !p.cert);
   L.forEach((p, i) => {
     const sl = document.createElement('div'), cap = document.createElement('div'); cap.className = 'hl-cap';
-    cap.textContent = 'পৃষ্ঠা '+toBn(i+1)+(p === act ? ' (এডিট হচ্ছে)' : ' — এডিট করতে ট্যাপ করুন');
+    cap.textContent = 'পৃষ্ঠা '+toBn(i+1)+'';
     sl.appendChild(cap);
     if(p === act){ sl.className = 'hl-slot on'; sl.appendChild(st); }
     else {
       sl.className = 'hl-slot off';
       const bw = Math.min(900, p.base.width), c = document.createElement('canvas');
       c.width = bw; c.height = Math.round(bw*p.base.height/p.base.width); c.getContext('2d').drawImage(p.base, 0, 0, c.width, c.height);
-      c.style.width = Math.min(bw, w.clientWidth)+'px'; sl.appendChild(c);
-      sl.onclick = () => { hlApply(); hlOpen(p, HL.tool); };
+      const pb = Math.min(bw, w.clientWidth);
+      c.style.width = Math.round(pb*HL.z)+'px'; if(HL.z > 1) c.style.maxWidth = 'none';
+      c.onpointerdown = e => { hlApply(); hlOpen(p, HL.tool, true); hlc.onpointerdown(e); };
+      sl.appendChild(c);
     }
     box.appendChild(sl);
   });
@@ -861,6 +868,8 @@ function hlSizeCanvas(){
   const w = $('#hl-wrap'), base = Math.min(HL.W, w.clientWidth), st = $('#hl-stage');
   st.style.maxWidth = HL.z > 1 ? 'none' : ''; hlc.style.maxWidth = HL.z > 1 ? 'none' : ''; hlc.style.width = HL.z > 1 ? Math.round(base*HL.z)+'px' : '';
   $('#hl-zv').textContent = Math.round(HL.z*100)+'%';
+  document.querySelectorAll('#hl-list .hl-slot.off canvas').forEach(c => { const pb = Math.min(c.width, w.clientWidth);
+    c.style.maxWidth = HL.z > 1 ? 'none' : ''; c.style.width = Math.round(pb*HL.z)+'px'; });
 }
 function hlZoom(z, cx, cy){ // cx, cy: যে বিন্দুটি জায়গায় থাকবে (স্ক্রিন কো-অর্ডিনেট)
   z = Math.max(1, Math.min(4, z)); const w = $('#hl-wrap'), wr = w.getBoundingClientRect(), r = hlc.getBoundingClientRect();
